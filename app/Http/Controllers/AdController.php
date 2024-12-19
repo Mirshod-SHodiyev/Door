@@ -52,7 +52,7 @@ class AdController extends Controller
         $colors = Color::all();
         $ads=Ad::all();
         $ad=new Ad();
-        return view('ads.create', compact('ads','colors','ad'));
+        return view('ads.create', compact('ads','colors','ad','action'));
 
     }
 
@@ -78,13 +78,12 @@ class AdController extends Controller
         $ad = Ad::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
+            'customers_info' => $request->input('customers_info'),
+            'price' => $request->input('price'),
             'users_id' => auth()->id(),
             'color_id' => $request->input('color_id'),
-            'price_id' => $request->input('price_id'),
             'door_types_id' => $request->input('door_types_id'),
-            'door_dimensions_id' => $request->input('door_dimensions_id'),
-       
-
+            'door_dimensions_id' => $request->input('door_dimensions_id')
         ]);
 
         if ($request->hasFile('image')) {

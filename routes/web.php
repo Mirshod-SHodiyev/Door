@@ -10,7 +10,6 @@ Route::get('/', [AdController::class, "index"])->name("home");
 Route::middleware('auth')->group(function () {
 Route::resource('ads', \App\Http\Controllers\AdController::class);
 Route::get('/search',[\App\Http\Controllers\AdController::class ,'find']);
-Route::get('/contact',[\App\Http\Controllers\AdController::class,'contact']);
 Route::post("/ads/{id}/bookmark",[\App\Http\Controllers\UserController::class ,  "toggleBookmark"]);
 Route::get('/my/profile',[\App\Http\Controllers\UserController::class, 'profile']);
 Route::get('/ads/{id}' ,[AdController::class,'show']);
