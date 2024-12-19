@@ -14,6 +14,8 @@ Route::get('/contact',[\App\Http\Controllers\AdController::class,'contact']);
 Route::post("/ads/{id}/bookmark",[\App\Http\Controllers\UserController::class ,  "toggleBookmark"]);
 Route::get('/my/profile',[\App\Http\Controllers\UserController::class, 'profile']);
 Route::get('/ads/{id}' ,[AdController::class,'show']);
+Route::get('/ads/{id}/download-pdf', [AdController::class, 'generatePDF'])->name('generate.pdf');
+
 });
 
 Route::get('/dashboard', function () {

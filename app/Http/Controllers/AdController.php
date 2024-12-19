@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use JetBrains\PhpStorm\NoReturn;
 use PHPUnit\TextUI\Application;
-use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 
 class AdController extends Controller
@@ -41,11 +42,11 @@ class AdController extends Controller
     public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory
     {
 
-        $action = route('ads.store');
+        // $action = route('ads.store');
         $colors = Color::all();
         $ads=Ad::all();
         $ad=new Ad();
-        return view('ads.create', compact('action','ads','colors','ad'));
+        return view('ads.create', compact('ads','colors','ad'));
 
     }
 

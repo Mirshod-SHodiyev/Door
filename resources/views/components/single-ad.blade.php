@@ -54,6 +54,9 @@
                     <div class="sticky top-20">
                         <div class="rounded-md bg-slate-50 dark:bg-slate-800 shadow dark:shadow-gray-700">
                             <div class="p-6">
+                                <a href="{{ route('generate.pdf', ['id' => $ad->id]) }}" class="btn btn-primary">
+                                    PDF yuklab olish
+                                </a>
                                 <h5 class="text-2xl font-medium">
                                     <i class="uil uil-usd-circle icons me-2 text-green-600"></i>{{ $ad->price->price }} uzs
                                 </h5>
