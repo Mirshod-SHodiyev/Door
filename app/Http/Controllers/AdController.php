@@ -6,12 +6,14 @@ use App\Models\Ad;
 use App\Models\Images;
 use App\Models\Color;
 use Faker\Factory;
+use App\Models\Price;
 use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use JetBrains\PhpStorm\NoReturn;
 use PHPUnit\TextUI\Application;
+
 
 class AdController extends Controller
 {
@@ -20,7 +22,7 @@ class AdController extends Controller
      */
     public function index()
     {
-
+          $ads = Ad::with('price')->get();
             $colors=Color::all();
             $userId = auth()->id();
             $ads = Ad::query()->withCount([
@@ -28,12 +30,13 @@ class AdController extends Controller
                 $query->where('user_id', $userId);
                }
             ])->get();
-            return view('ads.index' ,compact('colors','ads'));
+            return view('ads.index' ,compact('colors','ads' ));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
+    
+
+    
     public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory
     {
 
@@ -54,7 +57,7 @@ class AdController extends Controller
         $request->validate([
             'title' => 'required | min:5',
             'description' => 'required',
-            'image'=>'mimes:jpg,jpeg,png,gif,svg|max:2048',
+           
         ],[
             'title'=>['required' => 'Titlini kiritish majburiy'],
             'description' => ['required' => 'Izoh kiritish majburiy'],
@@ -64,9 +67,11 @@ class AdController extends Controller
             'title' => $request->input("title"),
             'description' => $request->input("description"),
             'users_id'=> auth()->id(),
-            'colors_id' => $request->input("colors_id"),
-            'price_id' => $request->input("price_id"),
             'door_dimensions_id' => $request->input("door_dimensions_id"),
+            'branches_id' => $request->input("branch_id"),
+            'colors_id' => $request->input("color_id"),
+            'price_id' => $request->input("price_id"),
+
 
         ]);
 
@@ -83,12 +88,10 @@ class AdController extends Controller
     }
 
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory
     {
-        $ad = Ad::with('colors')->find($id);
+        $ad = Ad::with(['colors','price','doorDimensions' , 'doorTypes'])->find($id);
+      
         return view('components.single-ad', ['ad'=>$ad]);
     }
 
@@ -129,7 +132,7 @@ class AdController extends Controller
             $ads->where('title', 'like', '%' . $searchPhrase . '%');
         }
         if ($colorId) {
-            $ads->where('colors_id', $branchId);
+            $ads->where('colors_id', $colorId);
         }
         if ($minPrice) {
             $ads->where('price', '>=', $minPrice);
@@ -137,15 +140,12 @@ class AdController extends Controller
         if ($maxPrice) {
             $ads->where('price', '<=', $maxPrice);
         }
-        $ads = $ads->with('branch')->get();
-        $branches = Branch::all();
-        return view('ads.index', compact('ads', 'branches'));
+        $ads = $ads->with('colors')->get();
+        $colors = Color::all();
+        return view('ads.index', compact('ads', 'colors'));
     }
 
 
-  public function contact()
-  {
-      return view("components.contact");
-  }
+  
 
 }

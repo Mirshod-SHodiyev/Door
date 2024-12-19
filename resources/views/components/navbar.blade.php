@@ -84,8 +84,8 @@
                 </li>
 
                 <li><a href="/ads/create" class="sub-menu-item">order</a></li>
-                {{-- <li><a href="/my/profile" class="sub-menu-item">profile</a></li>
-                <li><a href="/ads/create" class="sub-menu-item">tanlash </a></li> --}}
+                {{-- <li><a href="/my/profile" class="sub-menu-item">profile</a></li> --}}
+               
 
             </ul><!--end navigation menu-->
         </div><!--end navigation-->

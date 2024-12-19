@@ -6,6 +6,7 @@ namespace MoonShine\Tests\Fixtures\Resources;
 
 use Closure;
 use Illuminate\Database\Eloquent\Model;
+use MoonShine\Handlers\ExportHandler;
 use MoonShine\Resources\ModelResource;
 
 class TestResource extends ModelResource
@@ -219,5 +220,12 @@ class TestResource extends ModelResource
     public function setDeleteRelationships(): void
     {
         $this->deleteRelationships = true;
+    }
+
+    public function export(): ?ExportHandler
+    {
+        return ExportHandler::make(__('moonshine::ui.export'))
+            ->csv()
+            ->filename($this->uriKey());
     }
 }

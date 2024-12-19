@@ -8,6 +8,7 @@ use App\Models\Ad;
 use App\Models\Price;
 use App\Models\DoorDimension;
 use App\Models\Color;
+use App\Models\DoorType;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -27,9 +28,12 @@ class AdFactory extends Factory
         return [
            'title' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
+            'customers_info' => $this->faker->paragraph(),
             'door_dimensions_id' => DoorDimension::factory(),
             'colors_id' => Color::factory(), 
+            'door_types_id' => DoorType::factory(),
             'users_id' => User::factory(),
+            'price_id' => Price::factory(),
 
         ];
     }

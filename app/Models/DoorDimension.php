@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class DoorDimension extends Model
 {
     use HasFactory;
+    protected $table = 'door_dimensions';
 
     protected $fillable = [
         'width',
@@ -16,5 +17,6 @@ class DoorDimension extends Model
         'opening_side',
         'has_top_section',
         'service_fee',
+        'door_frame',
     ];
 }

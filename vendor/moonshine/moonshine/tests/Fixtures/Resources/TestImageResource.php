@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use MoonShine\Fields\ID;
 use MoonShine\Fields\Image;
 use MoonShine\Fields\Relationships\MorphTo;
+use MoonShine\Handlers\ExportHandler;
 use MoonShine\Resources\ModelResource;
 use MoonShine\Tests\Fixtures\Models\Category;
 use MoonShine\Tests\Fixtures\Models\ImageModel;
@@ -32,5 +33,12 @@ class TestImageResource extends ModelResource
     public function rules(Model $item): array
     {
         return [];
+    }
+
+    public function export(): ?ExportHandler
+    {
+        return ExportHandler::make(__('moonshine::ui.export'))
+            ->csv()
+            ->filename($this->uriKey());
     }
 }

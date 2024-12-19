@@ -27,7 +27,6 @@ use Throwable;
  */
 trait ResourceModelQuery
 {
-    /** @var TModel|null */
     protected ?Model $item = null;
 
     protected array $with = [];
@@ -48,10 +47,19 @@ trait ResourceModelQuery
 
     protected int|string|null $itemID = null;
 
+    protected bool $stopGettingItemFromUrl = false;
+
     protected array $parentRelations = [];
 
     // TODO 3.0 rename to saveQueryState
     protected bool $saveFilterState = false;
+
+    public function stopGettingItemFromUrl(): static
+    {
+        $this->stopGettingItemFromUrl = true;
+
+        return $this;
+    }
 
     public function setItemID(int|string|null $itemID): static
     {
@@ -62,16 +70,22 @@ trait ResourceModelQuery
 
     public function getItemID(): int|string|null
     {
+        // empty string is the value that stops the logic
         if ($this->itemID === '') {
             return null;
         }
 
-        return $this->itemID ?? moonshineRequest()->getItemID();
+        if (! blank($this->itemID)) {
+            return $this->itemID;
+        }
+
+        if ($this->stopGettingItemFromUrl) {
+            return null;
+        }
+
+        return moonshineRequest()->getItemID();
     }
 
-    /**
-     * @return TModel|null
-     */
     protected function itemOr(Closure $closure): ?Model
     {
         if (! is_null($this->item)) {
@@ -88,9 +102,6 @@ trait ResourceModelQuery
         return $this->getModel()->newQuery();
     }
 
-    /**
-     * @return TModel|null
-     */
     public function getItem(): ?Model
     {
         if (! is_null($this->item)) {
@@ -109,8 +120,6 @@ trait ResourceModelQuery
     }
 
     /**
-     * @param  TModel|null  $model
-     *
      * @return $this
      */
     public function setItem(?Model $model): static
@@ -412,10 +421,14 @@ trait ResourceModelQuery
             ->onlyFields()
             ->findByColumn($column);
 
+        if (is_null($field)) {
+            $column = $this->sortColumn();
+        }
+
         $callback = $field?->sortableCallback();
 
         if (is_string($callback)) {
-            $column = value($callback);
+            $column = $callback;
         }
 
         if (is_closure($callback)) {

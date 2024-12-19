@@ -11,11 +11,8 @@ class Price extends Model
 
     protected $fillable = [
         'price',
-        'ad_id',
+        
     ];
 
-    public function ad()
-    {
-        return $this->belongsTo(Ad::class);
-    }
+ 
 }

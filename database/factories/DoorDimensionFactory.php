@@ -23,6 +23,7 @@ class DoorDimensionFactory extends Factory
             'width' => $this->faker->randomFloat(2, 50, 200), // Eni, random 50-200 orasida
             'height' => $this->faker->randomFloat(2, 150, 300), // Bo'yi, random 150-300 orasida
             'material' => $this->faker->randomElement(['wood', 'metal', 'plastic']), // Material
+            'door_frame' => $this->faker->boolean, 
         ];
     }
 }

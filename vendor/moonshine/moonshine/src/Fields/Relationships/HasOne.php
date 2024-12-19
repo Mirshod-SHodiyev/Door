@@ -42,6 +42,10 @@ class HasOne extends ModelRelationField implements HasFields
 
     protected bool $isAsync = false;
 
+    protected ?Closure $redirectAfter = null;
+
+    protected ?Closure $modifyForm = null;
+
     public function async(): static
     {
         $this->isAsync = true;
@@ -73,6 +77,39 @@ class HasOne extends ModelRelationField implements HasFields
     }
 
     /**
+     * @param  Closure(int $parentId, static $field): string  $callback
+     */
+    public function redirectAfter(Closure $callback): static
+    {
+        $this->redirectAfter = $callback;
+
+        return $this;
+    }
+
+    public function getRedirectAfter(Model|int|null|string $parentId): string
+    {
+        if (! is_null($this->redirectAfter)) {
+            return value($this->redirectAfter, $parentId, $this);
+        }
+
+        return moonshineRequest()
+            ->getResource()
+            ?->formPageUrl($parentId) ?? '';
+    }
+
+    /**
+     * @param  Closure(FormBuilder $builder): FormBuilder  $callback
+     */
+    public function modifyForm(Closure $callback): static
+    {
+        $this->modifyForm = $callback;
+
+        return $this;
+    }
+
+
+
+    /**
      * @throws Throwable
      */
     protected function resolvePreview(): View|string
@@ -85,7 +122,7 @@ class HasOne extends ModelRelationField implements HasFields
                 ->implode(';');
         }
 
-        $resource = $this->getResource();
+        $resource = $this->getResource()->stopGettingItemFromUrl();
 
         return TableBuilder::make(items: $items)
             ->fields($this->getFieldsOnPreview())
@@ -134,7 +171,7 @@ class HasOne extends ModelRelationField implements HasFields
      */
     protected function resolveValue(): MoonShineRenderable
     {
-        $resource = $this->getResource();
+        $resource = $this->getResource()->stopGettingItemFromUrl();
 
         /** @var ModelResource $parentResource */
         $parentResource = moonshineRequest()->getResource();
@@ -158,10 +195,8 @@ class HasOne extends ModelRelationField implements HasFields
             $item?->getKey()
         );
 
-        $redirectAfter = to_page(
-            page: $parentResource->formPage(),
-            resource: $parentResource,
-            params: ['resourceItem' => $parentItem->getKey()]
+        $redirectAfter = $this->getRedirectAfter(
+            $parentItem->getKey()
         );
 
         $isAsync = ! is_null($item) && ($this->isAsync() || $resource->isAsync());
@@ -216,7 +251,11 @@ class HasOne extends ModelRelationField implements HasFields
                     && $field->toOne()
                     && $field->column() === $relation->getForeignKeyName()
             ))
-            ->submit(__('moonshine::ui.save'), ['class' => 'btn-primary btn-lg']);
+            ->submit(__('moonshine::ui.save'), ['class' => 'btn-primary btn-lg'])
+            ->when(
+                ! \is_null($this->modifyForm),
+                fn (FormBuilder $form) => value($this->modifyForm, $form)
+            );
     }
 
     /**

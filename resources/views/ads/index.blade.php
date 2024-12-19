@@ -142,7 +142,7 @@
                             <ul class="py-6 border-y border-slate-100 dark:border-gray-800 flex items-center list-none">
                                 <li class="flex items-center me-4">
                                     <i class="uil uil-map icons text-2xl me-2 text-green-600"></i>
-                                    <span>{{ $ad->description }} </span>
+                                    <span>{{ $ad->customers_info }} </span>
                                 </li>
 
 
@@ -155,7 +155,7 @@
                                             class="uil uil-usd-circle icons text-green-600 "></i> Price</span>
                                     <p class="text-lg font-medium">
 
-                                        {{ $ad->price }}</p>
+                                        {{ $ad->price->price  }}</p>
                                 </li>
                             </ul>
                         </div>

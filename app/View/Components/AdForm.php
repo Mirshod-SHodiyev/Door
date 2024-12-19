@@ -12,12 +12,12 @@ class AdForm extends Component
     public array|null $ads =null;
     public  array|null  $status = null;
     public  $action = "/ads";
-    public   $branches = [];
+    public   $colors = [];
 
 
     public function __construct()
     {
-        $this->branches = \App\Models\Branch::all();
+        $this->colors = \App\Models\Color::all();
     }
 
 

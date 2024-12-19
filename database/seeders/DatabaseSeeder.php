@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             PostSeeder::class,
             UserSeeder::class,
             DoorDimensionSeeder::class,
-            ColorSeeder::class
+            ColorSeeder::class,
+            DoorTypeSeeder::class
             
 
 

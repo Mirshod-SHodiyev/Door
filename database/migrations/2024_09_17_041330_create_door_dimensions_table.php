@@ -16,9 +16,11 @@ return new class extends Migration
             $table->boolean('service_fee')->default(false);
             $table->boolean('has_top_section')->default(false);
             $table->string('opening_side')->default('left');
+            $table->boolean('door_frame')->default(false);
             $table->float('width'); 
             $table->float('height'); 
             $table->string('material')->nullable();
+        
             $table->timestamps();
         });
     }

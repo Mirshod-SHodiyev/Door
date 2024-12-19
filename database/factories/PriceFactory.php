@@ -20,7 +20,7 @@ class PriceFactory extends Factory
     {
         return [
             'price' => $this->faker->randomFloat(2, 10, 1000), 
-            'ad_id' => Ad::factory(),
+            
         ];
     }
 }

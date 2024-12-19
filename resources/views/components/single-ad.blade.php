@@ -1,134 +1,181 @@
-
 <x-layouts.main>
 
-<section class="relative md:py-24 pt-24 pb-16">
-    <div class="container relative">
-        <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
-            <div class="lg:col-span-8 md:col-span-7">
-                <div class="grid grid-cols-1 relative">
-                    <div class="tiny-one-item">
-                        <div class="tiny-slide">
-                            <img src={{asset("/storage/".$ad->images->first()?->name)}} alt="rasm"
-                               class="rounded-md shadow dark:shadow-gray-700" alt="">
-                        </div>
-
-                        <div class="tiny-slide">
-                            <img src="assets/images/property/single/2.jpg"
-                                 class="rounded-md shadow dark:shadow-gray-700" alt="">
-                        </div>
-
-                        <div class="tiny-slide">
-                            <img src="assets/images/property/single/3.jpg"
-                                 class="rounded-md shadow dark:shadow-gray-700" alt="">
-                        </div>
-
-                        <div class="tiny-slide">
-                            <img src="assets/images/property/single/4.jpg"
-                                 class="rounded-md shadow dark:shadow-gray-700" alt="">
-                        </div>
-
-                        <div class="tiny-slide">
-                            <img src="assets/images/property/single/5.jpg"
-                                 class="rounded-md shadow dark:shadow-gray-700" alt="">
-                        </div>
-                    </div>
-                </div>
-
-                <h4 class="text-2xl font-medium mt-6 mb-3"><?php echo $ad->title;?>
-                <span class="text-slate-400 flex items-center"><i data-feather="map-pin" class="size-5 me-2"></i><?= $ad->address;?></span>
-
-                <ul class="py-6 flex items-center list-none">
-
-
-                    <li class="flex items-center lg:me-6 me-4">
-                        <i class="uil uil-home lg:text-3xl text-2xl me-2 text-green-600"></i>
-                        <span class="lg:text-xl"><?= $ad->rooms;?> xona</span>
-                    </li>
-
-                    <li class="flex items-center me-4">
-                        <i class="uil uil-users-alt icons text-2xl me-2 text-green-600"></i>
-                        <span> </span>
-                    </li>
-
-                </ul>
-
-                <p class="text-slate-400"><?= $ad->description;?></p>
-
-                <div class="w-full leading-[0] border-0 mt-6">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
-                            style="border:0" class="w-full h-[500px]" allowfullscreen></iframe>
-                </div>
-            </div>
-
-            <div class="lg:col-span-4 md:col-span-5">
-                <div class="sticky top-20">
-                    <div class="rounded-md bg-slate-50 dark:bg-slate-800 shadow dark:shadow-gray-700">
-                        <div class="p-6">
-                            <h5 class="text-2xl font-medium">   <i class="uil uil-usd-circle icons  me-2 text-green-600"></i> <?= $ad->price;?>$</h5>
-
-                            <div class="flex justify-between items-center mt-4">
-
+    <section class="relative md:py-24 pt-24 pb-16">
+        <div class="container relative">
+            <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
+                <!-- Main content -->
+                <div class="lg:col-span-8 md:col-span-7">
+                    <div class="grid grid-cols-1 relative">
+                        <div class="tiny-one-item">
+                            <div class="tiny-slide">
+                                @if ($ad->images->first())
+                                    <img src="{{ asset('/storage/'.$ad->images->first()->name) }}" alt="rasm" class="rounded-md shadow dark:shadow-gray-700">
+                                @else
+                                    <img src="default_image_path.jpg" alt="rasm" class="rounded-md shadow dark:shadow-gray-700">
+                                @endif
                             </div>
 
-                            <ul class="list-none mt-4">
-                                <li class="flex justify-between items-center">
-                                    <span class="text-slate-400 text-sm">  <i class="uil uil-check-circle icons  me-2 text-green-600"></i>status</span>
-                                   <span class="font-medium text-sm"></span>
-                                </li>
-
-                                <li class="flex justify-between items-center mt-2">
-                                    <span class="text-slate-400 text-sm">
-                                        <i class="uil uil-map-marker icons text-2xl me-2 text-green-600"></i>
-                                        Filial:</span>
-                                    <span class="font-medium text-sm"><?= $ad->branch->name;?></span>
-                                </li>
-
-                                <li class="flex justify-between items-center mt-2">
-                                    <span class="text-slate-400 text-sm">
-                                               <i class="uil uil-user-circle icons text-2xl me-2 text-green-600"></i>
-                                        User:</span>
-                                    <span class="font-medium text-sm"><?= $ad->user->name;?></span>
-                                </li>
-
-                                <li class="flex justify-between items-center mt-2">
-                                    <span class="text-slate-400 text-sm">
-                                        <i class="uil uil-calender icons text-2xl me-2 text-green-600"></i>
-                                        Sana</span>
-                                    <span class="font-medium text-sm"><?= $ad->created_at;?></span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="flex">
-                            <div class="p-1 w-1/2">
-                                <a href="" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md w-full">
-                                    <i
-                                        class="uil uil-save align-middle me-2  "></i> Save
-                                    </a>
-                            </div>
-                            <div class="p-1 w-1/2">
-                                <a href="/contact" class=" btn bg-green-600 hover:bg-green-700 text-white rounded-md w-full">
-                                    <i
-                                        class="uil uil-phone align-middle me-2  "></i>Bog'lanish
-                                    </a>
-                            </div>
+                            @foreach($ad->images as $image)
+                                <div class="tiny-slide">
+                                    <img src="{{ asset('/storage/'.$image->name) }}" class="rounded-md shadow dark:shadow-gray-700" alt="rasm">
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 
-                    <div class="mt-12 text-center">
-                        <h3 class=" mb-6 text-xl leading-normal font-medium text-black dark:text-white">Have Question ?
-                            Get in touch!</h3>
+                    <h4 class="text-2xl font-medium mt-6 mb-3">
+                        
 
-                        <div class="mt-6">
-                            <a href="contact.html"
-                               class="btn bg-transparent hover:bg-green-600 border border-green-600 text-green-600 hover:text-white rounded-md"><i
-                                    class="uil uil-trash align-middle me-2  "></i>o'chirish</a>
+                         {{ $ad->title }}
+                        <span class="text-slate-400 flex items-center">
+                            
+                            <i data-feather="map-pin" class="size-5 me-2"> </i>{{ $ad->description }}
+                        </span>
+                    </h4>
+
+                    <ul class="py-6 flex items-center list-none">
+                        <li class="flex items-center lg:me-6 me-4">
+                            <span class="lg:text-xl"> {{$ad->customers_info}}</span>
+                        </li>
+                        <li class="flex items-center me-4">
+                            <span> </span>
+                        </li>
+                    </ul>
+
+                    <p class="text-slate-400"></p>
+
+                    <div class="w-full leading-[0] border-0 mt-6">
+                       
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="lg:col-span-4 md:col-span-5">
+                    <div class="sticky top-20">
+                        <div class="rounded-md bg-slate-50 dark:bg-slate-800 shadow dark:shadow-gray-700">
+                            <div class="p-6">
+                                <h5 class="text-2xl font-medium">
+                                    <i class="uil uil-usd-circle icons me-2 text-green-600"></i>{{ $ad->price->price }} uzs
+                                </h5>
+                               
+
+                                <ul class="list-none mt-4">
+                                    <li class="flex justify-between items-center">
+                                        
+                                        <svg class="h-5 w-5 text-green-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="11" y1="7" x2="17" y2="13" />  <path d="M5 19v-4l9.7 -9.7a1 1 0 0 1 1.4 0l2.6 2.6a1 1 0 0 1 0 1.4l-9.7 9.7h-4" /></svg>
+                                            <span class="text-slate-400 text-sm mr-40">color: </span>
+                                            <span class="text-slate-400 text-sm">
+                                           
+                                            </span>
+                                        <span class="font-medium text-sm">{{ $ad->colors->name}} </span>
+                                    </li>
+                               
+                                    <!-- Add additional details -->
+                                    <li class="flex justify-between items-center mt-2">
+                                        
+                                            <svg class="h-4 w-4 text-green-500 "  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M5 4h14a1 1 0 0 1 1 1v5a1 1 0 0 1 -1 1h-7a1 1 0 0 0 -1 1v7a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1" />  <line x1="4" y1="8" x2="6" y2="8" />  <line x1="4" y1="12" x2="7" y2="12" />  <line x1="4" y1="16" x2="6" y2="16" />  <line x1="8" y1="4" x2="8" y2="6" />  <polyline points="12 4 12 7 " />  <polyline points="16 4 16 6 " /> </svg>  
+                                            <span class="text-slate-400 text-sm mr-40">Width:</span>
+                                            <span class="text-slate-400 text-sm">
+                                           
+                                            </span>
+                                        <span class="font-medium text-sm">{{ $ad->doorDimensions->width }} </span>
+                                    </li>
+
+                                    <li class="flex justify-between items-center mt-2">
+                                        <svg class="h-4 w-4 text-green-500 "  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M5 4h14a1 1 0 0 1 1 1v5a1 1 0 0 1 -1 1h-7a1 1 0 0 0 -1 1v7a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1" />  <line x1="4" y1="8" x2="6" y2="8" />  <line x1="4" y1="12" x2="7" y2="12" />  <line x1="4" y1="16" x2="6" y2="16" />  <line x1="8" y1="4" x2="8" y2="6" />  <polyline points="12 4 12 7 " />  <polyline points="16 4 16 6 " /> </svg>  
+                                        <span class="text-slate-400 text-sm mr-40">Height:</span>
+                                    
+                                        <span class="text-slate-400 text-sm">
+                                           
+                                        </span>
+                                        <span class="font-medium text-sm">{{ $ad->doorDimensions->height }} </span>
+                                    </li>
+
+                                    <li class="flex justify-between items-center mt-2">
+                                        <span class="text-slate-400 text-sm">
+                                            <i class="uil uil-box icons text-2xl me-2 text-green-600"></i>
+                                            Material:
+                                        </span>
+                                        <span class="font-medium text-sm">{{ $ad->doorDimensions->material }}</span>
+                                    </li>
+
+                                    <li class="flex justify-between items-center mt-2">
+                                        <span class="text-slate-400 text-sm">
+                                            <i class="uil uil-arrow-right icons text-2xl me-2 text-green-600"></i>
+                                            Opening Side:
+                                        </span>
+                                        <span class="font-medium text-sm">{{ $ad->doorDimensions->opening_side }}</span>
+                                    </li>
+
+                                    <li class="flex justify-between items-center mt-2">
+                                        <span class="text-slate-400 text-sm">
+                                            <i class="uil uil-layer-group icons text-2xl me-2 text-green-600"></i>
+                                            Has Top Section:
+                                        </span>
+                                        <span class="font-medium text-sm">{{ $ad->doorDimensions->has_top_section }}</span>
+                                    </li>
+                                           
+                                    <li class="flex justify-between items-center mt-2">
+                                        <span class="text-slate-400 text-sm">
+                                            <i class="uil uil-money-bill icons text-2xl me-2 text-green-600"></i>
+                                            Service Fee:
+                                        </span>
+                                        <span class="font-medium text-sm">{{ $ad->doorDimensions->service_fee }} </span>
+                                    </li>
+
+                                    <!-- Check if user is available -->
+                                  
+                                        <li class="flex justify-between items-center mt-2">
+                                            <span class="text-slate-400 text-sm">
+                                                <i class="uil-home  icons text-2xl me-2 text-green-600"></i>
+
+                                                doortype:
+                                            </span>
+                                            <span class="font-medium text-sm">{{ $ad->doorTypes->name }}</span>
+                                        </li>
+                                   
+
+                                    <li class="flex justify-between items-center mt-2">
+                                        <span class="text-slate-400 text-sm">
+                                            <i class="uil uil-layer-group icons text-2xl me-2 text-green-600"></i>
+                                            door_frame:
+                                        </span>
+                                        <span class="font-medium text-sm">{{ $ad->doorDimensions->door_frame }}</span>
+                                    </li>
+
+                                    <li class="flex justify-between items-center mt-2">
+                                        <span class="text-slate-400 text-sm">
+                                            <i class="uil uil-calender icons text-2xl me-2 text-green-600"></i>
+                                            Date
+                                        </span>
+                                        <span class="font-medium text-sm">{{ $ad->created_at }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="flex">
+                                <div class="p-1 w-1/2">
+                                    <!-- Add any additional button or link if needed -->
+                                </div>
+                                <div class="p-1 w-1/2">
+                                    <!-- Add any additional button or link if needed -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-12 text-center">
+                           
+
+                            <div class="mt-6">
+                               
+                                    
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section><!--end section-->
-<!-- End -->
-    </x-layouts.main>
+    </section>
+  
+</x-layouts.main>

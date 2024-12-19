@@ -7,7 +7,9 @@ use App\Models\Price;
 use App\Models\DoorDimension;
 use App\Models\Color;
 use App\Models\User;
+use App\Models\DoorType;
 use Illuminate\Database\Seeder;
+
 
 class PostSeeder extends Seeder
 {
@@ -23,17 +25,25 @@ class PostSeeder extends Seeder
         $price = Price::factory()->create();
         $doorDimension = DoorDimension::factory()->create();
         $color = Color::factory()->create();
+        $doortype = DoorType::factory()->create();
+      
+        
 
      
         Ad::create([
             'title' => $faker->sentence(5),
             'description' => $faker->paragraph,
+            'customers_info' => $faker->paragraph,
             'door_dimensions_id' => $doorDimension->id,
+            'price_id' => $price->id,
+            'door_types_id' => $doortype->id,
             'colors_id' => $color->id,
             'users_id' => $user->id,
         ]);
 
      
-        Ad::factory()->count(5)->create();
+        Ad::factory() ->count(5)->create([
+            'door_types_id' => $doortype->id,
+        ]);
     }
 }
