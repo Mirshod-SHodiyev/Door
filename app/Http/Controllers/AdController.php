@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use JetBrains\PhpStorm\NoReturn;
 use PHPUnit\TextUI\Application;
+use Barryvdh\DomPDF\Facade as PDF;
 
 
 class AdController extends Controller
@@ -119,6 +120,17 @@ class AdController extends Controller
         //
     }
 
+    public function generatePDF(string $id)
+    {
+       
+        $ad = Ad::with(['colors', 'price', 'doorDimensions', 'doorTypes'])->find($id);
+    
+      
+        $pdf = PDF::loadView('components.single-ad', ['ad' => $ad]);
+    
+        // PDF faylini yuklab olish
+        return $pdf->download('ad-details.pdf');
+    }
 
 
     public function find(Request $request): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application

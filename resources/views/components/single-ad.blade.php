@@ -63,14 +63,13 @@
                                     <li class="flex justify-between items-center">
                                         
                                         <svg class="h-5 w-5 text-green-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="11" y1="7" x2="17" y2="13" />  <path d="M5 19v-4l9.7 -9.7a1 1 0 0 1 1.4 0l2.6 2.6a1 1 0 0 1 0 1.4l-9.7 9.7h-4" /></svg>
-                                            <span class="text-slate-400 text-sm mr-40">color: </span>
+                                        <span class="text-slate-400 text-sm mr-40"><strong>color:</strong></span>
                                             <span class="text-slate-400 text-sm">
                                            
                                             </span>
-                                        <span class="font-medium text-sm">{{ $ad->colors->name}} </span>
+                                        <span class="font-medium text-sm text-8xl font-bold">{{ $ad->colors->name}} </span>
                                     </li>
                                
-                                    <!-- Add additional details -->
                                     <li class="flex justify-between items-center mt-2">
                                         
                                             <svg class="h-4 w-4 text-green-500 "  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M5 4h14a1 1 0 0 1 1 1v5a1 1 0 0 1 -1 1h-7a1 1 0 0 0 -1 1v7a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1" />  <line x1="4" y1="8" x2="6" y2="8" />  <line x1="4" y1="12" x2="7" y2="12" />  <line x1="4" y1="16" x2="6" y2="16" />  <line x1="8" y1="4" x2="8" y2="6" />  <polyline points="12 4 12 7 " />  <polyline points="16 4 16 6 " /> </svg>  
