@@ -58,7 +58,7 @@
                                     PDF yuklab olish
                                 </a>
                                 <h5 class="text-2xl font-medium">
-                                    <i class="uil uil-usd-circle icons me-2 text-green-600"></i>{{ $ad->price->price }} uzs
+                                    <i class="uil uil-usd-circle icons me-2 text-green-600"></i>{{ $ad->price }} uzs
                                 </h5>
                                
 

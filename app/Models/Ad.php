@@ -11,15 +11,15 @@ class Ad extends Model
     use HasFactory;
 
   
-    protected $with = ['images', 'colors', 'user', 'price', 'doorDimensions', 'doorTypes'];
+    protected $with = ['images', 'colors', 'user',  'doorDimensions', 'doorTypes'];
 
     protected $fillable = [
         'title',
         'description',
         'customers_info',
+        'price',
         'users_id',
         'colors_id',
-        'price_id',
         'door_dimensions_id',
         'door_types_id',
     ];
@@ -53,13 +53,6 @@ class Ad extends Model
         return $this->belongsTo(User::class, 'users_id');
     }
 
-   
-    public function price(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(Price::class, 'price_id');
-    }
-
-    
     public function doorDimensions(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(DoorDimension::class, 'door_dimensions_id');

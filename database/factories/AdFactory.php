@@ -5,7 +5,7 @@ namespace Database\Factories;
 
 use App\Models\User;
 use App\Models\Ad;
-use App\Models\Price;
+
 use App\Models\DoorDimension;
 use App\Models\Color;
 use App\Models\DoorType;
@@ -29,11 +29,12 @@ class AdFactory extends Factory
            'title' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
             'customers_info' => $this->faker->paragraph(),
+            'price'=> $this->faker->randomFloat(2, 100, 1000),
             'door_dimensions_id' => DoorDimension::factory(),
             'colors_id' => Color::factory(), 
             'door_types_id' => DoorType::factory(),
             'users_id' => User::factory(),
-            'price_id' => Price::factory(),
+            
 
         ];
     }

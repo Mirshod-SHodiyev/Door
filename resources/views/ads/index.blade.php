@@ -112,7 +112,7 @@
 
 
                 @foreach ($ads as $ad)
-
+                
                     <div
                         class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">
                         <div class="relative">
@@ -155,7 +155,7 @@
                                             class="uil uil-usd-circle icons text-green-600 "></i> Price</span>
                                     <p class="text-lg font-medium">
 
-                                        {{ $ad->price->price  }}</p>
+                                        {{ $ad->price  }}</p>
                                 </li>
                             </ul>
                         </div>

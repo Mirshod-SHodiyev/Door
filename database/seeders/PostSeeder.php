@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Ad;
-use App\Models\Price;
 use App\Models\DoorDimension;
 use App\Models\Color;
 use App\Models\User;
@@ -22,7 +21,7 @@ class PostSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
         $user = User::factory()->create();
-        $price = Price::factory()->create();
+      
         $doorDimension = DoorDimension::factory()->create();
         $color = Color::factory()->create();
         $doortype = DoorType::factory()->create();
@@ -35,7 +34,7 @@ class PostSeeder extends Seeder
             'description' => $faker->paragraph,
             'customers_info' => $faker->paragraph,
             'door_dimensions_id' => $doorDimension->id,
-            'price_id' => $price->id,
+            'price'=> $faker->randomFloat(2, 100, 1000),
             'door_types_id' => $doortype->id,
             'colors_id' => $color->id,
             'users_id' => $user->id,

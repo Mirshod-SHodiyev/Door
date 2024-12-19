@@ -6,7 +6,6 @@ use App\Models\Ad;
 use App\Models\Images;
 use App\Models\Color;
 use Faker\Factory;
-use App\Models\Price;
 use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -24,10 +23,17 @@ class AdController extends Controller
      */
     public function index()
     {
-          $ads = Ad::with('price')->get();
+          
             $colors=Color::all();
             $userId = auth()->id();
-            $ads = Ad::query()->withCount([
+            $ads = Ad::query()
+            ->with([
+                'doorTypes',    
+                'colors',       
+                'user',         
+                'doorDimensions'      
+            ])
+            ->withCount([
                'bookmarkedByUsers as bookmarked' => function ($query) use ($userId) {
                 $query->where('user_id', $userId);
                }
@@ -42,7 +48,7 @@ class AdController extends Controller
     public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory
     {
 
-        // $action = route('ads.store');
+        $action = route('ads.store');
         $colors = Color::all();
         $ads=Ad::all();
         $ad=new Ad();
@@ -57,23 +63,27 @@ class AdController extends Controller
     {
 
         $request->validate([
-            'title' => 'required | min:5',
+            'title' => 'required|min:5',
             'description' => 'required',
+            'image' => 'nullable|image|max:2048',  
+            'color_id' => 'required|exists:colors,id', 
            
-        ],[
-            'title'=>['required' => 'Titlini kiritish majburiy'],
-            'description' => ['required' => 'Izoh kiritish majburiy'],
+        ], [
+            'title.required' => 'Titlni kiritish majburiy',
+            'description.required' => 'Izoh kiritish majburiy',
+            'color_id.required' => 'Rangni tanlash majburiy',
         ]);
 
-        $ad = Ad::query()->create([
-            'title' => $request->input("title"),
-            'description' => $request->input("description"),
-            'users_id'=> auth()->id(),
-            'door_dimensions_id' => $request->input("door_dimensions_id"),
-            'branches_id' => $request->input("branch_id"),
-            'colors_id' => $request->input("color_id"),
-            'price_id' => $request->input("price_id"),
-
+     
+        $ad = Ad::create([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'users_id' => auth()->id(),
+            'color_id' => $request->input('color_id'),
+            'price_id' => $request->input('price_id'),
+            'door_types_id' => $request->input('door_types_id'),
+            'door_dimensions_id' => $request->input('door_dimensions_id'),
+       
 
         ]);
 
@@ -92,7 +102,7 @@ class AdController extends Controller
 
     public function show(string $id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory
     {
-        $ad = Ad::with(['colors','price','doorDimensions' , 'doorTypes'])->find($id);
+        $ad = Ad::with(['colors','doorDimensions' , 'doorTypes'])->find($id);
       
         return view('components.single-ad', ['ad'=>$ad]);
     }
@@ -124,7 +134,7 @@ class AdController extends Controller
     public function generatePDF(string $id)
     {
        
-        $ad = Ad::with(['colors', 'price', 'doorDimensions', 'doorTypes'])->find($id);
+        $ad = Ad::with(['colors',  'doorDimensions', 'doorTypes'])->find($id);
     
       
         $pdf = PDF::loadView('components.single-ad', ['ad' => $ad]);
