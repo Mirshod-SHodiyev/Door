@@ -12,11 +12,17 @@ class AdForm extends Component
     public array|null $ads =null;
     public  $action = "/ads";
     public   $colors = [];
+    public  $doorTypes = [];
+    public  $doorDimensions = [];
+    public $doorDimension;
 
 
     public function __construct()
     {
         $this->colors = \App\Models\Color::all();
+        $this->doorTypes = \App\Models\DoorType::all();
+        $this->doorDimensions = \App\Models\DoorDimension::all();
+
     }
 
 

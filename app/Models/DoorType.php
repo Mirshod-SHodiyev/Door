@@ -13,4 +13,9 @@ class DoorType extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function ads(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Ad::class, 'door_type_id'); 
+    }
 }

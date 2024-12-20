@@ -1,4 +1,4 @@
-<x-layouts.main>
+
 
     <div class="page-wrapper toggled">
 
@@ -42,4 +42,4 @@
 </div>
 
 
-    </x-layouts.main>
+

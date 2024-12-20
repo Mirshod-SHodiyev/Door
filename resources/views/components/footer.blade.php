@@ -31,7 +31,7 @@
                         <div class="sm:text-start text-center mx-md-2">
                             <p class="mb-0 text-slate-400">©
                                 <script>document.write(new Date().getFullYear())</script>
-                                NTRA. Design with <i class="mdi mdi-heart text-red-600"></i> by PHP N1 group.
+                                Doors <i class="mdi mdi-heart text-red-600"></i> by kampaniya nomi.
                             </p>
                         </div><!--end col-->
                     </div><!--end grid-->

@@ -18,7 +18,7 @@ class Color extends Model
   
     public function ads(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Ad::class, 'color_id'); // 'color_id' - Ad modelidagi foreign key
+        return $this->hasMany(Ad::class, 'color_id'); 
     }
 
 

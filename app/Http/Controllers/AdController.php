@@ -6,6 +6,8 @@ use App\Models\Ad;
 use App\Models\Images;
 use App\Models\Color;
 use Faker\Factory;
+use App\Models\DoorDimension;
+use App\Models\DoorType;
 use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -50,9 +52,12 @@ class AdController extends Controller
 
         $action = route('ads.store');
         $colors = Color::all();
+        $doorTypes = DoorType::all();
+        $doorDimensions=DoorDimension::all();
         $ads=Ad::all();
         $ad=new Ad();
-        return view('ads.create', compact('ads','colors','ad','action'));
+        $doorDimension=new DoorDimension();
+        return view('ads.create', compact('doorTypes','ads','colors','ad','action','doorDimensions','doorDimension'));
 
     }
 

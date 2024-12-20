@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="/assets/images/favicon.ico" />
+   
 
     <!-- Css -->
     <link href="/assets/libs/tiny-slider/tiny-slider.css" rel="stylesheet">
@@ -60,12 +60,13 @@
             <li class="inline mb-0">
                 <a href="/admin" class="btn btn-icon bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full"><i data-feather="user" class="size-4 stroke-[3]"></i></a>
             </li>
+            
             <?php //else: ?><!---->
             <li class="sm:inline ps-1 mb-0 hidden">
-                <a href="/login" class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">Login</a>
+                <a href="/ads/create" class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">Order</a>
             </li>
             <li class="sm:inline ps-1 mb-0 hidden">
-                <a href="/register" class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">Register</a>
+               
             </li>
             <?php //endif; ?>
 
@@ -79,11 +80,10 @@
             <!-- Navigation Menu-->
             <ul class="navigation-menu justify-end nav-light">
                 <li class="has-submenu parent-parent-menu-item">
-                    <a href="/ads">doors</a>
+                
 
                 </li>
 
-                <li><a href="/ads/create" class="sub-menu-item">order</a></li>
                
                
 
