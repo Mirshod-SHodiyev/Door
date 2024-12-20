@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('door_dimensions', function (Blueprint $table) {
             $table->id();
-            $table->boolean('service_fee')->default(false);
-            $table->boolean('has_top_section')->default(false);
-            $table->boolean('opening_side')->default(false);
-            $table->boolean('door_frame')->default(false);
+            $table->string('service_fee');
+            $table->string('has_top_section');
+            $table->string('opening_side');
+            $table->string('door_frame');
             $table->float('width'); 
             $table->float('height'); 
-            $table->string('material')->nullable();
+            $table->string('material');
         
             $table->timestamps();
         });

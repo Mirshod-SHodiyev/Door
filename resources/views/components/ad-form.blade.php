@@ -54,7 +54,7 @@
                                     <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="colors_id" name="colors_id">
                                         <option value="" disabled {{ !isset($ad) ? 'selected' : '' }}>Ranglarni tanlang</option> <!-- Bo'sh tanlov -->
                                         @foreach ($colors as $color)
-                                            <option value="{{ $color->id }}" {{ isset($ad) && $color->id === $ad->color_id ? 'selected' : '' }}>{{ $color->name }}</option>
+                                            <option value="{{ $color->id }}" {{ isset($ad) && $color->id === $ad->colors_id ? 'selected' : '' }}>{{ $color->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -94,9 +94,14 @@
                         <div class="col-span-6">
                             <label for="door_dimensions_id" class="font-medium">yuqori qoshi:</label>
                             <div class="form-icon relative mt-2">
-                                <select name="doors_dimensions_id" id="doors_dimensions_id" class="form-input ps-11">
-                                    <option value="1" {{ $doorDimension?->has_top_section === '1' ? 'selected' : '' }}>bo'ladi</option>
-                                    <option value="0" {{ $doorDimension?->has_top_section === '0' ? 'selected' : '' }}>bo'lmaydi</option>
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                    @if(!isset($ad))
+                                    <option value="0">Eshik materialini tanlang</option>
+                                @endif
+                                    @foreach ($doorDimensions as $doorDimension)
+                                  
+                                        <option value="{{$doorDimension->id}}" {{ isset($ad) && $doorDimension->id === $ad->door_dimensions_id ? 'selected' : '' }}>{{$doorDimension->has_top_section}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -104,9 +109,14 @@
                         <div class="col-span-6">
                             <label for="door_dimensions_id" class="font-medium">atrofida ramka:</label>
                             <div class="form-icon relative mt-2">
-                                <select name="door_dimensions_id" id="door_dimensions_id" class="form-input ps-11">
-                                    <option value="1" {{ $doorDimension?->door_frame === '1' ? 'selected' : '' }}>bo'ladi</option>
-                                    <option value="0" {{ $doorDimension?->door_frame === '0' ? 'selected' : '' }}>bo'lmaydi</option>                                   
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                    @if(!isset($ad))
+                                    <option value="0">Eshik atofini tanglang</option>
+                                @endif
+                                    @foreach ($doorDimensions as $doorDimension)
+                                  
+                                        <option value="{{$doorDimension->id}}" {{ isset($ad) && $doorDimension->id === $ad->door_dimensions_id ? 'selected' : '' }}>{{$doorDimension->door_frame}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
