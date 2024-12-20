@@ -76,15 +76,14 @@ class AdController extends Controller
         ], [
             'title.required' => 'Titlni kiritish majburiy',
             'description.required' => 'Izoh kiritish majburiy',
-            'color_id.required' => 'Rangni tanlash majburiy',
         ]);
-
+        $price = $request->input('width') * $request->input('height') * 200;
      
         $ad = Ad::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'customers_info' => $request->input('customers_info'),
-            'price' => $request->input('price'),
+            'price' => $price,
             'users_id' => auth()->id(),
             'color_id' => $request->input('color_id'),
             'door_types_id' => $request->input('door_types_id'),

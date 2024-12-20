@@ -40,17 +40,17 @@
 
                         <!-- Address Field -->
                         <div class="col-span-12">
-                            <label for="address" class="font-medium">Mijoz malumotlari:</label>
+                            <label for="customers_info" class="font-medium">Mijoz malumotlari:</label>
                             <div class="form-icon relative mt-2">
-                                <input name="address" id="address" type="text" class="form-input ps-11" placeholder="Mijoz malumotlari:" value="{{ $ad?->address }}">
+                                <input name="customers_info" id="customers_info" type="text" class="form-input ps-11" placeholder="Mijoz malumotlari:" value="{{ $ad?->customers_info }}">
                             </div>
                         </div>
 
                         <!-- Branch Field -->
                         <div class="col-span-6">
-                            <label for="branch" class="font-medium">Ranglar:</label>
+                            <label for="color" class="font-medium">Ranglar:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="branch" name="branch_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="color" name="color_id">
                                     @if(!isset($ad))
                                     <option value="0">Ranglarni tanlang</option>
                                 @endif
@@ -78,23 +78,23 @@
 
                         <!-- Price Field -->
                         <div class="col-span-6">
-                            <label for="rooms" class="font-medium">uzunligi eni sm:</label>
+                            <label for="door_dimensions_id" class="font-medium">uzunligi eni sm:</label>
                             <div class="form-icon relative mt-2">
-                                <input name="width" id="width" type="number" class="form-input ps-11" placeholder="eni sm:" value="{{ $doorDimension?->width }}">
+                                <input name="door_dimensions_id" id="door_dimensions_id" type="number" class="form-input ps-11" placeholder="eni sm:" value="{{ $doorDimension?->width }}">
                             </div>
                         </div>
                         <!-- Rooms Field -->
                          <!-- Price Field -->
                          <div class="col-span-6">
-                            <label for="rooms" class="font-medium">uzunligi bo'yi sm:</label>
+                            <label for="door_dimensions_id" class="font-medium">uzunligi bo'yi sm:</label>
                             <div class="form-icon relative mt-2">
-                                <input name="height" id="height" type="number" class="form-input ps-11" placeholder="bo'yi sm:" value="{{ $doorDimension?->width }}">
+                                <input name="door_dimensions_id" id="door_dimensions_id" type="number" class="form-input ps-11" placeholder="bo'yi sm:" value="{{ $doorDimension?->width }}">
                             </div>
                         </div>
                         <div class="col-span-6">
-                            <label for="gender" class="font-medium">yuqori qoshi:</label>
+                            <label for="door_dimensions_id" class="font-medium">yuqori qoshi:</label>
                             <div class="form-icon relative mt-2">
-                                <select name="has_top_section" id="has_top_section" class="form-input ps-11">
+                                <select name="doors_dimensions_id" id="doors_dimensions_id" class="form-input ps-11">
                                     <option value="true" {{ $doorDimension?->has_top_section === 'true' ? 'selected' : '' }}>bo'ladi</option>
                                     <option value="false" {{ $doorDimension?->has_top_section === 'false' ? 'selected' : '' }}>bo'lmaydi</option>
                                 </select>
@@ -102,27 +102,27 @@
                         </div>
                         <!-- Gender Field -->
                         <div class="col-span-6">
-                            <label for="gender" class="font-medium">atrofida ramka:</label>
+                            <label for="door_dimensions_id" class="font-medium">atrofida ramka:</label>
                             <div class="form-icon relative mt-2">
-                                <select name="door_frame" id="door_frame" class="form-input ps-11">
+                                <select name="door_dimensions_id" id="door_dimensions_id" class="form-input ps-11">
                                     <option value="true" {{ $doorDimension?->door_frame === 'true' ? 'selected' : '' }}>bo'ladi</option>
                                     <option value="false" {{ $doorDimension?->door_frame === 'false' ? 'selected' : '' }}>bo'lmaydi</option>                                   
                                 </select>
                             </div>
                         </div>
                         <div class="col-span-6">
-                            <label for="gender" class="font-medium">material:</label>
+                            <label for="door_dimensions_id" class="font-medium">material:</label>
                             <div class="form-icon relative mt-2">
-                                <select name="material" id="material" class="form-input ps-11">
+                                <select name="door_dimensions_id" id="door_dimensions_id" class="form-input ps-11">
                                     <option value="true" {{ $doorDimension?->matetial === 'true' ? 'selected' : '' }}>pilastik</option>
                                     <option value="false" {{ $doorDimension?->matetial === 'false' ? 'selected' : '' }}>mdf</option>                                   
                                 </select>
                             </div>
                         </div>
                         <div class="col-span-6">
-                            <label for="gender" class="font-medium">eshik ochilishi:</label>
+                            <label for="door_dimensions_id" class="font-medium">eshik ochilishi:</label>
                             <div class="form-icon relative mt-2">
-                                <select name="opening_side" id="opening_side" class="form-input ps-11">
+                                <select name="door_dimensions_id" id="door_dimensions_id" class="form-input ps-11">
                                     <option value="true" {{ $doorDimension?->opening_side === 'true' ? 'selected' : '' }}>ichkariga</option>
                                     <option value="false" {{ $doorDimension?->opening_side === 'false' ? 'selected' : '' }}>tashqariga</option>                                   
                                 </select>
