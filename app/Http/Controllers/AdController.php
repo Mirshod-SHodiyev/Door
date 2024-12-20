@@ -69,15 +69,18 @@ class AdController extends Controller
 
         $request->validate([
             'title' => 'required|min:5',
-            'description' => 'required',
-            'image' => 'nullable|image|max:2048',  
-            'color_id' => 'required|exists:colors,id', 
+            'description' => 'required', 
+            'colors_id' => 'required',
+            'door_types_id' => 'required',
+            'door_dimensions_id' => 'required',
+           
            
         ], [
             'title.required' => 'Titlni kiritish majburiy',
             'description.required' => 'Izoh kiritish majburiy',
+            'colors_id.required'=>'Rangni tanlash majburiy', 
         ]);
-        $price = $request->input('width') * $request->input('height') * 200;
+        $price = $request->input('width') * $request->input('height') * 1;
      
         $ad = Ad::create([
             'title' => $request->input('title'),
@@ -85,7 +88,7 @@ class AdController extends Controller
             'customers_info' => $request->input('customers_info'),
             'price' => $price,
             'users_id' => auth()->id(),
-            'color_id' => $request->input('color_id'),
+            'colors_id' => $request->input('colors_id'),
             'door_types_id' => $request->input('door_types_id'),
             'door_dimensions_id' => $request->input('door_dimensions_id')
         ]);

@@ -47,20 +47,20 @@
                         </div>
 
                         <!-- Branch Field -->
-                        <div class="col-span-6">
-                            <label for="color" class="font-medium">Ranglar:</label>
-                            <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="color" name="color_id">
-                                    @if(!isset($ad))
-                                    <option value="0">Ranglarni tanlang</option>
-                                @endif
-                                    @foreach ($colors as $color)
-                                        <option value="{{$color->id}}" {{ isset($ad) && $color->id === $ad->color_id ? 'selected' : '' }}>{{$color->name}}</option>
-                                    @endforeach
-                                </select>
+                                                    <!-- Branch Field -->
+                            <div class="col-span-6">
+                                <label for="colors_id" class="font-medium">Ranglar:</label>
+                                <div class="form-icon relative mt-2">
+                                    <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="colors_id" name="colors_id">
+                                        <option value="" disabled {{ !isset($ad) ? 'selected' : '' }}>Ranglarni tanlang</option> <!-- Bo'sh tanlov -->
+                                        @foreach ($colors as $color)
+                                            <option value="{{ $color->id }}" {{ isset($ad) && $color->id === $ad->color_id ? 'selected' : '' }}>{{ $color->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                         <!-- Branch Field -->
+
+                                                    <!-- Branch Field -->
                         <div class="col-span-6">
                             <label for="doortype" class="font-medium">Eshik turlari:</label>
                             <div class="form-icon relative mt-2">
@@ -95,8 +95,8 @@
                             <label for="door_dimensions_id" class="font-medium">yuqori qoshi:</label>
                             <div class="form-icon relative mt-2">
                                 <select name="doors_dimensions_id" id="doors_dimensions_id" class="form-input ps-11">
-                                    <option value="true" {{ $doorDimension?->has_top_section === 'true' ? 'selected' : '' }}>bo'ladi</option>
-                                    <option value="false" {{ $doorDimension?->has_top_section === 'false' ? 'selected' : '' }}>bo'lmaydi</option>
+                                    <option value="1" {{ $doorDimension?->has_top_section === '1' ? 'selected' : '' }}>bo'ladi</option>
+                                    <option value="0" {{ $doorDimension?->has_top_section === '0' ? 'selected' : '' }}>bo'lmaydi</option>
                                 </select>
                             </div>
                         </div>
@@ -105,30 +105,39 @@
                             <label for="door_dimensions_id" class="font-medium">atrofida ramka:</label>
                             <div class="form-icon relative mt-2">
                                 <select name="door_dimensions_id" id="door_dimensions_id" class="form-input ps-11">
-                                    <option value="true" {{ $doorDimension?->door_frame === 'true' ? 'selected' : '' }}>bo'ladi</option>
-                                    <option value="false" {{ $doorDimension?->door_frame === 'false' ? 'selected' : '' }}>bo'lmaydi</option>                                   
+                                    <option value="1" {{ $doorDimension?->door_frame === '1' ? 'selected' : '' }}>bo'ladi</option>
+                                    <option value="0" {{ $doorDimension?->door_frame === '0' ? 'selected' : '' }}>bo'lmaydi</option>                                   
                                 </select>
                             </div>
                         </div>
                         <div class="col-span-6">
-                            <label for="door_dimensions_id" class="font-medium">material:</label>
+                            <label for="door_dimensions_id" class="font-medium">Eshik turlari:</label>
                             <div class="form-icon relative mt-2">
-                                <select name="door_dimensions_id" id="door_dimensions_id" class="form-input ps-11">
-                                    <option value="true" {{ $doorDimension?->matetial === 'true' ? 'selected' : '' }}>pilastik</option>
-                                    <option value="false" {{ $doorDimension?->matetial === 'false' ? 'selected' : '' }}>mdf</option>                                   
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                    @if(!isset($ad))
+                                    <option value="0">Eshik materialini tanlang</option>
+                                @endif
+                                    @foreach ($doorDimensions as $doorDimension)
+                                  
+                                        <option value="{{$doorDimension->id}}" {{ isset($ad) && $doorDimension->id === $ad->door_dimensions_id ? 'selected' : '' }}>{{$doorDimension->material}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="col-span-6">
-                            <label for="door_dimensions_id" class="font-medium">eshik ochilishi:</label>
+                            <label for="door_dimensions_id" class="font-medium">Eshik qulayligi:</label>
                             <div class="form-icon relative mt-2">
-                                <select name="door_dimensions_id" id="door_dimensions_id" class="form-input ps-11">
-                                    <option value="true" {{ $doorDimension?->opening_side === 'true' ? 'selected' : '' }}>ichkariga</option>
-                                    <option value="false" {{ $doorDimension?->opening_side === 'false' ? 'selected' : '' }}>tashqariga</option>                                   
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                    @if(!isset($ad))
+                                    <option value="0">Eshik qulayligi:</option>
+                                @endif
+                                    @foreach ($doorDimensions as $doorDimension)
+                                  
+                                        <option value="{{$doorDimension->id}}" {{ isset($ad) && $doorDimension->id === $ad->door_dimensions_id ? 'selected' : '' }}>{{$doorDimension->opening_side}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
-                    </div>
                            
                     <!-- Submit Button -->
                     <button type="submit" id="submit" name="send" class="btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-5 ml-auto">
