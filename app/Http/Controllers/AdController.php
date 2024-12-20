@@ -139,13 +139,11 @@ class AdController extends Controller
 
     public function generatePDF(string $id)
     {
+        $ad = Ad::with(['colors', 'doorDimensions', 'doorTypes'])->find($id);
+
+        $pdf = PDF::loadView('components.pdf-ad', ['ad' => $ad]);
+
        
-        $ad = Ad::with(['colors',  'doorDimensions', 'doorTypes'])->find($id);
-    
-      
-        $pdf = PDF::loadView('components.single-ad', ['ad' => $ad]);
-    
-        // PDF faylini yuklab olish
         return $pdf->download('ad-details.pdf');
     }
 
