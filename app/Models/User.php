@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
         'name',
         'email',
         'password',
+        'is_admin',
     ];
     public function bookmarks(): HasMany
     {

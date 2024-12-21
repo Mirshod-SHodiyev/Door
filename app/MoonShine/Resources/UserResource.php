@@ -36,9 +36,7 @@ class UserResource extends ModelResource
 
             Text::make("name")->sortable(),
               Text::make("email")->sortable(),
-             Text::make("position")->sortable(),
-             Text::make("gender")->sortable(),
-              Text::make("phone")->sortable(),
+            
 
         ];
     }
@@ -52,9 +50,7 @@ class UserResource extends ModelResource
             ID::make()->sortable(),
             Text::make("name")->sortable(),
              Text::make("email")->sortable(),
-             Text::make("position")->sortable(),
-             Text::make("gender")->sortable(),
-              Text::make("phone")->sortable()
+            
         ];
     }
 
@@ -67,9 +63,7 @@ class UserResource extends ModelResource
             ID::make()->sortable(),
             Text::make('name')->sortable(),
             Text::make("email")->sortable(),
-            Text::make("position")->sortable(),
-            Text::make("gender")->sortable(),
-            Text::make("phone")->sortable()
+           
         ];
     }
 

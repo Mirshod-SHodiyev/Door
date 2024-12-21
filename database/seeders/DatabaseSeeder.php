@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DoorDimensionSeeder::class,
             ColorSeeder::class,
-            DoorTypeSeeder::class
+            DoorTypeSeeder::class,
+            UserSeeder::class
             
 
 
