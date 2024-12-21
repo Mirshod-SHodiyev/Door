@@ -16,8 +16,6 @@ class DatabaseSeeder extends Seeder
 
 
         $this->call([
-            PostSeeder::class,
-            UserSeeder::class,
             DoorDimensionSeeder::class,
             ColorSeeder::class,
             DoorTypeSeeder::class

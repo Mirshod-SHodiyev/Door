@@ -2,17 +2,39 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\DoorDimension;
+use Illuminate\Support\Facades\DB;
+
 
 class DoorDimensionSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
-        DoorDimension::factory()->count(10)->create();
+        DB::table('door_dimensions')->insert([
+            [
+                'service_free' => 'ha',
+                'has_top_section' => 'yo\'q',
+                'opening_side' => 'chap',
+                'door_frame' => 'ha',
+            ],
+            [
+                'service_free' => 'yo\'q',
+                'has_top_section' => 'ha',
+                'opening_side' => 'o\'ng',
+                'door_frame' => 'yo\'q',
+            ],
+            [
+                'service_free' => 'ha',
+                'has_top_section' => 'ha',
+                'opening_side' => 'chap',
+                'door_frame' => 'yo\'q',
+            ],
+            [
+                'service_free' => 'yo\'q',
+                'has_top_section' => 'yo\'q',
+                'opening_side' => 'o\'ng',
+                'door_frame' => 'ha',
+            ],
+        ]);
     }
 }

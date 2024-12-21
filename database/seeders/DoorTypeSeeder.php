@@ -2,18 +2,32 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\DoorType;
 
 class DoorTypeSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Ma'lumotlarni kiritish.
+     *
+     * @return void
      */
-    public function run(): void
+    public function run()
     {
-        
-        DoorType::factory(10)->create();
+       
+        $doorTypes = [
+            ['name' => 'Yog\'och eshik'],
+            ['name' => 'Metal eshik'],
+            ['name' => 'Plastik eshik'],
+            ['name' => 'Shisha eshik'],
+            ['name' => 'Alyuminiy eshik'],
+            ['name' => 'Po\'lat eshik'],
+            ['name' => 'Bimetall eshik'],
+        ];
+
+    
+        foreach ($doorTypes as $type) {
+            DoorType::create($type);
+        }
     }
 }

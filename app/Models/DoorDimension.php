@@ -13,10 +13,9 @@ class DoorDimension extends Model
     protected $fillable = [
         'width',
         'height',
-        'material',
         'opening_side',
         'has_top_section',
-        'service_fee',
+        'service_free',
         'door_frame',
     ];
 }

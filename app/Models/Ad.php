@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
 class Ad extends Model
@@ -19,7 +20,7 @@ class Ad extends Model
         'width',
         'height',
         'customers_info',
-        'users_id',
+        'user_id',
         'colors_id',
         'door_dimensions_id',
         'door_types_id',
@@ -31,9 +32,9 @@ class Ad extends Model
         return $this->belongsTo(Color::class, 'colors_id');
     }
 
-     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user()
     {
-        return $this->belongsTo(User::class, 'users_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
   

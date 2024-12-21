@@ -22,32 +22,26 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index()
     {
-          
-            $colors=Color::all();
-            $doorTypes=DoorType::all();
-            $userId = auth()->id();
-            $ads = Ad::query()
+        $colors = Color::all();
+        $doorTypes = DoorType::all();
+        $userId = auth()->id(); 
+        
+        $ads = Ad::query()
+            ->where('user_id', $userId)  
             ->with([
-                'doorTypes',    
-                'colors',       
-                'user',         
-                'doorDimensions' ,     
+                'doorTypes',
+                'colors',
+                'user',
+                'doorDimensions',
                 'price'
             ])
-            ->withCount([
-               'bookmarkedByUsers as bookmarked' => function ($query) use ($userId) {
-                $query->where('user_id', $userId);
-               }
-            ])->get();
-            return view('ads.index' ,compact('colors','ads' , 'doorTypes'));
-    }
-
+            ->get();
     
+        return view('ads.index', compact('colors', 'ads', 'doorTypes'));
+    }
     
 
     
@@ -95,7 +89,7 @@ class AdController extends Controller
             'customers_info' => $request->input('customers_info'),
             'width' => $request->input('width'),
             'height' => $request->input('height'),
-            'users_id' => auth()->id(),
+            'user_id' => auth()->id(),
             'colors_id' => $request->input('colors_id'),
             'door_types_id' => $request->input('door_types_id'),
             'door_dimensions_id' => $request->input('door_dimensions_id')
@@ -173,24 +167,41 @@ class AdController extends Controller
         $doorTypes = $request->input('door_types_id');
         $minPrice = $request->input('min_price');
         $maxPrice = $request->input('max_price');
+        
         $ads = Ad::query();
+    
+       
         if ($searchPhrase) {
             $ads->where('title', 'like', '%' . $searchPhrase . '%');
         }
+    
+        
         if ($doorTypes) {
             $ads->where('door_types_id', $doorTypes);
         }
-        if ($minPrice) {
-            $ads->where('price', '>=', $minPrice);
+    
+      
+        if ($minPrice || $maxPrice) {
+            $ads->whereHas('price', function ($query) use ($minPrice, $maxPrice) {
+                if ($minPrice) {
+                    $query->where('price', '>=', $minPrice);
+                }
+                if ($maxPrice) {
+                    $query->where('price', '<=', $maxPrice);
+                }
+            });
         }
-        if ($maxPrice) {
-            $ads->where('price', '<=', $maxPrice);
-        }
-        $ads = $ads->with('colors')->get();
-        $colors = Color::all();
+    
+     
+        $ads = $ads->with('price')->get();
+    
+     
+        $doorTypes = DoorType::all(); 
+    
+      
         return view('ads.index', compact('ads', 'doorTypes'));
     }
-
+    
 
   
 
