@@ -35,7 +35,7 @@
                         <!-- Description Field -->
                         <div class="col-span-12">
                             <label for="description" class="font-medium">Ta'rif:</label>
-                                <textarea name="description" id="description" class="form-input ps-11" placeholder="E'lon bo'yicha ta'rif...">{{ $ad?->description }}</textarea>
+                            <input name="description" id="description" type="text" class="form-input mt-2" placeholder="Sarlavha" value="{{ $ad?->description }}">
                         </div>
 
                         <!-- Address Field -->
@@ -78,17 +78,17 @@
 
                         <!-- Price Field -->
                         <div class="col-span-6">
-                            <label for="door_dimensions_id" class="font-medium">uzunligi eni sm:</label>
+                            <label for="width" class="font-medium">uzunligi eni sm:</label>
                             <div class="form-icon relative mt-2">
-                                <input name="door_dimensions_id" id="door_dimensions_id" type="number" class="form-input ps-11" placeholder="eni sm:" value="{{ $doorDimension?->width }}">
+                                <input name="width" id="width" type="number" class="form-input ps-11" placeholder="eni sm:" value="{{ $ad?->width }}">
                             </div>
                         </div>
                         <!-- Rooms Field -->
                          <!-- Price Field -->
                          <div class="col-span-6">
-                            <label for="door_dimensions_id" class="font-medium">uzunligi bo'yi sm:</label>
+                            <label for="height" class="font-medium">uzunligi bo'yi sm:</label>
                             <div class="form-icon relative mt-2">
-                                <input name="door_dimensions_id" id="door_dimensions_id" type="number" class="form-input ps-11" placeholder="bo'yi sm:" value="{{ $doorDimension?->width }}">
+                                <input name="height" id="height" type="number" class="form-input ps-11" placeholder="bo'yi sm:" value="{{ $ad?->width }}">
                             </div>
                         </div>
                         <div class="col-span-6">

@@ -16,8 +16,9 @@ class Ad extends Model
     protected $fillable = [
         'title',
         'description',
+        'width',
+        'height',
         'customers_info',
-        'price',
         'users_id',
         'colors_id',
         'door_dimensions_id',
@@ -62,5 +63,9 @@ class Ad extends Model
     public function doorTypes(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(DoorType::class, 'door_types_id');
+    }
+    public function price (): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Price::class);
     }
 }

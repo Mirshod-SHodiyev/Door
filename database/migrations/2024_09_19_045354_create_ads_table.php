@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->text('customers_info');
-            $table->decimal('price', 10, 2);
+            $table->float('width'); 
+            $table->float('height'); 
             $table->foreignId('door_types_id')->constrained();
             $table->foreignId('door_dimensions_id')->constrained();
             $table->foreignId('colors_id')->constrained();

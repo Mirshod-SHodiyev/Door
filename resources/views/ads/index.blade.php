@@ -57,10 +57,10 @@
                                                     <select class="form-select z-2" data-trigger name="branch_id"
                                                             id="choices-catagory-buy"
                                                             aria-label="Default select example">
-                                                        <option value="">Select color </option>
-                                                        @foreach ($colors as $colors)
+                                                        <option value="">Select door </option>
+                                                        @foreach ($doorTypes as $doorType)
                                                             :
-                                                            <option value={{$colors->id}}>{{ $colors->name }}</option>
+                                                            <option value={{$doorType->id}}>{{ $doorType->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -154,7 +154,7 @@
                                             class="uil uil-usd-circle icons text-green-600 "></i> Price</span>
                                     <p class="text-lg font-medium">
 
-                                        {{ $ad->price  }}</p>
+                                        {{ $ad->price->price }}</p>
                                 </li>
                             </ul>
                         </div>

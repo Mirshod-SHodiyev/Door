@@ -17,8 +17,6 @@ return new class extends Migration
             $table->string('has_top_section');
             $table->string('opening_side');
             $table->string('door_frame');
-            $table->float('width'); 
-            $table->float('height'); 
             $table->string('material');
         
             $table->timestamps();
