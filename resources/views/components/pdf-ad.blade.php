@@ -132,12 +132,12 @@
 
     <div class="details">
         <ul>
-            <li><strong>Rangi:</strong> {{ $ad->colors->name }}</li>
+            <li><strong>Rangi:</strong> {{ $ad->color->name }}</li>
             <li><strong>Kengligi:</strong> {{ $ad->width }} sm</li>
             <li><strong>Bo'yi:</strong> {{ $ad->height }} sm</li>
-            <li><strong>Ochilish tomoni:</strong> {{ $ad->doorDimensions->opening_side }}</li>
-            <li><strong>Xizmat haqqi:</strong> {{ $ad->doorDimensions->service_fee }} uzs</li>
-            <li><strong>Eshik turi:</strong> {{ $ad->doorTypes->name }}</li>
+            <li><strong>Ochilish tomoni:</strong> {{ $ad->doorDimension->opening_side }}</li>
+            <li><strong>Xizmat haqqi:</strong> {{ $ad->doorDimension->service_fee }} uzs</li>
+            <li><strong>Eshik turi:</strong> {{ $ad->doorType->name }}</li>
             <li><strong>Yaratilgan vaqti:</strong> {{ $ad->created_at->format('Y-m-d H:i') }}</li>
             <li><strong>Narxi:</strong> <span class="price">{{ $ad->price->price }} uzs</span></li>
         </ul>

@@ -119,14 +119,16 @@
                             <img src="{{(new \App\Actions\DisplayAdImage())($ad)}}" alt="rasm">
 
                             <div class="absolute top-4 end-4">
-                                <form action="/ads/{{$ad->id}}/bookmark" method="post">
+                                <form action="{{ route('ads.edit', $ad->id) }}" method="get">
                                     @csrf
                                     <button type="submit"
-                                            class="btn btn-icon bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full {{$ad->bookmarked ? 'text-red-600 dark:text-red-600' : 'text-slate-100 dark:text-slate-100'}} focus:text-red-600 dark:focus:text-red-600 hover:text-red-600 dark:hover:text-red-600">
-
-                                        <i data-feather="bookmark" class="text-[20px]]"></i>
+                                            class="btn btn-icon bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full
+                                            text-slate-100 dark:text-slate-100 focus:text-red-600 dark:focus:text-red-600 hover:text-red-600 dark:hover:text-red-600">
+                                        <i data-feather="edit" class="text-[20px]"></i>
                                     </button>
                                 </form>
+                                
+                                
                             </div>
                         </div>
 

@@ -14,6 +14,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 {
     use HasFactory, Notifiable , HasApiTokens ;
 
+    public function ads()
+    {
+        return $this->hasMany(Ad::class);
+    }
 
     public function bookmarkAds(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {

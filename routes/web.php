@@ -14,8 +14,13 @@ Route::post("/ads/{id}/bookmark",[\App\Http\Controllers\UserController::class , 
 Route::get('/my/profile',[\App\Http\Controllers\UserController::class, 'profile']);
 Route::get('/ads/{id}' ,[AdController::class,'show']);
 Route::get('/ads/{id}/download-pdf', [AdController::class, 'generatePDF'])->name('generate.pdf');
+Route::get('/my/profile',[\App\Http\Controllers\UserController::class, 'profile']);
+Route::get('/ads/{ad}/edit', [AdController::class, 'edit'])->name('ads.edit');
+Route::patch('/ads/{ad}/update', [AdController::class, 'update'])->name('ads.update');
+
 
 });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -50,7 +50,7 @@
                                             <path d="M5 19v-4l9.7 -9.7a1 1 0 0 1 1.4 0l2.6 2.6a1 1 0 0 1 0 1.4l-9.7 9.7h-4" />
                                         </svg>
                                         <span class="text-slate-400 text-sm mr-40"><strong>color:</strong></span>
-                                        <span class="font-medium text-sm text-8xl font-bold">{{ $ad->colors->name }}</span>
+                                        <span class="font-medium text-sm text-8xl font-bold">{{ $ad->color->name }}</span>
                                     </li>
 
                                     <li class="flex justify-between items-center mt-2">
@@ -89,21 +89,21 @@
                                         <span class="text-slate-400 text-sm">
                                             <i class="uil uil-arrow-right icons text-2xl me-2 text-green-600"></i>Opening Side:
                                         </span>
-                                        <span class="font-medium text-sm">{{ $ad->doorDimensions->opening_side }}</span>
+                                        <span class="font-medium text-sm">{{ $ad->doorDimension->opening_side }}</span>
                                     </li>
 
                                     <li class="flex justify-between items-center mt-2">
                                         <span class="text-slate-400 text-sm">
                                             <i class="uil uil-layer-group icons text-2xl me-2 text-green-600"></i>Has Top Section:
                                         </span>
-                                        <span class="font-medium text-sm">{{ $ad->doorDimensions->has_top_section }}</span>
+                                        <span class="font-medium text-sm">{{ $ad->doorDimension->has_top_section }}</span>
                                     </li>
 
                                     <li class="flex justify-between items-center mt-2">
                                         <span class="text-slate-400 text-sm">
                                             <i class="uil uil-money-bill icons text-2xl me-2 text-green-600"></i>Service Fee:
                                         </span>
-                                        <span class="font-medium text-sm">{{ $ad->doorDimensions->service_free }}</span>
+                                        <span class="font-medium text-sm">{{ $ad->doorDimension->service_free }}</span>
                                     </li>
 
                                     <!-- Check if user is available -->
@@ -114,7 +114,7 @@
                                             </svg>
                                             Doortype:
                                         </span>
-                                        <span class="font-medium text-sm">{{ $ad->doorTypes->name }}</span>
+                                        <span class="font-medium text-sm">{{ $ad->doorType->name }}</span>
                                     </li>
                                     
 
@@ -122,7 +122,7 @@
                                         <span class="text-slate-400 text-sm">
                                             <i class="uil uil-layer-group icons text-2xl me-2 text-green-600"></i>Door Frame:
                                         </span>
-                                        <span class="font-medium text-sm">{{ $ad->doorDimensions->door_frame }}</span>
+                                        <span class="font-medium text-sm">{{ $ad->doorDimension->door_frame }}</span>
                                     </li>
 
                                     <li class="flex justify-between items-center mt-2">

@@ -36,6 +36,8 @@ class UserResource extends ModelResource
 
             Text::make("name")->sortable(),
               Text::make("email")->sortable(),
+              HasMany::make('E\'lonlar', relationName: 'ads', resource: new AdResource())
+              ->onlyLink() 
             
 
         ];
@@ -50,6 +52,8 @@ class UserResource extends ModelResource
             ID::make()->sortable(),
             Text::make("name")->sortable(),
              Text::make("email")->sortable(),
+             HasMany::make('E\'lonlar', relationName: 'ads', resource: new AdResource())
+                    ->onlyLink() 
             
         ];
     }
@@ -63,6 +67,8 @@ class UserResource extends ModelResource
             ID::make()->sortable(),
             Text::make('name')->sortable(),
             Text::make("email")->sortable(),
+            HasMany::make('E\'lonlar', relationName: 'ads', resource: new AdResource())
+            ->onlyLink() 
            
         ];
     }

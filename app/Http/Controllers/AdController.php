@@ -32,15 +32,15 @@ class AdController extends Controller
         $ads = Ad::query()
             ->where('user_id', $userId)  
             ->with([
-                'doorTypes',
-                'colors',
+                'doorType',
+                'color',
                 'user',
-                'doorDimensions',
+                'doorDimension',
                 'price'
             ])
             ->get();
     
-        return view('ads.index', compact('colors', 'ads', 'doorTypes'));
+        return view('ads.index', compact('colors', 'ads', 'doorTypes' ));
     }
     
 
@@ -121,7 +121,7 @@ class AdController extends Controller
 
     public function show(string $id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory
     {
-        $ad = Ad::with(['colors','doorDimensions' , 'doorTypes'])->find($id);
+        $ad = Ad::with(['color','doorDimension' , 'doorType'])->find($id);
       
         return view('components.single-ad', ['ad'=>$ad]);
     }
@@ -129,19 +129,12 @@ class AdController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
+   
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
+  
     /**
      * Remove the specified resource from storage.
      */
@@ -149,10 +142,79 @@ class AdController extends Controller
     {
         //
     }
+    public function edit(Ad $ad)
+{
+
+    $colors = \App\Models\Color::all();
+ 
+    $doorTypes = \App\Models\DoorType::all();
+    $doorDimensions = \App\Models\DoorDimension::all();
+
+ 
+    return view('ads.edit', compact('ad', 'colors', 'doorTypes', 'doorDimensions'));
+}
+
+
+public function update(Request $request, Ad $ad)
+{
+    $request->validate([
+        'title' => 'required|min:5',
+        'description' => 'required',
+        'width' => 'required',
+        'height' => 'required',
+        'colors_id' => 'required',
+        'door_types_id' => 'required',
+        'door_dimensions_id' => 'required',
+    ], [
+        'title.required' => 'Titlni kiritish majburiy',
+        'description.required' => 'Izoh kiritish majburiy',
+        'colors_id.required' => 'Rangni tanlash majburiy',
+    ]);
+
+ 
+    $ad->update([
+        'title' => $request->input('title'),
+        'description' => $request->input('description'),
+        'customers_info' => $request->input('customers_info'),
+        'width' => $request->input('width'),
+        'height' => $request->input('height'),
+        'colors_id' => $request->input('colors_id'),
+        'door_types_id' => $request->input('door_types_id'),
+        'door_dimensions_id' => $request->input('door_dimensions_id')
+    ]);
+
+
+    $width = $request->input('width');
+    $height = $request->input('height');
+    $area = $width * $height;
+    $price = $area * 3000;
+
+  
+    $priceRecord = Price::where('ad_id', $ad->id)->first();
+    $priceRecord->update([
+        'price' => $price
+    ]);
+
+  
+    if ($request->hasFile('image')) {
+        $file = Storage::disk('public')->put('/', $request->image);
+
+        Images::query()->updateOrCreate([
+            'ad_id' => $ad->id,
+        ], [
+            'name' => $file,
+        ]);
+    }
+
+    return redirect(route('home'))->with('message', "E'lon yangilandi");
+}
+
+    
+    
 
     public function generatePDF(string $id)
     {
-        $ad = Ad::with(['colors', 'doorDimensions', 'doorTypes'])->find($id);
+        $ad = Ad::with(['color', 'doorDimension', 'doorType'])->find($id);
 
         $pdf = PDF::loadView('components.pdf-ad', ['ad' => $ad]);
 

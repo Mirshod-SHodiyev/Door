@@ -10,7 +10,7 @@ class ColorController extends Controller
 {
    
     
-    protected $fillable = ['name', 'hex_value'];
+    protected $fillable = ['name'];
 
 
 

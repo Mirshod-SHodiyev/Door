@@ -11,8 +11,7 @@ class DoorDimension extends Model
     protected $table = 'door_dimensions';
 
     protected $fillable = [
-        'width',
-        'height',
+       
         'opening_side',
         'has_top_section',
         'service_free',

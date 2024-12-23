@@ -8,9 +8,11 @@ use App\Models\Ad;
 use App\MoonShine\Resources\AdResource;
 
 
-use App\MoonShine\Resources\BranchResource;
+
+use App\MoonShine\Resources\ColorResource;
+use App\MoonShine\Resources\DoorDimensionResource;
+use App\MoonShine\Resources\DoorTypeResource;
 use App\MoonShine\Resources\ImagesResource;
-use App\MoonShine\Resources\StatusResource;
 use App\MoonShine\Resources\UserResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
 use MoonShine\MoonShine;
@@ -60,6 +62,9 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
             MenuItem::make("Bosh sahifa", url("/"))->icon("heroicons.home")->customLinkAttributes(['target'=>'_blank']),
             MenuItem::make("E'lonlar", new AdResource())->icon("heroicons.home-modern"),
             MenuItem::make("user",new UserResource())->icon("heroicons.user-circle"),
+            MenuItem::make("Colors", new ColorResource())->icon("heroicons.photo"), 
+            MenuItem::make("Door Dimension", new DoorDimensionResource())->icon("heroicons.photo"),
+            MenuItem::make("Door Type", new DoorTypeResource())->icon("heroicons.photo"),
             MenuItem::make("images",new ImagesResource())->icon("heroicons.photo"),
 
         ];

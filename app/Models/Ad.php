@@ -12,7 +12,7 @@ class Ad extends Model
     use HasFactory;
 
   
-    protected $with = ['images', 'colors', 'user',  'doorDimensions', 'doorTypes'];
+    protected $with = ['images', 'color', 'user',  'doorDimension', 'doorType'];
 
     protected $fillable = [
         'title',
@@ -27,20 +27,16 @@ class Ad extends Model
     ];
 
   
-    public function colors(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function color(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Color::class, 'colors_id');
     }
 
+
+   
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-  
-    public function bookmarkedByUsers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'bookmarks', 'ad_id', 'user_id');
     }
 
 
@@ -55,13 +51,13 @@ class Ad extends Model
         return $this->belongsTo(User::class, 'users_id');
     }
 
-    public function doorDimensions(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function doorDimension(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(DoorDimension::class, 'door_dimensions_id');
     }
 
   
-    public function doorTypes(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function doorType(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(DoorType::class, 'door_types_id');
     }
@@ -69,4 +65,8 @@ class Ad extends Model
     {
         return $this->hasOne(Price::class);
     }
+
+
+
+    
 }
