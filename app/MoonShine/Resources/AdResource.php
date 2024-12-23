@@ -39,8 +39,6 @@ class AdResource extends ModelResource
                 ID::make()->sortable(),
                 \MoonShine\Fields\Text::make("title"),
                 \MoonShine\Fields\Text::make("description")->hideOnIndex(),
-                \MoonShine\Fields\Number::make("price")->sortable(),
-                BelongsTo::make(label: 'status', resource: new StatusResource()),
                 BelongsTo::make(label: 'user', resource: new UserResource()),
                 HasMany::make("images",relationName: "images" ,resource: new ImagesResource())->onlyLink(),
 

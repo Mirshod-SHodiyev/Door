@@ -57,11 +57,10 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                     new MoonShineUserRoleResource()
                 ),
             ]),
-            MenuItem::make("Home", url("/"))->icon("heroicons.home")->customLinkAttributes(['target'=>'_blank']),
+            MenuItem::make("Bosh sahifa", url("/"))->icon("heroicons.home")->customLinkAttributes(['target'=>'_blank']),
             MenuItem::make("E'lonlar", new AdResource())->icon("heroicons.home-modern"),
             MenuItem::make("user",new UserResource())->icon("heroicons.user-circle"),
             MenuItem::make("images",new ImagesResource())->icon("heroicons.photo"),
-            MenuItem::make("Bookmarks", new BookmarkResource())->icon("heroicons.bookmark"),
 
         ];
     }
