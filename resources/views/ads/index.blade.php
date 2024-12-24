@@ -45,7 +45,7 @@
                                                 </label>
                                                 <div class="filter-search-form relative filter-border mt-2">
                                                     <i class="uil uil-estate icons"></i>
-                                                    <select class="form-select z-2 text-center" data-trigger name="branch_id" id="choices-catagory-buy" aria-label="Default select example">
+                                                    <select class="form-select z-2 text-center" data-trigger name="door_types_id" id="choices-catagory-buy" aria-label="Default select example">
                                                         <option value="">Select door</option>
                                                         @foreach ($doorTypes as $doorType)
                                                             <option value="{{ $doorType->id }}">{{ $doorType->name }}</option>

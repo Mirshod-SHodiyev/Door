@@ -79,6 +79,7 @@ class AdController extends Controller
          $ad = Ad::create([
            'phone_number' => $request->input('phone_number'),
             'customers_info' => $request->input('customers_info'),
+            'extra_info' => $request->input('extra_info'),
             'extra_info' => 'nullable|string',
             'width' => $request->input('width'),
             'height' => $request->input('height'),
@@ -142,12 +143,12 @@ class AdController extends Controller
 {
 
     $colors = \App\Models\Color::all();
- 
+    $images = Images::all();
     $doorTypes = \App\Models\DoorType::all();
     $doorDimensions = \App\Models\DoorDimension::all();
-
+    $action = route('ads.update', $ad->id); 
  
-    return view('ads.edit', compact('ad', 'colors', 'doorTypes', 'doorDimensions'));
+    return view('ads.edit', compact('ad', 'colors', 'doorTypes', 'doorDimensions' ,'images', 'action'));
 }
 
 
@@ -223,26 +224,25 @@ public function update(Request $request, Ad $ad)
     public function find(Request $request): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
         $searchPhrase = $request->input('search_phrase');
-        $doorTypes = $request->input('door_types_id');
-
-        
+        $doorTypes = $request->input('door_types_id'); 
+    
         $ads = Ad::query();
     
-       
+     
         if ($searchPhrase) {
-            $ads->where('title', 'like', '%' . $searchPhrase . '%');
+            $ads->where('customers_info', 'like', '%' . $searchPhrase . '%');
         }
     
-        
+      
         if ($doorTypes) {
             $ads->where('door_types_id', $doorTypes);
         }
     
-     
-        $ads = $ads->with('price')->get();
+      
+        $ads = $ads->get();  
     
-     
-        $doorTypes = DoorType::all(); 
+        
+        $doorTypes = DoorType::all();
     
       
         return view('ads.index', compact('ads', 'doorTypes'));
