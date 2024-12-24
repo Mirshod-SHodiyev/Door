@@ -14,17 +14,4 @@ class ColorController extends Controller
 
 
 
-    public function ads(): \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-    return $this->hasMany(Ad::class ,'colors_id');
-    }
-    public function getAdsCountAttribute()
-    {
-        return $this->ads()->count();
-    }
-    public function color(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(Color::class);
-    }
-
 }

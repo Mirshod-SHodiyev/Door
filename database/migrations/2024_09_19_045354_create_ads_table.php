@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('ads', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
             $table->text('customers_info');
+            $table->text('extra_info')->nullable();
+            $table->bigInteger('phone_number');
             $table->float('width'); 
             $table->float('height'); 
             $table->foreignId('door_types_id')->constrained();

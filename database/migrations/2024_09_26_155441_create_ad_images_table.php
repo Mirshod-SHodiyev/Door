@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ad_images', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('ad_id')->constrained();
+            $table->foreignId('ad_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
         });
     }

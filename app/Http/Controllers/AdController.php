@@ -1,21 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Ad;
 use App\Models\Images;
 use App\Models\Color;
-use Faker\Factory;
 use App\Models\Price;
-
 use App\Models\DoorDimension;
 use App\Models\DoorType;
-use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\View\View;
-use JetBrains\PhpStorm\NoReturn;
-use PHPUnit\TextUI\Application;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 
@@ -28,7 +21,6 @@ class AdController extends Controller
         $colors = Color::all();
         $doorTypes = DoorType::all();
         $userId = auth()->id(); 
-        
         $ads = Ad::query()
             ->where('user_id', $userId)  
             ->with([
@@ -36,7 +28,8 @@ class AdController extends Controller
                 'color',
                 'user',
                 'doorDimension',
-                'price'
+                'price',
+                'images'
             ])
             ->get();
     
@@ -47,28 +40,29 @@ class AdController extends Controller
     
     public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory
     {
-
+      
         $action = route('ads.store');
         $colors = Color::all();
+        $images = Images::all();
         $doorTypes = DoorType::all();
         $doorDimensions=DoorDimension::all();
         $ads=Ad::all();
         $ad=new Ad();
         $doorDimension=new DoorDimension();
-        return view('ads.create', compact('doorTypes','ads','colors','ad','action','doorDimensions','doorDimension'));
+        return view('ads.create', compact('doorTypes','ads','colors','ad','action','doorDimensions','doorDimension' ,'images'));
 
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    #[NoReturn] public function store(Request $request)
+     public function store(Request $request)
   
     {
 
         $request->validate([
-            'title' => 'required|min:5',
-            'description' => 'required', 
+            'phone_number' => 'nullable|digits_between:10,15|regex:/^[0-9]+$/',
+            'extra_info',
             'width' => 'required',
             'height' => 'required',
             'colors_id' => 'required',
@@ -83,10 +77,10 @@ class AdController extends Controller
         ]);
      
      
-        $ad = Ad::create([
-            'title' => $request->input('title'),
-            'description' => $request->input('description'),
+         $ad = Ad::create([
+           'phone_number' => 'nullable|digits_between:10,15|regex:/^[0-9]+$/',
             'customers_info' => $request->input('customers_info'),
+            'extra_info' => 'nullable|string',
             'width' => $request->input('width'),
             'height' => $request->input('height'),
             'user_id' => auth()->id(),
@@ -98,22 +92,25 @@ class AdController extends Controller
             $width = $request->input('width');
             $height = $request->input('height');
             $area = $width * $height;  
-            $price = $area * 3000;  
+            $price = $area * 20;  
 
+            if ($request->input('door_dimensions_id') != '0') {
+       
+                $price -= 100;
+            }
         
             Price::create([
                 'price' => $price,
                 'ad_id' => $ad->id
             ]);
 
-        if ($request->hasFile('image')) {
-            $file = Storage::disk('public')->put('/', $request->image);
-
-            Images::query()->create([
-                'ad_id' => $ad->id,
-                'name'  => $file,
-            ]);
-        }
+            if ($request->has('selected_images')) {
+                $selectedImages = $request->input('selected_images'); // Tanlangan rasmlar
+        
+                foreach ($selectedImages as $imageId) {
+                    Images::where('id', $imageId)->update(['ad_id' => $ad->id]);
+                }
+            }
 
         return redirect(route('home'))->with('message', "E'lon yaratildi");
     }
@@ -121,7 +118,7 @@ class AdController extends Controller
 
     public function show(string $id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory
     {
-        $ad = Ad::with(['color','doorDimension' , 'doorType'])->find($id);
+        $ad = Ad::with(['color','doorDimension' , 'doorType' ])->find($id);
       
         return view('components.single-ad', ['ad'=>$ad]);
     }
@@ -158,8 +155,8 @@ class AdController extends Controller
 public function update(Request $request, Ad $ad)
 {
     $request->validate([
-        'title' => 'required|min:5',
-        'description' => 'required',
+       'phone_number' => 'nullable|digits_between:10,15|regex:/^[0-9]+$/',
+       'extra_info' => 'nullable|string',
         'width' => 'required',
         'height' => 'required',
         'colors_id' => 'required',
@@ -187,23 +184,25 @@ public function update(Request $request, Ad $ad)
     $width = $request->input('width');
     $height = $request->input('height');
     $area = $width * $height;
-    $price = $area * 3000;
+    $price = $area * 20;
 
   
+    if ($request->input('door_dimensions_id') != '0') {
+       
+        $price -= 100;
+    }
+
     $priceRecord = Price::where('ad_id', $ad->id)->first();
     $priceRecord->update([
         'price' => $price
     ]);
 
-  
-    if ($request->hasFile('image')) {
-        $file = Storage::disk('public')->put('/', $request->image);
+    if ($request->has('selected_images')) {
+        $selectedImages = $request->input('selected_images'); // Tanlangan rasmlar
 
-        Images::query()->updateOrCreate([
-            'ad_id' => $ad->id,
-        ], [
-            'name' => $file,
-        ]);
+        foreach ($selectedImages as $imageId) {
+            Images::where('id', $imageId)->update(['ad_id' => $ad->id]);
+        }
     }
 
     return redirect(route('home'))->with('message', "E'lon yangilandi");
@@ -227,8 +226,7 @@ public function update(Request $request, Ad $ad)
     {
         $searchPhrase = $request->input('search_phrase');
         $doorTypes = $request->input('door_types_id');
-        $minPrice = $request->input('min_price');
-        $maxPrice = $request->input('max_price');
+
         
         $ads = Ad::query();
     
@@ -240,18 +238,6 @@ public function update(Request $request, Ad $ad)
         
         if ($doorTypes) {
             $ads->where('door_types_id', $doorTypes);
-        }
-    
-      
-        if ($minPrice || $maxPrice) {
-            $ads->whereHas('price', function ($query) use ($minPrice, $maxPrice) {
-                if ($minPrice) {
-                    $query->where('price', '>=', $minPrice);
-                }
-                if ($maxPrice) {
-                    $query->where('price', '<=', $maxPrice);
-                }
-            });
         }
     
      

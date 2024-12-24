@@ -5,12 +5,13 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', [AdController::class, "index"])->name("home");
+
 
 Route::middleware('auth')->group(function () {
+Route::get('/', [AdController::class, "create"])->name("home");
+Route::get('/home', [AdController::class, "index"]);
 Route::resource('ads', \App\Http\Controllers\AdController::class);
 Route::get('/search',[\App\Http\Controllers\AdController::class ,'find']);
-Route::post("/ads/{id}/bookmark",[\App\Http\Controllers\UserController::class ,  "toggleBookmark"]);
 Route::get('/my/profile',[\App\Http\Controllers\UserController::class, 'profile']);
 Route::get('/ads/{id}' ,[AdController::class,'show']);
 Route::get('/ads/{id}/download-pdf', [AdController::class, 'generatePDF'])->name('generate.pdf');

@@ -62,9 +62,9 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
             MenuItem::make("Bosh sahifa", url("/"))->icon("heroicons.home")->customLinkAttributes(['target'=>'_blank']),
             MenuItem::make("E'lonlar", new AdResource())->icon("heroicons.home-modern"),
             MenuItem::make("user",new UserResource())->icon("heroicons.user-circle"),
-            MenuItem::make("Colors", new ColorResource())->icon("heroicons.photo"), 
-            MenuItem::make("Door Dimension", new DoorDimensionResource())->icon("heroicons.photo"),
-            MenuItem::make("Door Type", new DoorTypeResource())->icon("heroicons.photo"),
+            MenuItem::make("Colors", new ColorResource())->icon("heroicons.swatch"), 
+            MenuItem::make("Door Dimension", new DoorDimensionResource())->icon("heroicons.ellipsis-vertical"),
+            MenuItem::make("Door Type", new DoorTypeResource())->icon("heroicons.ellipsis-vertical"),
             MenuItem::make("images",new ImagesResource())->icon("heroicons.photo"),
 
         ];

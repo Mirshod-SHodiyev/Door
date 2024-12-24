@@ -4,6 +4,7 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use App\Models;
 
 class AdForm extends Component
 {
@@ -14,6 +15,7 @@ class AdForm extends Component
     public  $doorTypes = [];
     public  $doorDimensions = [];
     public $doorDimension;
+    public $images=[];
 
     public function __construct($action = "/ads", $ad = null)
     {
@@ -22,6 +24,7 @@ class AdForm extends Component
         $this->colors = \App\Models\Color::all();
         $this->doorTypes = \App\Models\DoorType::all();
         $this->doorDimensions = \App\Models\DoorDimension::all();
+        $this->images = \App\Models\Images::all();
     }
 
     public function render(): View|Closure|string

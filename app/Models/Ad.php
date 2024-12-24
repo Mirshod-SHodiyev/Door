@@ -15,8 +15,8 @@ class Ad extends Model
     protected $with = ['images', 'color', 'user',  'doorDimension', 'doorType'];
 
     protected $fillable = [
-        'title',
-        'description',
+        'phone_number',
+        'extra_info',
         'width',
         'height',
         'customers_info',
@@ -33,10 +33,9 @@ class Ad extends Model
     }
 
 
-   
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 
 

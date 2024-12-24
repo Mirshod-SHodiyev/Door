@@ -31,7 +31,7 @@
                         <div class="sm:text-start text-center mx-md-2">
                             <p class="mb-0 text-slate-400">©
                                 <script>document.write(new Date().getFullYear())</script>
-                                Doors <i class="mdi mdi-heart text-red-600"></i> by kampaniya nomi.
+                                Doors <i class="mdi mdi-heart text-red-600"></i> by CodingTech.
                             </p>
                         </div><!--end col-->
                     </div><!--end grid-->

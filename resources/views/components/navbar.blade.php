@@ -12,35 +12,30 @@
     <meta name="version" content="2.2.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <!-- favicon -->
-   
-
-    <!-- Css -->
+    <!-- CSS Files -->
     <link href="/assets/libs/tiny-slider/tiny-slider.css" rel="stylesheet">
     <link href="/assets/libs/tobii/css/tobii.min.css" rel="stylesheet">
     <link href="/assets/libs/choices.js/public/assets/styles/choices.min.css" rel="stylesheet">
     <link href="/assets/libs/swiper/css/swiper.min.css" rel="stylesheet">
-    <!-- Main Css -->
     <link href="/assets/libs/@iconscout/unicons/css/line.css" type="text/css" rel="stylesheet" />
     <link href="/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
     @vite('resources/css/app.css')
-
 </head>
 <body class="dark:bg-slate-900">
 
+<!-- Navbar -->
 <nav id="topnav" class="defaultscroll is-sticky">
     <div class="container relative">
-        <!-- Start Logo container-->
+        <!-- Logo -->
         <a class="logo" href="index.html">
-                    <span class="inline-block dark:hidden">
-                        <img src="assets/images/logo-dark.png" class="l-dark" height="24" alt="">
-                        <img src="assets/images/logo-light.png" class="l-light" height="24" alt="">
-                    </span>
+            <span class="inline-block dark:hidden">
+                 <img src="assets/images/logo-dark.png" class="l-dark" height="24" alt=""> 
+                 <img src="assets/images/logo-light.png" class="l-light" height="24" alt="">
+            </span>
             <img src="assets/images/logo-light.png" height="24" class="hidden dark:inline-block" alt="">
         </a>
-        <!-- End Logo container-->
 
-        <!-- Start Mobile Toggle -->
+        <!-- Menu Extras -->
         <div class="menu-extras">
             <div class="menu-item">
                 <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
@@ -52,50 +47,44 @@
                 </a>
             </div>
         </div>
-        <!-- End Mobile Toggle -->
 
-        <!--Login button Start-->
+        <!-- Buy Button -->
         <ul class="buy-button list-none mb-0">
-
-            <li class="inline mb-0">
+            {{-- <li class="inline mb-0">
                 <a href="{{ auth()->check() ? (auth()->user()->is_admin ? '/adminpanel' : '/profile') : '/login' }}" 
                    class="btn btn-icon bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
                     <i data-feather="user" class="size-4 stroke-[3]"></i>
                 </a>
-            </li>
-            
-            
-            <?php //else: ?><!---->
+            </li> --}}
             <li class="sm:inline ps-1 mb-0 hidden">
-                <a href="/ads/create" class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">Order</a>
+                <a href="/" 
+                   class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
+                    Order
+                </a>
             </li>
+
             <li class="sm:inline ps-1 mb-0 hidden">
-               
+                <a href="/home" 
+                   class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
+                    Bosh sahifa
+                </a>
             </li>
-            <?php //endif; ?>
             <form method="POST" action="{{ route('logout') }}" style="display: inline-block;">
                 @csrf
                 <button type="submit" class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
                     Logout
                 </button>
-            </form>
-
-           
         </ul>
-        <!--Login button End-->
 
+        
+        </form>
         <div id="navigation">
-            <!-- Navigation Menu-->
             <ul class="navigation-menu justify-end nav-light">
-                <li class="has-submenu parent-parent-menu-item">
-                
+                <li class="has-submenu parent-parent-menu-item"></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-                </li>
-
-               
-               
-
-            </ul><!--end navigation menu-->
-        </div><!--end navigation-->
-    </div><!--end container-->
-</nav><!--end header-->
+</body>
+</html>
