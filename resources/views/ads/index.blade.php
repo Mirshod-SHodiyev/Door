@@ -85,8 +85,8 @@
                         <div class="p-6">
                             <div class="pb-6">
                                 <a href="/ads/{{ $ad->id }}" class="text-lg hover:text-green-600 font-medium ease-in-out duration-500">
-                                    <i class="uil uil-estate icons text-2xl me-2 text-green-600"></i>
-                                    {{ $ad->title }}
+                                    <i class="uil uil-user icons text-2xl me-2 text-green-600"></i>
+                                    {{ $ad->customers_info}}
                                 </a>
                             </div>
 
@@ -101,8 +101,8 @@
 
                             <ul class="py-6 border-y border-slate-100 dark:border-gray-800 flex items-center list-none">
                                 <li class="flex items-center me-4">
-                                    <i class="uil uil-user icons text-2xl me-2 text-green-600"></i>
-                                    <span>{{ $ad->customers_info }}</span>
+                                    <i class="uil uil-phone icons text-2xl me-2 text-green-600"></i>
+                                    <span>{{ $ad->phone_number }}</span>
                                 </li>
                             </ul>
 

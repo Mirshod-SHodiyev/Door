@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('customers_info');
             $table->text('extra_info')->nullable();
-            $table->bigInteger('phone_number');
+            $table->string('phone_number', 20);
             $table->float('width'); 
             $table->float('height'); 
             $table->foreignId('door_types_id')->constrained();

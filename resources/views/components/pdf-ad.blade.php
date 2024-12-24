@@ -10,17 +10,26 @@
             background-color: #f4f4f9;
             margin: 20px;
             color: #333;
+            font-size: 12px; /* Reduced base font size */
         }
 
-        h4 {
-            font-size: 22px;
+        h1 {
+            text-align: center;
+            font-size: 22px; /* Smaller title font */
             font-weight: bold;
             color: #2c3e50;
             margin-bottom: 10px;
         }
 
+        h2 {
+            text-align: center;
+            font-size: 18px; /* Smaller subtitle font */
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+
         p {
-            font-size: 14px;
+            font-size: 12px;
             line-height: 1.4;
             color: #7f8c8d;
             margin-bottom: 15px;
@@ -28,10 +37,10 @@
 
         .details {
             background-color: #ffffff;
-            padding: 15px;
+            padding: 10px; /* Reduced padding */
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
+            margin-top: 15px; /* Reduced margin */
         }
 
         .details ul {
@@ -41,11 +50,11 @@
         }
 
         .details li {
-            font-size: 14px;
-            margin-bottom: 8px;
+            font-size: 12px; /* Smaller text size */
+            margin-bottom: 6px; /* Reduced spacing */
             display: flex;
             justify-content: space-between;
-            padding: 5px 0;
+            padding: 3px 0; /* Reduced padding */
         }
 
         .details li strong {
@@ -54,16 +63,16 @@
         }
 
         .price {
-            font-size: 18px;
+            font-size: 14px; /* Adjusted price size */
             color: #27ae60;
             font-weight: bold;
         }
 
         .signature-section {
-            margin-top: 20px;
+            margin-top: 15px; /* Reduced margin */
             display: flex;
             justify-content: space-between;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .signature-box {
@@ -95,13 +104,13 @@
         }
 
         .contract-terms {
-            font-size: 14px;
+            font-size: 12px; /* Reduced font size for terms */
             line-height: 1.4;
             margin-top: 15px;
         }
 
         .contract-terms li {
-            margin-bottom: 8px;
+            margin-bottom: 6px; /* Reduced spacing */
         }
 
         .img-container {
@@ -116,28 +125,38 @@
         }
 
         .section-title {
-            font-size: 16px;
+            font-size: 14px; /* Adjusted section title size */
             font-weight: bold;
             margin-top: 20px;
             text-align: center;
             color: #2c3e50;
         }
+
+        .campaign-info {
+            text-align: center;
+            font-size: 12px; /* Reduced font size */
+            margin-top: 20px;
+            color: #2c3e50;
+        }
     </style>
 </head>
 <body>
-    <h2>Eshik savdosi bo'yicha kelishuv</h2>
-       <h2>{{ $ad->title }}</h2>  
-    <p><strong>Tavsif:</strong> {{ $ad->description }}</p>
-    <p><strong>mijoz ta'rif:</strong> {{ $ad->customers_info }}</p>
+    <h1>Kampaniya nomi</h1>
+    <h2>Eshik savdosi bo'yicha shartnoma</h2>
+      
+    <p><strong>Mijoz ma'lumotlari:</strong> {{ $ad->customers_info }}</p>
+    <p><strong>mijoz nomeri:</strong> {{ $ad->phone_number }}</p>
 
     <div class="details">
         <ul>
+            <li><strong>Eshik turi:</strong> {{ $ad->doorType->name }}</li>
             <li><strong>Rangi:</strong> {{ $ad->color->name }}</li>
             <li><strong>Kengligi:</strong> {{ $ad->width }} sm</li>
             <li><strong>Bo'yi:</strong> {{ $ad->height }} sm</li>
             <li><strong>Ochilish tomoni:</strong> {{ $ad->doorDimension->opening_side }}</li>
-            <li><strong>Xizmat haqqi:</strong> {{ $ad->doorDimension->service_fee }} uzs</li>
-            <li><strong>Eshik turi:</strong> {{ $ad->doorType->name }}</li>
+            <li><strong>Eshik yuqori qismi:</strong> {{ $ad->doorDimension->has_top_section }}</li>
+            <li><strong>Eshik ramkasi:</strong> {{ $ad->doorDimension->door_frame }}</li>
+            <li><strong>Xizmat haqqi:</strong> {{ $ad->doorDimension->service_free }} </li>
             <li><strong>Yaratilgan vaqti:</strong> {{ $ad->created_at->format('Y-m-d H:i') }}</li>
             <li><strong>Narxi:</strong> <span class="price">{{ $ad->price->price }} uzs</span></li>
         </ul>
@@ -161,6 +180,11 @@
             <p>Xaridor</p>
             <strong>Imzo:</strong>
         </div>
+    </div>
+
+    <div class="campaign-info">
+        <p>Kampaniya haqida qisqacha ma'lumot: Eshik savdosi bo'yicha maxsus takliflar. Bizning xizmatlarimizni sinab ko'ring!</p>
+        <p><strong>Telefon raqami:</strong> 97 777 77 77</p>
     </div>
 </body>
 </html>

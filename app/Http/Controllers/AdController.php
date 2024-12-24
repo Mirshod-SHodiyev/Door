@@ -8,7 +8,7 @@ use App\Models\Price;
 use App\Models\DoorDimension;
 use App\Models\DoorType;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+
 use Barryvdh\DomPDF\Facade\Pdf;
 
 
@@ -61,8 +61,7 @@ class AdController extends Controller
     {
 
         $request->validate([
-            'phone_number' => 'nullable|digits_between:10,15|regex:/^[0-9]+$/',
-            'extra_info',
+            'phone_number' => 'required|digits_between:5,15|regex:/^[0-9]+$/',
             'width' => 'required',
             'height' => 'required',
             'colors_id' => 'required',
@@ -78,7 +77,7 @@ class AdController extends Controller
      
      
          $ad = Ad::create([
-           'phone_number' => 'nullable|digits_between:10,15|regex:/^[0-9]+$/',
+           'phone_number' => $request->input('phone_number'),
             'customers_info' => $request->input('customers_info'),
             'extra_info' => 'nullable|string',
             'width' => $request->input('width'),
@@ -112,7 +111,7 @@ class AdController extends Controller
                 }
             }
 
-        return redirect(route('home'))->with('message', "E'lon yaratildi");
+        return redirect(route('house'))->with('message', "E'lon yaratildi");
     }
 
 
@@ -155,8 +154,7 @@ class AdController extends Controller
 public function update(Request $request, Ad $ad)
 {
     $request->validate([
-       'phone_number' => 'nullable|digits_between:10,15|regex:/^[0-9]+$/',
-       'extra_info' => 'nullable|string',
+        'phone_number' => 'required|digits_between:5,15|regex:/^[0-9]+$/',
         'width' => 'required',
         'height' => 'required',
         'colors_id' => 'required',
@@ -170,8 +168,8 @@ public function update(Request $request, Ad $ad)
 
  
     $ad->update([
-        'title' => $request->input('title'),
-        'description' => $request->input('description'),
+         'phone_number'=> $request->input('phone_number'),
+        'extra_info' => $request->input('extra_info'),
         'customers_info' => $request->input('customers_info'),
         'width' => $request->input('width'),
         'height' => $request->input('height'),
@@ -205,7 +203,7 @@ public function update(Request $request, Ad $ad)
         }
     }
 
-    return redirect(route('home'))->with('message', "E'lon yangilandi");
+    return redirect(route('house'))->with('message', "E'lon yangilandi");
 }
 
     
