@@ -18,6 +18,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
     {
         return $this->hasMany(Ad::class);
     }
+    public function isAdmin()
+{
+    return $this->is_admin;
+}
 
     public function bookmarkAds(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {

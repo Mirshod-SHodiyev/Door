@@ -4,18 +4,14 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Models\Ad;
+
 use App\MoonShine\Resources\AdResource;
-
-
-
 use App\MoonShine\Resources\ColorResource;
 use App\MoonShine\Resources\DoorDimensionResource;
 use App\MoonShine\Resources\DoorTypeResource;
 use App\MoonShine\Resources\ImagesResource;
 use App\MoonShine\Resources\UserResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
-use MoonShine\MoonShine;
 use MoonShine\Menu\MenuGroup;
 use MoonShine\Menu\MenuItem;
 use MoonShine\Resources\MoonShineUserResource;

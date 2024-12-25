@@ -10,9 +10,9 @@
                     <div class="grid grid-cols-1">
                         <div class="md:text-start text-center">
                             <h1 class="font-bold text-white lg:leading-normal leading-normal text-4xl lg:text-5xl mb-6">
-                                We will help you find <br> your <span class="text-green-600">Wonderful</span> door
+                                Biz sizga ajoyib eshikni topishda <br> your <span class="text-green-600"> yordam</span>  beramiz
                             </h1>
-                            <p class="text-white/70 text-xl max-w-xl">A great plateform to buy door</p>
+                            <p class="text-white/70 text-xl max-w-xl">Eshik sotib olish uchun ajoyib platforma</p>
                         </div>
                     </div>
                 </div>
@@ -31,22 +31,22 @@
                                         <div class="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-6 items-center">
                                             <div>
                                                 <label class="form-label font-medium text-slate-900 dark:text-white">
-                                                    Search: <span class="text-red-600">*</span>
+                                                    Qidiruv: <span class="text-red-600"></span>
                                                 </label>
                                                 <div class="filter-search-form relative filter-border mt-2">
                                                     <i class="uil uil-search icons"></i>
-                                                    <input name="search_phrase" type="text" id="job-keyword" class="form-input filter-input-box bg-gray-50 dark:bg-slate-800 border-0 text-center" placeholder="Search your keywords">
+                                                    <input name="search_phrase" type="text" id="job-keyword" class="form-input filter-input-box bg-gray-50 dark:bg-slate-800 border-0 text-center" placeholder="Qidiruv">
                                                 </div>
                                             </div>
         
                                             <div>
                                                 <label for="buy-properties" class="form-label font-medium text-slate-900 dark:text-white">
-                                                    Select Categories:
+                                                    Eshik turini ytanlang:
                                                 </label>
                                                 <div class="filter-search-form relative filter-border mt-2">
                                                     <i class="uil uil-estate icons"></i>
                                                     <select class="form-select z-2 text-center" data-trigger name="door_types_id" id="choices-catagory-buy" aria-label="Default select example">
-                                                        <option value="">Select door</option>
+                                                        <option value="">Eshik turini tanlang</option>
                                                         @foreach ($doorTypes as $doorType)
                                                             <option value="{{ $doorType->id }}">{{ $doorType->name }}</option>
                                                         @endforeach
@@ -56,7 +56,7 @@
                                         </div>
         
                                         <div class="mt-6">
-                                            <input type="submit" id="search-buy" name="search" class="btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white searchbtn submit-btn w-full !h-12 rounded" value="Search">
+                                            <input type="submit" id="search-buy" name="search" class="btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white searchbtn submit-btn w-full !h-12 rounded" value="Qidirish">
                                         </div>
                                     </div>
                                 </form>
@@ -109,9 +109,10 @@
                             <ul class="pt-6 flex justify-between items-center list-none">
                                 <li>
                                     <span class="text-slate-400">
-                                        <i class="uil uil-usd-circle icons text-green-600"></i> Price
+                                        <i class="uil uil-usd-circle icons text-green-600"></i> 
+                                       <span> {{ $ad->price->price }} </span>
                                     </span>
-                                    <p class="text-lg font-medium">{{ $ad->price->price }}</p>
+                                    
                                 </li>
                             </ul>
                         </div>

@@ -68,7 +68,11 @@ return [
 
     'auth' => [
         'enable' => true,
-        'middleware' => Authenticate::class,
+
+         'middleware' => [
+            Authenticate::class,   
+            \App\Http\Middleware\AdminMiddleware::class, 
+        ],
         'fields' => [
             'username' => 'email',
             'password' => 'password',
