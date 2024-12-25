@@ -105,7 +105,7 @@ class AdController extends Controller
             ]);
 
             if ($request->has('selected_images')) {
-                $selectedImages = $request->input('selected_images'); // Tanlangan rasmlar
+                $selectedImages = $request->input('selected_images'); 
         
                 foreach ($selectedImages as $imageId) {
                     Images::where('id', $imageId)->update(['ad_id' => $ad->id]);
@@ -122,19 +122,6 @@ class AdController extends Controller
       
         return view('components.single-ad', ['ad'=>$ad]);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-   
-
-    /**
-     * Update the specified resource in storage.
-     */
-  
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //

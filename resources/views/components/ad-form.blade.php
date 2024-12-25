@@ -14,6 +14,13 @@
 
                     <div class="grid grid-cols-12 gap-5">
 
+                        <div class="col-span-12 flex justify-end">
+                            <a href="{{ route('hisob') }}" class="btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-5">
+                                <i class="mdi mdi-calculator me-2"></i>Hisoblash
+                            </a>
+                        </div>
+                        
+                        
                         <!-- Title Field -->
                         <div class="col-span-12">
                             <label for="doortype" class="font-medium">Eshik turlari:</label>
@@ -164,7 +171,8 @@
                     <button type="submit" id="submit" name="send" class="btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-5 ml-auto">
                         <i class="mdi mdi-content-save me-2"></i>Saqlash
                     </button>
-                    
+
+                
                 </form>
             </div>
 

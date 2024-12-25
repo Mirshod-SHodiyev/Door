@@ -18,6 +18,8 @@ Route::get('/ads/{id}/download-pdf', [AdController::class, 'generatePDF'])->name
 Route::get('/my/profile',[\App\Http\Controllers\UserController::class, 'profile']);
 Route::get('/ads/{ad}/edit', [AdController::class, 'edit'])->name('ads.edit');
 Route::patch('/ads/{ad}/update', [AdController::class, 'update'])->name('ads.update');
+Route::get('/hisob',[\App\Http\Controllers\ColorController::class, 'hisob'])->name('hisob');
+Route::post('/hisob', [\App\Http\Controllers\ColorController::class, 'hisobPost'])->name('hisob.post');
 
 
 });

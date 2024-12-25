@@ -59,7 +59,7 @@
             <li class="sm:inline ps-1 mb-0 hidden">
                 <a href="/" 
                    class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
-                    Order
+                    Sotuv bo'limi
                 </a>
             </li>
 
