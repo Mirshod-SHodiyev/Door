@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Models\Ad;
-use App\Models\Images;
 use App\Models\Color;
 use App\Models\Price;
 use App\Models\DoorDimension;
@@ -18,6 +17,7 @@ class AdController extends Controller
    
     public function index()
     {
+        
         $colors = Color::all();
         $doorTypes = DoorType::all();
         $userId = auth()->id(); 
@@ -29,9 +29,9 @@ class AdController extends Controller
                 'user',
                 'doorDimension',
                 'price',
-                'images'
-            ])
-            ->get();
+            
+            ]) ->get();
+           
     
         return view('ads.index', compact('colors', 'ads', 'doorTypes' ));
     }
@@ -43,13 +43,12 @@ class AdController extends Controller
       
         $action = route('ads.store');
         $colors = Color::all();
-        $images = Images::all();
         $doorTypes = DoorType::all();
         $doorDimensions=DoorDimension::all();
         $ads=Ad::all();
         $ad=new Ad();
         $doorDimension=new DoorDimension();
-        return view('ads.create', compact('doorTypes','ads','colors','ad','action','doorDimensions','doorDimension' ,'images'));
+        return view('ads.create', compact('doorTypes','ads','colors','ad','action','doorDimensions','doorDimension' ));
 
     }
 
@@ -61,6 +60,7 @@ class AdController extends Controller
     {
 
         $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'phone_number' => 'required|digits_between:5,15|regex:/^[0-9]+$/',
             'width' => 'required',
             'height' => 'required',
@@ -75,20 +75,31 @@ class AdController extends Controller
             'colors_id.required'=>'Rangni tanlash majburiy', 
         ]);
      
-     
+        $doorType = DoorType::find($request->door_types_id);
+        if (!$doorType) {
+            return redirect()->back()->with('error', 'Eshik turi topilmadi.');
+        }
+    
+       
+     $image = $request->file('image');
+    $imageName = 'door_image_' . time() . '.' . $image->getClientOriginalExtension();  
+    $imageUrl = $image->storeAs('public/door_images', $imageName);  
+
+
          $ad = Ad::create([
            'phone_number' => $request->input('phone_number'),
             'customers_info' => $request->input('customers_info'),
             'extra_info' => $request->input('extra_info'),
-            'extra_info' => 'nullable|string',
             'width' => $request->input('width'),
             'height' => $request->input('height'),
             'user_id' => auth()->id(),
             'colors_id' => $request->input('colors_id'),
             'door_types_id' => $request->input('door_types_id'),
-            'door_dimensions_id' => $request->input('door_dimensions_id')
+            'door_dimensions_id' => $request->input('door_dimensions_id'),
+            'image_url' => 'storage/door_images/' . $imageName,
+            
         ]);
-                
+          $imageUrl = $doorType->image_url;
             $width = $request->input('width');
             $height = $request->input('height');
             $area = $width * $height;  
@@ -104,15 +115,7 @@ class AdController extends Controller
                 'ad_id' => $ad->id
             ]);
 
-            if ($request->has('selected_images')) {
-                $selectedImages = $request->input('selected_images'); 
-        
-                foreach ($selectedImages as $imageId) {
-                    Images::where('id', $imageId)->update(['ad_id' => $ad->id]);
-                }
-            }
-
-        return redirect(route('house'))->with('message', "E'lon yaratildi");
+        return redirect(route('house'))->with('message', "E'lon yaratildi ");
     }
 
 
@@ -130,8 +133,7 @@ class AdController extends Controller
 {
 
     $colors = \App\Models\Color::all();
-    $images = Images::all();
-    $doorTypes = \App\Models\DoorType::all();
+     $doorTypes = \App\Models\DoorType::all();
     $doorDimensions = \App\Models\DoorDimension::all();
     $action = route('ads.update', $ad->id); 
  
@@ -157,7 +159,7 @@ public function update(Request $request, Ad $ad)
  
     $ad->update([
          'phone_number'=> $request->input('phone_number'),
-        'extra_info' => $request->input('extra_info'),
+         'extra_info' => $request->input('extra_info'),
         'customers_info' => $request->input('customers_info'),
         'width' => $request->input('width'),
         'height' => $request->input('height'),
@@ -183,13 +185,6 @@ public function update(Request $request, Ad $ad)
         'price' => $price
     ]);
 
-    if ($request->has('selected_images')) {
-        $selectedImages = $request->input('selected_images'); // Tanlangan rasmlar
-
-        foreach ($selectedImages as $imageId) {
-            Images::where('id', $imageId)->update(['ad_id' => $ad->id]);
-        }
-    }
 
     return redirect(route('house'))->with('message', "E'lon yangilandi");
 }

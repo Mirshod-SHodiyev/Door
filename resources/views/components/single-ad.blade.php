@@ -6,8 +6,8 @@
                     <div class="grid grid-cols-1 relative">
                         <div class="tiny-one-item">
                             <div class="tiny-slide">
-                                @if ($ad->images->first())
-                                    <img src="{{ asset('/storage/'.$ad->images->first()->name) }}" alt="rasm" class="rounded-md shadow dark:shadow-gray-700">
+                                @if ($ad)
+                                    <img src="" alt="rasm" class="rounded-md shadow dark:shadow-gray-700">
                                 @else
                                     <img src="default-ad.jpg" alt="" class="rounded-md shadow dark:shadow-gray-700">
                                 @endif
@@ -141,6 +141,13 @@
                                             <strong>Mijoz telefon raqami:</strong>
                                         </div>
                                         <strong>{{ $ad->phone_number }}</strong>
+                                    </li>
+                                    <li class="flex justify-between items-center">
+                                        <div class="flex items-center">
+                                            <i class="uil uil-exclamation-circle text-green-600 mr-2"></i>
+                                            <strong>Qo'shimcha ma'lumot:</strong>
+                                        </div>
+                                        <strong>{{ $ad->extra_info }}</strong>
                                     </li>
                 
                                     <!-- Date -->

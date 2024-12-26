@@ -12,7 +12,7 @@ class Ad extends Model
     use HasFactory;
 
   
-    protected $with = ['images', 'color', 'user',  'doorDimension', 'doorType'];
+    protected $with = [ 'color', 'user',  'doorDimension', 'doorType'];
 
     protected $fillable = [
         'phone_number',
@@ -39,10 +39,7 @@ class Ad extends Model
     }
 
 
-    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(Images::class, 'ad_id', 'id');
-    }
+  
 
    
     public function owner()

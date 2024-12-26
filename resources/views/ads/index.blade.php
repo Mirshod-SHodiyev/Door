@@ -71,7 +71,7 @@
                 @foreach ($ads as $ad)
                     <div class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">
                         <div class="relative">
-                            <img src="{{ (new \App\Actions\DisplayAdImage())($ad) }}" alt="rasm">
+                            <img src="{{ asset('storage/' . $doorType->image_url) }}" alt="rasm" class="card-img-top">
                             <div class="absolute top-4 end-4">
                                 <form action="{{ route('ads.edit', $ad->id) }}" method="get">
                                     @csrf

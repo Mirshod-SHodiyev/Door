@@ -35,22 +35,6 @@
                                 </select>
                             </div>
                         </div>
-
-                        
-                        
-                        <div class="col-span-12">
-                            <label for="images" class="font-medium">Rasm turlari:</label>
-                            <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="images" name="images">
-                                    @foreach ($images as $image)
-                                        <option value="{{$image->id}}">
-                                            {{$image->name}}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        
                         <div class="col-span-6">
                             <label for="width" class="font-medium">uzunligi eni sm:</label>
                             <div class="form-icon relative mt-2">
@@ -150,7 +134,7 @@
                         </div>
                         <div class="col-span-6">
                             <label for="extra_info" class="font-medium">Qo'shimcha malumot :</label>
-                            <input name="extra_info" id="extra_info" type="text" class="form-input mt-2" placeholder="qo'shimcha malumot" value="{{ $ad?->phone_number}}">
+                            <input name="extra_info" id="extra_info" type="text" class="form-input mt-2" placeholder="qo'shimcha malumot" value="{{ $ad?->extra_info}}">
                         </div>
                              
                         <div class="col-span-6">

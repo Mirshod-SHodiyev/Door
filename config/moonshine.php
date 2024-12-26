@@ -7,7 +7,7 @@ use MoonShine\Http\Middleware\SecurityHeadersMiddleware;
 use MoonShine\Models\MoonshineUser;
 use MoonShine\MoonShineLayout;
 use MoonShine\Pages\ProfilePage;
-
+use App\Http\Middleware\AdminMiddleware;
 return [
     'dir' => 'app/MoonShine',
     'namespace' => 'App\MoonShine',
@@ -18,7 +18,7 @@ return [
 
     'route' => [
         'domain' => env('MOONSHINE_URL', ''),
-        'prefix' => env('MOONSHINE_ROUTE_PREFIX', 'adminpanel'),
+        'prefix' => env('MOONSHINE_ROUTE_PREFIX', 'admin'),
         'single_page_prefix' => 'page',
         'index' => 'moonshine.index',
         'middlewares' => [
@@ -70,8 +70,8 @@ return [
         'enable' => true,
 
          'middleware' => [
-            Authenticate::class,   
-            \App\Http\Middleware\AdminMiddleware::class, 
+            Authenticate::class,
+            AdminMiddleware::class, 
         ],
         'fields' => [
             'username' => 'email',

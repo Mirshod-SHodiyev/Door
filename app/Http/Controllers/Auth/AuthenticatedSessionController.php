@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
           
           if (Auth::user()->is_admin) {
             
-            return redirect("/adminpanel");
+            return redirect("/admin");
         }
 
       
