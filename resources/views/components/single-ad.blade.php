@@ -135,6 +135,22 @@
                                         </div>
                                         <strong>{{ $ad->doorDimension->door_frame }}</strong>
                                     </li>
+                                    <!-- Door Frame -->
+                                    <li class="flex justify-between items-center">
+                                        <div class="flex items-center">
+                                            <i class="uil uil-layer-group text-green-600 mr-2"></i>
+                                            <strong>Eshik materiali:</strong>
+                                        </div>
+                                        <strong>{{ $ad->doorDimension->material }}</strong>
+                                    </li>
+                                    <!-- Door Frame -->
+                                    <li class="flex justify-between items-center">
+                                        <div class="flex items-center">
+                                            <i class="uil uil-layer-group text-green-600 mr-2"></i>
+                                            <strong>Eshik qalinligi:</strong>
+                                        </div>
+                                        <strong>{{ $ad->doorDimension->thickness }}</strong>
+                                    </li>
                 
                                     <li class="flex justify-between items-center">
                                         <div class="flex items-center">

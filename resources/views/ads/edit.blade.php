@@ -85,8 +85,35 @@
                                 </select>
                             </div>
                         </div>
-
-                        <!-- Service Field -->
+                          <!-- Top Section Field -->
+                          <div class="col-span-6">
+                            <label for="door_dimensions_id" class="font-medium">Eshik qalinligi:</label>
+                            <div class="form-icon relative mt-2">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                    @if(!isset($ad))
+                                        <option value="0">Eshik qalinligini tanlang</option>
+                                    @endif
+                                    @foreach ($doorDimensions as $doorDimension)
+                                        <option value="{{$doorDimension->id}}" {{ isset($ad) && $doorDimension->id === $ad->door_dimensions_id ? 'selected' : '' }}>{{$doorDimension->thickness}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                            <!-- Top Section Field -->
+                            <div class="col-span-6">
+                                <label for="door_dimensions_id" class="font-medium">Eshik materiali:</label>
+                                <div class="form-icon relative mt-2">
+                                    <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                        @if(!isset($ad))
+                                            <option value="0">Eshik materialini tanlang</option>
+                                        @endif
+                                        @foreach ($doorDimensions as $doorDimension)
+                                            <option value="{{$doorDimension->id}}" {{ isset($ad) && $doorDimension->id === $ad->door_dimensions_id ? 'selected' : '' }}>{{$doorDimension->material}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                                                    <!-- Service Field -->
                         <div class="col-span-6">
                             <label for="door_dimensions_id" class="font-medium">Eshik xizmati:</label>
                             <div class="form-icon relative mt-2">

@@ -16,5 +16,7 @@ class DoorDimension extends Model
         'has_top_section',
         'service_free',
         'door_frame',
+        'thickness',
+        'material'
     ];
 }
