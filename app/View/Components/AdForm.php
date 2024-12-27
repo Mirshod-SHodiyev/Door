@@ -15,6 +15,10 @@ class AdForm extends Component
     public  $doorTypes = [];
     public  $doorDimensions = [];
     public $doorDimension;
+    public $doorAddition;
+    public $doorExtra;
+    public $doorAdditions=[];
+    public $doorExtras=[];
   
 
     public function __construct($action = "/ads", $ad = null)
@@ -24,6 +28,8 @@ class AdForm extends Component
         $this->colors = \App\Models\Color::all();
         $this->doorTypes = \App\Models\DoorType::all();
         $this->doorDimensions = \App\Models\DoorDimension::all();
+        $this->doorAdditions = \App\Models\DoorAddition::all();
+        $this->doorExtras = \App\Models\DoorExtra::all();
         
     }
 

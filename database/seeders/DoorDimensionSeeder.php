@@ -17,7 +17,8 @@ class DoorDimensionSeeder extends Seeder
                 'opening_side' => 'chap',
                 'door_frame' => 'ha',
                 'thickness' => 3,
-                'material' => 'mdf'
+                'material' => 'mdf',
+        
             ],
             [
                 'service_free' => 'yo\'q',
@@ -25,7 +26,8 @@ class DoorDimensionSeeder extends Seeder
                 'opening_side' => 'o\'ng',
                 'door_frame' => 'yo\'q',
                 'thickness' => 5,
-                'material' => 'taxta'
+                'material' => 'taxta',
+               
             ],
          
          

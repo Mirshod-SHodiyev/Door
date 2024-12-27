@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 use App\Models\Ad;
 use App\Models\Color;
+use App\Models\DoorAddition;
 use App\Models\Price;
 use App\Models\DoorDimension;
 use App\Models\DoorType;
 use Illuminate\Http\Request;;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\DoorExtra;
+;
 
 
 
@@ -42,13 +45,15 @@ class AdController extends Controller
     {
       
         $action = route('ads.store');
+        $doorAdditions= DoorAddition::all();
+        $doorExtras=DoorExtra::all();
         $colors = Color::all();
         $doorTypes = DoorType::all();
         $doorDimensions=DoorDimension::all();
         $ads=Ad::all();
         $ad=new Ad();
         $doorDimension=new DoorDimension();
-        return view('ads.create', compact('doorTypes','ads','colors','ad','action','doorDimensions','doorDimension' ));
+        return view('ads.create', compact('doorTypes','ads','colors','ad','action','doorDimensions','doorDimension' ,'doorExtras'  ,'doorAdditions'));
 
     }
 
@@ -66,6 +71,9 @@ class AdController extends Controller
             'colors_id' => 'required|numeric',
             'door_types_id' => 'required|numeric',
             'door_dimensions_id' => 'required|numeric',
+            'door_extras_id' => 'required|numeric',
+            'door_additions_id' => 'required|numeric',
+            
            
            
         ], [
@@ -93,6 +101,8 @@ class AdController extends Controller
             'colors_id' => $request->input('colors_id'),
             'door_types_id' => $request->input('door_types_id'),
             'door_dimensions_id' => $request->input('door_dimensions_id'),
+            'door_extras_id' => $request->input('door_extras_id'),
+            'door_additions_id' => $request->input('door_additions_id'),
           
             
         ]);
@@ -118,7 +128,7 @@ class AdController extends Controller
 
     public function show(string $id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory
     {
-        $ad = Ad::with(['color','doorDimension' , 'doorType' ])->find($id);
+        $ad = Ad::with(['color','doorDimension' , 'doorType', 'doorAddition', 'doorExtra' ])->find($id);
      
       
         return view('components.single-ad', ['ad'=>$ad]);

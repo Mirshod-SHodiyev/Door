@@ -24,6 +24,8 @@ class Ad extends Model
         'colors_id',
         'door_dimensions_id',
         'door_types_id',
+        'door_additions_id',
+        'door_extras_id',
     ];
 
   
@@ -63,6 +65,14 @@ class Ad extends Model
     }
 
 
+  public function doorAddition(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(DoorAddition::class, 'door_additions_id');
+    }
 
+    public function doorExtra(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(DoorExtra::class, 'door_extras_id');
+    }
     
 }
