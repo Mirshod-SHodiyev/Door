@@ -12,6 +12,7 @@ class DoorDimensionResource extends ModelResource
     protected string $model = DoorDimension::class;
     protected string $title = 'Door Dimensions';
     public string $column ="opening_side";
+
    
 
     /**
@@ -23,10 +24,11 @@ class DoorDimensionResource extends ModelResource
     {
         return [
           
-            Text::make('Opening Side')->sortable(),
-            Text::make('Has Top Section'),
-            Text::make('Service Free'),
-            Text::make('Door Frame'),
+            Text::make('Eshik Qulayligi', 'opening_side')->sortable(),
+            Text::make('Yuqori Qoshi', 'has_top_section')->sortable(),
+            Text::make('Servis xizmati', 'service_free')->sortable(),
+            Text::make('Eshik Ramkasi', 'door_frame')->sortable(),
+            
         ];
     }
 

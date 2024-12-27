@@ -56,12 +56,12 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                 ),
             ]),
             MenuItem::make("Bosh sahifa", url("/"))->icon("heroicons.home")->customLinkAttributes(['target'=>'_blank']),
-            MenuItem::make("E'lonlar", new AdResource())->icon("heroicons.home-modern"),
-            MenuItem::make("user",new UserResource())->icon("heroicons.user-circle"),
-            MenuItem::make("Colors", new ColorResource())->icon("heroicons.swatch"), 
-            MenuItem::make("Door Dimension", new DoorDimensionResource())->icon("heroicons.ellipsis-vertical"),
-            MenuItem::make("Door Type", new DoorTypeResource())->icon("heroicons.ellipsis-vertical"),
-            MenuItem::make("images",new ImagesResource())->icon("heroicons.photo"),
+            MenuItem::make("Eshiklar", new AdResource())->icon("heroicons.home-modern"),
+            MenuItem::make("Sotuvchilar",new UserResource())->icon("heroicons.user-circle"),
+            MenuItem::make("Ranglar", new ColorResource())->icon("heroicons.swatch"), 
+            MenuItem::make("Eshik Malumotlari", new DoorDimensionResource())->icon("heroicons.ellipsis-vertical"),
+            MenuItem::make("Eshik Turlari", new DoorTypeResource())->icon("heroicons.ellipsis-vertical"),
+           
 
         ];
     }

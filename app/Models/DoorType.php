@@ -11,7 +11,7 @@ class DoorType extends Model
     use HasFactory;
     protected $table = 'door_types';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'image_url'];
 
     public function ads(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

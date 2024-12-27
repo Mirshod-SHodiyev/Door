@@ -3,22 +3,17 @@
 declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
-
-use App\Enums\Gender;
-use Faker\Core\Number;
-use Faker\Provider\Text;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Ad;
-
-use MoonShine\Fields\Enum;
 use MoonShine\Fields\Relationships\BelongsTo;
-use MoonShine\Fields\Relationships\HasMany;
-use MoonShine\Fields\Textarea;
 use MoonShine\Resources\ModelResource;
 use MoonShine\Decorations\Block;
 use MoonShine\Fields\ID;
 use MoonShine\Fields\Field;
 use MoonShine\Components\MoonShineComponent;
+use MoonShine\Fields\Text;
+
+
 
 /**
  * @extends ModelResource<Ad>
@@ -37,17 +32,15 @@ class AdResource extends ModelResource
         return [
             Block::make([
                 ID::make()->sortable(),
-                \MoonShine\Fields\Text::make("title"),
-                \MoonShine\Fields\Text::make("description")->hideOnIndex(),
-                \MoonShine\Fields\Text::make("customers_info")->hideOnIndex(),
-                \MoonShine\Fields\Text::make("width")->hideOnIndex(),
-                \MoonShine\Fields\Text::make("height")->hideOnIndex(),
-                BelongsTo::make('Color', resource: new ColorResource()), 
-                BelongsTo::make('Price', resource: new PriceResource()),
-                BelongsTo::make('Door Dimension', resource: new DoorDimensionResource()), 
-                BelongsTo::make('Door Type', resource: new DoorTypeResource()),
-                BelongsTo::make(label: 'user', resource: new UserResource()),
-                HasMany::make("images",relationName: "images" ,resource: new ImagesResource())->onlyLink(),
+                Text::make('Mijoz Ismi', 'customers_info')->sortable(),
+                Text::make("width")->hideOnIndex(),
+                Text::make("height")->hideOnIndex(),
+                BelongsTo::make(label: 'Ranglar',  relationName: 'Color', resource: new ColorResource()), 
+                BelongsTo::make( label: ' Narxlari', relationName: 'Price', resource: new PriceResource()),
+                BelongsTo::make( label: 'Eshik Malumotlari', relationName: 'DoorDimension', resource: new DoorDimensionResource()), 
+                BelongsTo::make( label: 'Eshik Turlari', relationName: 'DoorType', resource: new DoorTypeResource()),
+                BelongsTo::make(label:  'Sotuvchilar', relationName: 'user', resource: new UserResource()),
+               
 
 
             ]),
