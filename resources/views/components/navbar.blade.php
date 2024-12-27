@@ -69,12 +69,12 @@
                     Bosh sahifa
                 </a>
             </li>
-            <form method="POST" action="{{ route('logout') }}" style="display: inline-block;">
+            {{-- <form method="POST" action="{{ route('logout') }}" style="display: inline-block;">
                 @csrf
                 <button type="submit" class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
                     Logout
                 </button>
-            </form>
+            </form> --}}
         </ul>
 
         
