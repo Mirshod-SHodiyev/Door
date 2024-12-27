@@ -6,11 +6,11 @@
                     <div class="grid grid-cols-1 relative">
                         <div class="tiny-one-item">
                             <div class="tiny-slide">
-                                @if ($ad)
-                                    <img src="" alt="rasm" class="rounded-md shadow dark:shadow-gray-700">
-                                @else
-                                    <img src="default-ad.jpg" alt="" class="rounded-md shadow dark:shadow-gray-700">
-                                @endif
+                                @if ($ad && $ad->doorType)
+                                <img src="{{ asset($ad->doorType->image_url) }}" alt="Eshik  rasmi" width="300">
+                            @else
+                                <img src="{{ asset('default-ad.jpg') }}" alt="Standart rasm" class="rounded-md shadow dark:shadow-gray-700">
+                            @endif
                             </div>
                         </div>
                     </div>

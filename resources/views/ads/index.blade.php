@@ -71,8 +71,7 @@
                 @foreach ($ads as $ad)
                     <div class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">
                         <div class="relative">
-                            <img src="{{ asset('storage/' . $doorType->image_url) }}" alt="rasm" class="card-img-top">
-                            <div class="absolute top-4 end-4">
+                            <img src="{{ asset($ad->doorType->image_url) }}" alt="Eshik  rasmi" width="300">                          <div class="absolute top-4 end-4">
                                 <form action="{{ route('ads.edit', $ad->id) }}" method="get">
                                     @csrf
                                     <button type="submit" class="btn btn-icon bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full text-slate-100 dark:text-slate-100 focus:text-red-600 dark:focus:text-red-600 hover:text-red-600 dark:hover:text-red-600">

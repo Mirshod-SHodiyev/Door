@@ -6,8 +6,7 @@ use App\Models\Color;
 use App\Models\Price;
 use App\Models\DoorDimension;
 use App\Models\DoorType;
-use Illuminate\Http\Request;
-
+use Illuminate\Http\Request;;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 
@@ -15,6 +14,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class AdController extends Controller
 {
    
+
     public function index()
     {
         
@@ -60,13 +60,12 @@ class AdController extends Controller
     {
 
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'phone_number' => 'required|digits_between:5,15|regex:/^[0-9]+$/',
-            'width' => 'required',
-            'height' => 'required',
-            'colors_id' => 'required',
-            'door_types_id' => 'required',
-            'door_dimensions_id' => 'required',
+            'width' => 'required|numeric',
+            'height' => 'required|numeric',
+            'colors_id' => 'required|numeric',
+            'door_types_id' => 'required|numeric',
+            'door_dimensions_id' => 'required|numeric',
            
            
         ], [
@@ -81,9 +80,7 @@ class AdController extends Controller
         }
     
        
-     $image = $request->file('image');
-    $imageName = 'door_image_' . time() . '.' . $image->getClientOriginalExtension();  
-    $imageUrl = $image->storeAs('public/door_images', $imageName);  
+    
 
 
          $ad = Ad::create([
@@ -96,10 +93,10 @@ class AdController extends Controller
             'colors_id' => $request->input('colors_id'),
             'door_types_id' => $request->input('door_types_id'),
             'door_dimensions_id' => $request->input('door_dimensions_id'),
-            'image_url' => 'storage/door_images/' . $imageName,
+          
             
         ]);
-          $imageUrl = $doorType->image_url;
+         
             $width = $request->input('width');
             $height = $request->input('height');
             $area = $width * $height;  
@@ -122,6 +119,7 @@ class AdController extends Controller
     public function show(string $id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory
     {
         $ad = Ad::with(['color','doorDimension' , 'doorType' ])->find($id);
+     
       
         return view('components.single-ad', ['ad'=>$ad]);
     }
@@ -137,7 +135,7 @@ class AdController extends Controller
     $doorDimensions = \App\Models\DoorDimension::all();
     $action = route('ads.update', $ad->id); 
  
-    return view('ads.edit', compact('ad', 'colors', 'doorTypes', 'doorDimensions' ,'images', 'action'));
+    return view('ads.edit', compact('ad', 'colors', 'doorTypes', 'doorDimensions' , 'action'));
 }
 
 
