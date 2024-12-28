@@ -14,7 +14,6 @@ class DoorDimension extends Model
        
         'opening_side',
         'has_top_section',
-        'service_free',
         'door_frame',
         'thickness',
         'material'

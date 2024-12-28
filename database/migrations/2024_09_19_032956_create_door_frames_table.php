@@ -11,15 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('door_dimensions', function (Blueprint $table) {
+        Schema::create('door_frames', function (Blueprint $table) {
             $table->id();
-            $table->string('service_free');
-            $table->string('has_top_section');
-            $table->string('opening_side');
-            $table->integer('thickness');
-            $table->string('material');
-    
-    
+            $table->string('name'); 
             $table->timestamps();
         });
     }
@@ -29,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('door_dimensions');
+        Schema::dropIfExists('door_frames');
     }
 };

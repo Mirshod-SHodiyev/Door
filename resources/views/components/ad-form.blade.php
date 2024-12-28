@@ -80,14 +80,14 @@
                         <!-- Door Type Field -->
                         <!-- Door Frame Field -->
                         <div class="col-span-6">
-                            <label for="door_dimensions_id" class="font-medium">atrofida ramka:</label>
+                            <label for="door_frames_id" class="font-medium">atrofida ramka:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorFrames_id" name="door_frames_id">
                                     @if(!isset($ad))
                                     <option value="0">Eshik atofini tanglang</option>
                                     @endif
-                                    @foreach ($doorDimensions as $doorDimension)
-                                        <option value="{{$doorDimension->id}}" {{ isset($ad) && $doorDimension->id === $ad->door_dimensions_id ? 'selected' : '' }}>{{$doorDimension->door_frame}}</option>
+                                    @foreach ($doorFrames as $doorFrame)
+                                        <option value="{{$doorFrame->id}}" {{ isset($ad) && $doorFrame->id === $ad->door_frames_id ? 'selected' : '' }}>{{$doorFrame->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

@@ -20,6 +20,7 @@ class AdForm extends Component
     public $doorAdditions=[];
     public $doorExtras=[];
     public $knobs=[];
+    public $doorFrames=[];
     
   
 
@@ -33,6 +34,7 @@ class AdForm extends Component
         $this->doorAdditions = \App\Models\DoorAddition::all();
         $this->doorExtras = \App\Models\DoorExtra::all();
         $this->knobs = \App\Models\Knob::all();
+        $this->doorFrames = \App\Models\DoorFrame::all();
      
         
     }

@@ -135,7 +135,7 @@
                                             <i class="uil uil-layer-group text-green-600 mr-2"></i>
                                             <strong>Eshik ramkai:</strong>
                                         </div>
-                                        <strong>{{ $ad->doorDimension->door_frame }}</strong>
+                                        <strong>{{ $ad->doorFrame->name }}</strong>
                                     </li>
                                     <!-- Door Frame -->
                                     <li class="flex justify-between items-center">

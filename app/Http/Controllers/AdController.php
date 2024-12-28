@@ -11,6 +11,7 @@ use Illuminate\Http\Request;;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\DoorExtra;
 use App\Models\Knob;
+use App\Models\DoorFrame;
 
 
 
@@ -54,8 +55,9 @@ class AdController extends Controller
         $ad=new Ad();
         $knobs=Knob::all();
         $doorDimension=new DoorDimension();
+        $doorFrames=DoorFrame::all();
        
-        return view('ads.create', compact('doorTypes','ads','colors','ad','action','doorDimensions','doorDimension' ,'doorExtras'  ,'doorAdditions','knobs'));
+        return view('ads.create', compact('doorTypes','ads','colors','ad','action','doorDimensions','doorDimension' ,'doorExtras'  ,'doorAdditions','knobs' ,'doorFrames'));
 
     }
 
@@ -106,6 +108,7 @@ class AdController extends Controller
             'door_extras_id' => $request->input('door_extras_id'),
             'door_additions_id' => $request->input('door_additions_id'),
             'knobs_id' => $request->input('knobs_id'),
+            'door_frames_id' => $request->input('door_frames_id'),
           
             
         ]);
@@ -131,7 +134,7 @@ class AdController extends Controller
 
     public function show(string $id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory
     {
-        $ad = Ad::with(['color','doorDimension' , 'doorType', 'doorAddition', 'doorExtra', 'knob' ])->find($id);
+        $ad = Ad::with(['color','doorDimension' , 'doorType', 'doorAddition', 'doorExtra', 'knob', 'doorFrame' ])->find($id);
         return view('components.single-ad', ['ad'=>$ad]);
     }
       
@@ -148,9 +151,10 @@ class AdController extends Controller
     $doorAdditions = \App\Models\DoorAddition::all();
     $doorExtras = \App\Models\DoorExtra::all();
     $knobs=\App\Models\Knob::all();
+    $doorFrames=DoorFrame::all();
     $action = route('ads.update', $ad->id); 
  
-    return view('ads.edit', compact('ad', 'colors', 'doorTypes', 'doorDimensions' , 'action' , 'doorAdditions' , 'doorExtras' , 'knobs'));
+    return view('ads.edit', compact('ad', 'colors', 'doorTypes', 'doorDimensions' , 'action' , 'doorAdditions' , 'doorExtras' , 'knobs' , 'doorFrames'));
 }
 
 
@@ -184,6 +188,7 @@ public function update(Request $request, Ad $ad)
         'door_extras_id' => $request->input('door_extras_id'),
         'door_additions_id' => $request->input('door_additions_id'),
         'knobs_id' => $request->input('knobs_id'),
+        'door_frames_id' => $request->input('door_frames_id'),
     ]);
 
 
