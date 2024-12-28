@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <!-- Width Field -->
-                        <div class="col-span-6">
+                        <div class="col-span-4">
                             <label for="width" class="font-medium">Uzunligi eni sm:</label>
                             <div class="form-icon relative mt-2">
                                 <input name="width" id="width" type="number" class="form-input ps-11" placeholder="Eni sm:" value="{{ $ad?->width }}">
@@ -48,10 +48,16 @@
                         </div>
 
                         <!-- Height Field -->
-                        <div class="col-span-6">
+                        <div class="col-span-4">
                             <label for="height" class="font-medium">Uzunligi bo'yi sm:</label>
                             <div class="form-icon relative mt-2">
                                 <input name="height" id="height" type="number" class="form-input ps-11" placeholder="Bo'yi sm:" value="{{ $ad?->height }}">
+                            </div>
+                        </div>
+                        <div class="col-span-4">
+                            <label for="door_leaf" class="font-medium">Eshik palasi:</label>
+                            <div class="form-icon relative mt-2">
+                                <input name="door_leaf" id="door_leaf" type="number" class="form-input ps-11" placeholder="Eshik palasi:" value="{{ $ad?->door_leaf }}">
                             </div>
                         </div>
 
@@ -70,14 +76,14 @@
 
                         <!-- Door Frame Field -->
                         <div class="col-span-6">
-                            <label for="door_dimensions_id" class="font-medium">Atrofida ramka:</label>
+                            <label for="door_frames_id" class="font-medium">Atrofida ramka:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorFrames_id" name="door_frames_id">
                                     @if(!isset($ad))
                                         <option value="0">Eshik atofini tanlang</option>
                                     @endif
-                                    @foreach ($doorDimensions as $doorDimension)
-                                        <option value="{{$doorDimension->id}}" {{ isset($ad) && $doorDimension->id === $ad->door_dimensions_id ? 'selected' : '' }}>{{$doorDimension->door_frame}}</option>
+                                    @foreach ($doorFrames as $doorFrame)
+                                        <option value="{{$doorFrame->id}}" {{ isset($ad) && $doorFrame->id === $ad->door_frames_id ? 'selected' : '' }}>{{$doorFrame->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

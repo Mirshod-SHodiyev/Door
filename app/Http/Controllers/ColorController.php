@@ -1,61 +1,43 @@
 <?php
-
 namespace App\Http\Controllers;
+
+use Illuminate\Http\Request; // Bu yerga Requestni qo'shing
 use App\Models\Color;
 use App\Models\Ad;
 use App\Models\Images;
 use App\Models\DoorDimension;
 use App\Models\DoorType;
-use Illuminate\Http\Request;
-
+use App\Models\DoorAddition;
+use App\Models\DoorExtra;
+use App\Models\Knob;
+use App\Models\DoorFrame;
 
 class ColorController extends Controller
 {
    
-    
-    protected $fillable = ['name'];
+    public function hisob(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory
+    {
+        $action = route('hisob.post');
+        $doorAdditions = DoorAddition::all();
+        $doorExtras = DoorExtra::all();
+        $doorTypes = DoorType::all();
+        $doorDimensions = DoorDimension::all();
+        $ads = Ad::all();
+        $ad = new Ad();
+        $knobs = Knob::all();
+        $doorFrames = DoorFrame::all();
 
-
-    public function hisob(){
+       
+        $width = $request->input('width');
+        $height = $request->input('height');
+        
       
-        return view('ads.hisob');
+        $price = null;
+        if ($width && $height) {
+           
+            $price = $width * $height * 300;
+        }
 
+        return view('ads.hisob', compact('doorTypes', 'ads', 'ad', 'action', 'doorDimensions', 'doorExtras', 'doorAdditions', 'knobs', 'doorFrames', 'price', 'width', 'height'));
     }
-
-    public function hisobPost(Request $request)
-{
-    
-    $width = (float) $request->input('width'); 
-    $height = (float) $request->input('height'); 
-    $doorType = $request->input('door_types_id'); 
-    $frame = $request->input('frame'); 
-    $topSection = $request->input('topSection'); 
-    $service = $request->input('service');
-
-    
-    $area = ($width / 100) * ($height / 100); 
-    $basePricePerSquareMeter = 50000; 
-    $price = $area * $basePricePerSquareMeter;
-
-    if ($frame == "ha") {
-        $price += 100000; 
-    }
-    if ($topSection == "ha") {
-        $price += 100000; 
-    }
-    if ($service == "yo'q") {
-        $price -= 100000; 
-    }
-    if ($doorType == "ha") {
-        $price += 100000; 
-    }
-
-   
-    return view('ads.hisob', [
-        'price' => $price,
-    ]);
-
- 
-}
-  
 }

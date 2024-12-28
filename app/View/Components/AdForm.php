@@ -26,8 +26,8 @@ class AdForm extends Component
 
     public function __construct($action = "/ads", $ad = null)
     {
-        $this->action = $action;  // Yangi action qiymati
-        $this->ad = $ad;          // Mavjud e'lonni olish
+        $this->action = $action;  
+        $this->ad = $ad;         
         $this->colors = \App\Models\Color::all();
         $this->doorTypes = \App\Models\DoorType::all();
         $this->doorDimensions = \App\Models\DoorDimension::all();

@@ -7,7 +7,7 @@ use App\Models\DoorAddition;
 use App\Models\Price;
 use App\Models\DoorDimension;
 use App\Models\DoorType;
-use Illuminate\Http\Request;;
+use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\DoorExtra;
 use App\Models\Knob;
@@ -68,6 +68,7 @@ class AdController extends Controller
   
     {
         $request->validate([
+            'door_leaf' => ['required', 'numeric'],
             'phone_number' => 'required|digits_between:5,15|regex:/^[0-9]+$/',
             'width' => 'required|numeric',
             'height' => 'required|numeric',
@@ -81,7 +82,6 @@ class AdController extends Controller
            
            
         ], [
-            
             'colors_id.required'=>'Rangni tanlash majburiy', 
             'door_types_id' => 'Eshik turi tanlash majburiy',
         ]);
@@ -101,6 +101,7 @@ class AdController extends Controller
             'extra_info' => $request->input('extra_info'),
             'width' => $request->input('width'),
             'height' => $request->input('height'),
+            'door_leaf' => $request->input('door_leaf'),
             'user_id' => auth()->id(),
             'colors_id' => $request->input('colors_id'),
             'door_types_id' => $request->input('door_types_id'),
@@ -182,6 +183,7 @@ public function update(Request $request, Ad $ad)
         'customers_info' => $request->input('customers_info'),
         'width' => $request->input('width'),
         'height' => $request->input('height'),
+        'door_leaf' => $request->input('door_leaf'),
         'colors_id' => $request->input('colors_id'),
         'door_types_id' => $request->input('door_types_id'),
         'door_dimensions_id' => $request->input('door_dimensions_id'),

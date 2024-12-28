@@ -19,6 +19,7 @@ class Ad extends Model
         'extra_info',
         'width',
         'height',
+        'door_leaf',
         'customers_info',
         'user_id',
         'colors_id',

@@ -48,7 +48,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-span-6">
+                        <div class="col-span-4">
                             <label for="width" class="font-medium">uzunligi eni sm:</label>
                             <div class="form-icon relative mt-2">
                                 <input name="width" id="width" type="number" class="form-input ps-11" placeholder="eni sm:" value="{{ $ad?->width }}">
@@ -56,14 +56,20 @@
                         </div>
 
                         <!-- Height Field -->
-                        <div class="col-span-6">
+                        <div class="col-span-4">
                             <label for="height" class="font-medium">uzunligi bo'yi sm:</label>
                             <div class="form-icon relative mt-2">
                                 <input name="height" id="height" type="number" class="form-input ps-11" placeholder="bo'yi sm:" value="{{ $ad?->height }}">
                             </div>
                         </div>
-                       
-
+                           <!-- Height Field -->
+                        <div class="col-span-4">
+                            <label for="door_leaf" class="font-medium">Eshik palasi:</label>
+                            <div class="form-icon relative mt-2">
+                                <input name="door_leaf" id="door_leaf" type="number" class="form-input ps-11" placeholder="eshik palasi:" value="{{ $ad?->door_leaf }}">
+                            </div>
+                        </div>
+                        
                         <!-- Branch Field -->
                         <div class="col-span-6">
                             <label for="colors_id" class="font-medium">Ranglar:</label>

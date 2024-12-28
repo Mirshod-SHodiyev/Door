@@ -2,6 +2,7 @@
 use App\Http\Controllers\AdController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ColorController;
 
 
 
@@ -24,8 +25,8 @@ Route::get('/search',[\App\Http\Controllers\AdController::class ,'find']);
 Route::get('/ads/{id}' ,[AdController::class,'show']);
 Route::get('/ads/{id}/download-pdf', [AdController::class, 'generatePDF'])->name('generate.pdf');
 Route::get('/ads/{ad}/edit', [AdController::class, 'edit'])->name('ads.edit');
-Route::get('/hisob',[\App\Http\Controllers\ColorController::class, 'hisob'])->name('hisob');
-Route::post('/hisob', [\App\Http\Controllers\ColorController::class, 'hisobPost'])->name('hisob.post');
+Route::get('/hisob', [ColorController::class, 'hisob'])->name('hisob'); 
+Route::post('/hisob', [ColorController::class, 'hisob'])->name('hisob.post');
 
 
 });
