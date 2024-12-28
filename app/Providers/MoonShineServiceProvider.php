@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-
+use App\Models\Knob;
 use App\MoonShine\Resources\AdResource;
 use App\MoonShine\Resources\ColorResource;
 use App\MoonShine\Resources\DoorDimensionResource;
 use App\MoonShine\Resources\DoorTypeResource;
-use App\MoonShine\Resources\ImagesResource;
+use App\MoonShine\Resources\DoorExtraResource;
+use App\MoonShine\Resources\DoorAdditionResource;
+use App\MoonShine\Resources\KnobResource;
+
 use App\MoonShine\Resources\UserResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
 use MoonShine\Menu\MenuGroup;
@@ -61,6 +64,10 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
             MenuItem::make("Ranglar", new ColorResource())->icon("heroicons.swatch"), 
             MenuItem::make("Eshik Malumotlari", new DoorDimensionResource())->icon("heroicons.ellipsis-vertical"),
             MenuItem::make("Eshik Turlari", new DoorTypeResource())->icon("heroicons.ellipsis-vertical"),
+            MenuItem::make("Zamoklar", new KnobResource())->icon("heroicons.ellipsis-vertical"),
+            MenuItem::make("Eshik Qo'shimchalar", new DoorExtraResource())->icon("heroicons.ellipsis-vertical"),
+            MenuItem::make("Eshik Fragalri", new DoorAdditionResource())->icon("heroicons.ellipsis-vertical"),
+
            
 
         ];

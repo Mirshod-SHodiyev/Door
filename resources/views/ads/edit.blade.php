@@ -12,7 +12,7 @@
                     <div class="grid grid-cols-12 gap-5">
 
                         <!-- Door Type Field -->
-                        <div class="col-span-12">
+                        <div class="col-span-6">
                             <label for="doortype" class="font-medium">Eshik turlari:</label>
                             <div class="form-icon relative mt-2">
                                 <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doortype" name="door_types_id">
@@ -26,7 +26,19 @@
                             </div>
                         </div>
 
-
+                        <div class="col-span-6">
+                            <label for="door_dimensions_id" class="font-medium">Eshik materiali:</label>
+                            <div class="form-icon relative mt-2">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                    @if(!isset($ad))
+                                        <option value="0">Eshik materialini tanlang</option>
+                                    @endif
+                                    @foreach ($doorDimensions as $doorDimension)
+                                        <option value="{{$doorDimension->id}}" {{ isset($ad) && $doorDimension->id === $ad->door_dimensions_id ? 'selected' : '' }}>{{$doorDimension->material}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <!-- Width Field -->
                         <div class="col-span-6">
                             <label for="width" class="font-medium">Uzunligi eni sm:</label>
@@ -99,16 +111,44 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col-span-6">
+                        <label for="door_extras_id" class="font-medium">Eshik Qo\'shimcha narsalari:</label>
+                            <div class="form-icon relative mt-2">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorExtras_id" name="door_extras_id">
+                                    @if(!isset($ad))
+                                        <option value="0">Eshik qo\'shlanganligini tanlang</option>
+                                    @endif
+                                    @foreach ($doorExtras as $doorExtra)
+                                        <option value="{{$doorExtra->id}}" {{ isset($ad) && $doorExtra->id === $ad->door_extras_id ? 'selected' : '' }}>{{$doorExtra->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                         <!-- Top Section Field -->
+                         <div class="col-span-6">
+                            <label for="door_additions_id" class="font-medium">Eshik Fragagasi:</label>
+                            <div class="form-icon relative mt-2">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorAdditions_id" name="door_additions_id">
+                                    @if(!isset($ad))
+                                        <option value="0">Eshik fragagasinini tanlang</option>
+                                    @endif
+                                    @foreach ($doorAdditions as $doorAddition)
+                                        <option value="{{$doorAddition->id}}" {{ isset($ad) && $doorAddition->id === $ad->door_additions_id ? 'selected' : '' }}>{{$doorAddition->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                             <!-- Top Section Field -->
+                           
                             <div class="col-span-6">
-                                <label for="door_dimensions_id" class="font-medium">Eshik materiali:</label>
+                                <label for="knobs_id" class="font-medium">Eshik Zamogi:</label>
                                 <div class="form-icon relative mt-2">
-                                    <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                    <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="knobs_id" name="knobs_id">
                                         @if(!isset($ad))
-                                            <option value="0">Eshik materialini tanlang</option>
+                                            <option value="0">Eshik zamogini tanlang</option>
                                         @endif
-                                        @foreach ($doorDimensions as $doorDimension)
-                                            <option value="{{$doorDimension->id}}" {{ isset($ad) && $doorDimension->id === $ad->door_dimensions_id ? 'selected' : '' }}>{{$doorDimension->material}}</option>
+                                        @foreach ($knobs as $knob)
+                                            <option value="{{$knob->id}}" {{ isset($ad) && $knob->id === $ad->knobs_id ? 'selected' : '' }}>{{$knob->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>

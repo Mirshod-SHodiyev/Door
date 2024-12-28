@@ -26,10 +26,11 @@ class Ad extends Model
         'door_types_id',
         'door_additions_id',
         'door_extras_id',
+        'knobs_id',
     ];
 
   
-    public function color(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function color()
     {
         return $this->belongsTo(Color::class, 'colors_id');
     }
@@ -49,28 +50,35 @@ class Ad extends Model
         return $this->belongsTo(User::class, 'users_id');
     }
 
-    public function doorDimension(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function doorDimension()
     {
         return $this->belongsTo(DoorDimension::class, 'door_dimensions_id');
     }
 
   
-    public function doorType(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function doorType()
     {
         return $this->belongsTo(DoorType::class, 'door_types_id');
     }
-    public function price (): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function price ()
     {
         return $this->hasOne(Price::class);
     }
 
+        
+        public function knob()
+        {
+            return $this->belongsTo(Knob::class, 'knobs_id');
+        }
+        
+        public function doorAddition()
+        {
+            return $this->belongsTo(DoorAddition::class, 'door_additions_id');
+        }
+        
+    
 
-  public function doorAddition(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(DoorAddition::class, 'door_additions_id');
-    }
-
-    public function doorExtra(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function doorExtra()
     {
         return $this->belongsTo(DoorExtra::class, 'door_extras_id');
     }

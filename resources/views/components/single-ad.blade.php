@@ -1,4 +1,6 @@
 <x-layouts.main>
+ 
+
     <section class="relative md:py-24 pt-24 pb-16">
         <div class="container relative">
             <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
@@ -151,7 +153,29 @@
                                         </div>
                                         <strong>{{ $ad->doorDimension->thickness }}</strong>
                                     </li>
+                                   
+                                    <li class="flex justify-between items-center">
+                                        <div class="flex items-center">
+                                            <i class="uil uil-lock text-green-600 mr-2"></i>
+                                            <strong>Eshik zamoki:</strong>
+                                        </div>
+                                        <strong>{{ $ad->knob->name }}</strong>
+                                    </li>
                 
+                                    <li class="flex justify-between items-center">
+                                        <div class="flex items-center">
+                                            <i class="uil uil-layer-group text-green-600 mr-2"></i>
+                                            <strong>Eshik fragalari:</strong>
+                                        </div>
+                                        <strong>{{ $ad->doorAddition->name }}</strong>
+                                    </li>
+                                    <li class="flex justify-between items-center">
+                                        <div class="flex items-center">
+                                            <i class="uil uil-layer-group text-green-600 mr-2"></i>
+                                            <strong>Eshik Eshik qo'shimchalri:</strong>
+                                        </div>
+                                        <strong>{{ $ad->doorExtra->name }}</strong>
+                                    </li>
                                     <li class="flex justify-between items-center">
                                         <div class="flex items-center">
                                             <i class="uil uil-phone text-green-600 mr-2"></i>

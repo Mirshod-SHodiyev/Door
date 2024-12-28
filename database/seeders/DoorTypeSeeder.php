@@ -1,5 +1,6 @@
 <?php
 namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use App\Models\DoorType;
 
@@ -12,15 +13,31 @@ class DoorTypeSeeder extends Seeder
      */
     public function run()
     {
-        $doorTypes = [
-            ['name' => 'Yog\'och eshik', 'image_url' => 'storage/door_images/wooden_door_1.jpg'],
-            ['name' => 'Metal eshik', 'image_url' => 'storage/door_images/metal_door_2.jpg'],
-            ['name' => 'Plastik eshik', 'image_url' => 'storage/door_images/plastic_door_3.jpg'],
-            ['name' => 'Shisha eshik', 'image_url' => 'storage/door_images/glass_door_4.jpg'],
-            ['name' => 'Alyuminiy eshik', 'image_url' => 'storage/door_images/aluminium_door_5.jpg'],
-            ['name' => 'Po\'lat eshik', 'image_url' => 'storage/door_images/steel_door_6.jpg'],
-            ['name' => 'Bimetall eshik', 'image_url' => 'storage/door_images/bimetal_door_7.jpg'],
+        $numbers = [
+            '210', '211', '204', '201', '206', '208', '209', '202', '205', '207',
+            '226', '220', '232', '203', '230', '231', '218', '219', '221', '113',
+            '112', '110', '225', '224', '235', '289', '298', '291', '293', '297',
+            '296', '255', '290', '292', '299'
         ];
+
+        $images = [
+            'storage/door_images/wooden_door_1.jpg',
+            'storage/door_images/metal_door_2.jpg',
+            'storage/door_images/plastic_door_3.jpg',
+            'storage/door_images/glass_door_4.jpg',
+            'storage/door_images/aluminium_door_5.jpg',
+            'storage/door_images/steel_door_6.jpg',
+            'storage/door_images/bimetal_door_7.jpg',
+        ];
+
+        $doorTypes = [];
+
+        foreach ($numbers as $index => $number) {
+            $doorTypes[] = [
+                'name' => $number,
+                'image_url' => $images[$index % count($images)] // Rasmni takrorlash
+            ];
+        }
 
         foreach ($doorTypes as $type) {
             DoorType::create($type);

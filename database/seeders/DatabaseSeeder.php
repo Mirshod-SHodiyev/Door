@@ -1,8 +1,6 @@
 <?php
 
 namespace Database\Seeders;
-
-use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,7 +18,11 @@ class DatabaseSeeder extends Seeder
             ColorSeeder::class,
             DoorTypeSeeder::class,
             UserSeeder::class,
-        
+            DoorExtraSeeder::class,
+            DoorAdditionSeeder::class,
+            KeySeeder::class,
+
+
             
 
 
