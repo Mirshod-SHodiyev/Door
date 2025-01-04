@@ -34,7 +34,12 @@ class ColorController extends Controller
     $selectedDoorFrame = $request->input('door_frames_id');
     $selectedTopSection = $request->input('has_top_sections_id'); 
     $selectedKnob = $request->input('knobs_id');
-    
+    $selectedFrameId = $request->input('frames_id');
+    $framePriceAdjustment = 0;
+
+
+
+
 
  
     $doorFramePriceMapping = [
@@ -50,6 +55,7 @@ class ColorController extends Controller
         'toshkent fason nalichka' => 24000,
     ];
 
+  
   
     $doorFramePrice = 0;
     if ($selectedDoorFrame && isset($doorFramePriceMapping[$selectedDoorFrame])) {
