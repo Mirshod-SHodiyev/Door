@@ -14,13 +14,16 @@ class DoorFrameSeeder extends Seeder
     {
        
         $doorFrames = [
-            ['name' => '1 lik nalichka'],
-            ['name' => '2 lik nalichka'],
-            ['name' => '3 lik nalichka'],
-            ['name' => '4 lik nalichka'],
-            ['name' => '5 lik nalichka'],
-            ['name' => '6 lik nalichka'],
-            ['name' => '7 lik nalichka'],
+            ['name' => '10 lik tekis nalichka'],
+            ['name' => '2 ta tirnoqcha nalichka'],
+            ['name' => '3 ta tirnoqcha nalichka'],
+            ['name' => '1.6 lik nalichka'],
+            ['name' => '1.6 lik  profo nalichka'],
+            ['name' => '1-qoator apklat nalichka'],
+            ['name' => '2-qoator apklat nalichka'],
+            ['name' => 'gulli  nalichka'],
+            ['name' => 'lagmoncha nalichka'],
+            ['name' => 'toshkent fason nalichka'],
         ];
 
         

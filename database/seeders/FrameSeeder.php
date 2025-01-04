@@ -2,24 +2,25 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Knob;
+use App\Models\Frame;
 
-class KeySeeder extends Seeder
+class FrameSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $keys = [
+        $frames = [
             ['name' => "yo'q"],
             ['name' => "ha"],
            
         ];
 
-        foreach ($keys as $key) {
-            Knob::create($key);
+        foreach ($frames as $frame) {
+            Frame::create($frame);
         }
     }
 }

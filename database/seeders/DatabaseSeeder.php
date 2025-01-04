@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             KeySeeder::class,
             DoorFrameSeeder::class,
             HasTopSectionSeeder::class,
+            FrameSeeder::class,
 
 
             

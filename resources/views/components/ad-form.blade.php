@@ -157,7 +157,19 @@
                                 </select>
                             </div>
                         </div>
-                       
+                        <div class="col-span-6">
+                            <label for="frames_id" class="font-medium">Eshik framogasi:</label>
+                            <div class="form-icon relative mt-2">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="frames_id" name="frames_id">
+                                    @if(!isset($ad))
+                                    <option value="0">Eshik framogasini tanlang</option>
+                                    @endif
+                                    @foreach ($frames as $frame)
+                                        <option value="{{$frame->id}}" {{ isset($ad) && $frame->id === $ad->frames_id ? 'selected' : '' }}>{{$frame->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="col-span-6">
                             <label for="door_extras_id" class="font-medium">Kubik sapajok:</label>
                             <div class="form-icon relative mt-2">
@@ -203,7 +215,7 @@
                             </div>
                         </div>
 
-                        <div class="col-span-6">
+                        <div class="col-span-12">
                             <label for="discount" class="font-medium">Chegirma:</label>
                             <div class="form-icon relative mt-2">
                                 <input name="discount" id="discount" type="number" class="form-input ps-11" placeholder="chegirma:" value="{{ $ad?->discount }}">

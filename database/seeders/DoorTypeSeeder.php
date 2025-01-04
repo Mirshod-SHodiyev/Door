@@ -14,10 +14,10 @@ class DoorTypeSeeder extends Seeder
     public function run()
     {
         $numbers = [
-            '210', '211', '204', '201', '206', '208', '209', '202', '205', '207',
+            '210', '211', '204', '201', '206', '209', '202', '205', '207',
             '226', '220', '232', '203', '230', '231', '218', '219', '221', '113',
-            '112', '110', '225', '224', '235', '289', '298', '291', '293', '297',
-            '296', '255', '290', '292', '299'
+            '112', '110', '225', '224','208','224', '235', '289', '298', '291', '293','295', '297',
+            '296', '255', '290', '292','294', '299'
         ];
 
         $images = [
@@ -35,7 +35,7 @@ class DoorTypeSeeder extends Seeder
         foreach ($numbers as $index => $number) {
             $doorTypes[] = [
                 'name' => $number,
-                'image_url' => $images[$index % count($images)] // Rasmni takrorlash
+                'image_url' => $images[$index % count($images)] 
             ];
         }
 

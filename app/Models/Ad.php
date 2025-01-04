@@ -29,6 +29,7 @@ class Ad extends Model
         'door_extras_id',
         'knobs_id',
         'door_frames_id',
+        'frames_id'
     ];
 
   
@@ -86,6 +87,10 @@ class Ad extends Model
     public function doorFrame()
     {
         return $this->belongsTo(DoorFrame::class, 'door_frames_id');
+    }
+    public function frame()
+    {
+        return $this->belongsTo(Frame::class, 'frames_id');
     }
     
 }

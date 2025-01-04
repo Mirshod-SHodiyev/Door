@@ -20,6 +20,7 @@ return new class extends Migration
             $table->float('height'); 
             $table->float('discount')->default(0); 
             $table->foreignId('has_top_sections_id')->constrained('has_top_sections');
+            $table->foreignId('frames_id')->constrained();
             $table->foreignId('door_types_id')->constrained();
             $table->foreignId('door_dimensions_id')->constrained();
             $table->foreignId('colors_id')->constrained();

@@ -21,6 +21,8 @@ class AdForm extends Component
     public $doorFrames=[];
     public $hasTopSections=[];
     public $hasTopSection;
+    public $frames=[];
+    public $frame;
     
   
 
@@ -35,6 +37,7 @@ class AdForm extends Component
         $this->knobs = \App\Models\Knob::all();
         $this->doorFrames = \App\Models\DoorFrame::all();
         $this->hasTopSections = \App\Models\HasTopSection::all();
+        $this->frames = \App\Models\Frame::all();
      
         
     }

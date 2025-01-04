@@ -12,6 +12,7 @@ use App\Models\DoorExtra;
 use App\Models\Knob;
 use App\Models\DoorFrame;
 use App\Models\HasTopSection;
+use App\Models\Frame;
 
 
 
@@ -48,6 +49,7 @@ class AdController extends Controller
         $action = route('ads.store');
       
         $doorExtras=DoorExtra::all();
+        $frames=Frame::all();
         $colors = Color::all();
         $doorTypes = DoorType::all();
         $hasTopSections=HasTopSection::all();
@@ -110,6 +112,7 @@ class AdController extends Controller
             'knobs_id' => $request->input('knobs_id'),
             'door_frames_id' => $request->input('door_frames_id'),
             'has_top_sections_id' => $request->input('has_top_sections_id'),
+            'frames_id' => $request->input('frames_id'),
           
             
         ]);
@@ -135,7 +138,7 @@ class AdController extends Controller
 
     public function show(string $id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory
     {
-        $ad = Ad::with(['color','doorDimension' , 'doorType',  'doorExtra', 'knob', 'doorFrame' , 'hasTopSection' ])->find($id);
+        $ad = Ad::with(['color','doorDimension' , 'doorType',  'doorExtra', 'knob', 'doorFrame' , 'hasTopSection' , 'frame' ])->find($id);
         return view('components.single-ad', ['ad'=>$ad]);
     }
       
@@ -152,6 +155,7 @@ class AdController extends Controller
     $doorExtras = \App\Models\DoorExtra::all();
     $knobs=\App\Models\Knob::all();
     $hasTopSections=\App\Models\HasTopSection::all();
+    $frames=\App\Models\Frame::all();
     $doorFrames=DoorFrame::all();
     $action = route('ads.update', $ad->id); 
  
@@ -190,6 +194,7 @@ public function update(Request $request, Ad $ad)
         'knobs_id' => $request->input('knobs_id'),
         'door_frames_id' => $request->input('door_frames_id'),
         'has_top_sections_id' => $request->input('has_top_sections_id'),
+        'frames_id' => $request->input('frames_id'),
     ]);
 
 

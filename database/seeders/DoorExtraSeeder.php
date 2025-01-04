@@ -13,8 +13,7 @@ class DoorExtraSeeder extends Seeder
     public function run(): void
     {
         $doorextras = [
-            ['name' => "yo'q"],
-            ['name' => 'krashni kbik sapajok'],
+            ['name' => 'krashni kubik sapajok'],
             ['name' => 'shipon kubik sapajok'],
         ];
 
