@@ -15,12 +15,12 @@ class AdForm extends Component
     public  $doorTypes = [];
     public  $doorDimensions = [];
     public $doorDimension;
-    public $doorAddition;
     public $doorExtra;
-    public $doorAdditions=[];
     public $doorExtras=[];
     public $knobs=[];
     public $doorFrames=[];
+    public $hasTopSections=[];
+    public $hasTopSection;
     
   
 
@@ -31,10 +31,10 @@ class AdForm extends Component
         $this->colors = \App\Models\Color::all();
         $this->doorTypes = \App\Models\DoorType::all();
         $this->doorDimensions = \App\Models\DoorDimension::all();
-        $this->doorAdditions = \App\Models\DoorAddition::all();
         $this->doorExtras = \App\Models\DoorExtra::all();
         $this->knobs = \App\Models\Knob::all();
         $this->doorFrames = \App\Models\DoorFrame::all();
+        $this->hasTopSections = \App\Models\HasTopSection::all();
      
         
     }

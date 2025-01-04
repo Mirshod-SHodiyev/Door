@@ -52,10 +52,17 @@
                             </div>
                         </div>
 
+                        
                         <div class="col-span-6">
-                            <label for="door_leaf" class="font-medium">Eshik palasi:</label>
+                            <label for="has_top_section" class="font-medium">Eshik qoshi:</label>
                             <div class="form-icon relative mt-2">
-                                <input name="door_leaf" id="door_leaf" type="number" class="form-input ps-11" placeholder="Eshik palasi:" value="{{ old('door_leaf') }}">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="HasTopSections_id" name="has_top_sections_id">
+                                    @foreach ($hasTopSections as $hasTopSection)
+                                        <option value="{{ $hasTopSection->id }}" {{ old('has_top_sections_id') == $hasTopSection->id ? 'selected' : '' }}>
+                                            {{ $hasTopSection->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 
@@ -73,7 +80,7 @@
                         </div>
 
                         <div class="col-span-6">
-                            <label for="door_extras_id" class="font-medium">Eshik qo'shimcha narsalari:</label>
+                            <label for="door_extras_id" class="font-medium">Kubik sapajok:</label>
                             <div class="form-icon relative mt-2">
                                 <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorExtras_id" name="door_extras_id">
                                     @foreach ($doorExtras as $doorExtra)
@@ -85,13 +92,18 @@
                             </div>
                         </div>
 
-                        <div class="col-span-6">
-                            <label for="door_additions_id" class="font-medium">Eshik fragalari:</label>
+                           <!-- Service Field -->
+                           <div class="col-span-6">
+                            <label for="door_dimensions_id" class="font-medium">Eshik xizmati:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorAdditions_id" name="door_additions_id">
-                                    @foreach ($doorAdditions as $doorAddition)
-                                        <option value="{{ $doorAddition->id }}" {{ old('door_additions_id') == $doorAddition->id ? 'selected' : '' }}>
-                                            {{ $doorAddition->name }}
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                    @if(!isset($ad))
+                                        <option value="0">Eshik xizmati tanlang</option>
+                                    @endif
+                                    @foreach ($doorDimensions as $doorDimension)
+                                        <option value="{{$doorDimension->id}}" 
+                                                {{ isset($ad) && $doorDimension->id === $ad->door_dimensions_id ? 'selected' : '' }}>
+                                            {{ $doorDimension->service_free == 'ha' ? 'Eshik xizmati (Ha)' : 'Eshik xizmati (Yo\'q)' }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -110,6 +122,26 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col-span-6">
+                            <label for="door_dimensions_id" class="font-medium">Eshik qalinligi:</label>
+                            <div class="form-icon relative mt-2">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                    @if(!isset($ad))
+                                    <option value="0">Eshik qalinligini tanlang</option>
+                                    @endif
+                                    @foreach ($doorDimensions as $doorDimension)
+                                        <option value="{{$doorDimension->id}}" {{ isset($ad) && $doorDimension->id === $ad->door_dimensions_id ? 'selected' : '' }}>{{$doorDimension->thickness}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-span-6">
+                            <label for="discount" class="font-medium">Chegirma:</label>
+                            <div class="form-icon relative mt-2">
+                                <input name="discount" id="discount" type="number" class="form-input ps-11" placeholder="chegirma:" value="{{ $ad?->discount }}">
+                            </div>
+                        </div>
+                       
                     </div>
                   
                     @isset($price)

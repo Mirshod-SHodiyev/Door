@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\Models\Ad;
 use App\Models\Color;
-use App\Models\DoorAddition;
 use App\Models\Price;
 use App\Models\DoorDimension;
 use App\Models\DoorType;
@@ -12,6 +11,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\DoorExtra;
 use App\Models\Knob;
 use App\Models\DoorFrame;
+use App\Models\HasTopSection;
 
 
 
@@ -46,10 +46,11 @@ class AdController extends Controller
     {
       
         $action = route('ads.store');
-        $doorAdditions= DoorAddition::all();
+      
         $doorExtras=DoorExtra::all();
         $colors = Color::all();
         $doorTypes = DoorType::all();
+        $hasTopSections=HasTopSection::all();
         $doorDimensions=DoorDimension::all();
         $ads=Ad::all();
         $ad=new Ad();
@@ -57,7 +58,7 @@ class AdController extends Controller
         $doorDimension=new DoorDimension();
         $doorFrames=DoorFrame::all();
        
-        return view('ads.create', compact('doorTypes','ads','colors','ad','action','doorDimensions','doorDimension' ,'doorExtras'  ,'doorAdditions','knobs' ,'doorFrames'));
+        return view('ads.create', compact('doorTypes','ads','colors','ad','action','doorDimensions' ,'doorExtras'  ,'knobs' ,'doorFrames', 'hasTopSections'));
 
     }
 
@@ -68,15 +69,14 @@ class AdController extends Controller
   
     {
         $request->validate([
-            'door_leaf' => ['required', 'numeric'],
             'phone_number' => 'required|digits_between:5,15|regex:/^[0-9]+$/',
+            'has_top_sections_id' => 'exists:has_top_sections,id',
             'width' => 'required|numeric',
             'height' => 'required|numeric',
             'colors_id' => 'required|numeric',
             'door_types_id' => 'required|numeric',
             'door_dimensions_id' => 'required|numeric',
             'door_extras_id' => 'required|numeric',
-            'door_additions_id' => 'required|numeric',
             'knobs_id' => 'required|numeric',
             
            
@@ -101,15 +101,15 @@ class AdController extends Controller
             'extra_info' => $request->input('extra_info'),
             'width' => $request->input('width'),
             'height' => $request->input('height'),
-            'door_leaf' => $request->input('door_leaf'),
+             'discount' => $request->input('discount'),
             'user_id' => auth()->id(),
             'colors_id' => $request->input('colors_id'),
             'door_types_id' => $request->input('door_types_id'),
             'door_dimensions_id' => $request->input('door_dimensions_id'),
             'door_extras_id' => $request->input('door_extras_id'),
-            'door_additions_id' => $request->input('door_additions_id'),
             'knobs_id' => $request->input('knobs_id'),
             'door_frames_id' => $request->input('door_frames_id'),
+            'has_top_sections_id' => $request->input('has_top_sections_id'),
           
             
         ]);
@@ -135,7 +135,7 @@ class AdController extends Controller
 
     public function show(string $id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory
     {
-        $ad = Ad::with(['color','doorDimension' , 'doorType', 'doorAddition', 'doorExtra', 'knob', 'doorFrame' ])->find($id);
+        $ad = Ad::with(['color','doorDimension' , 'doorType',  'doorExtra', 'knob', 'doorFrame' , 'hasTopSection' ])->find($id);
         return view('components.single-ad', ['ad'=>$ad]);
     }
       
@@ -149,13 +149,13 @@ class AdController extends Controller
     $colors = \App\Models\Color::all();
      $doorTypes = \App\Models\DoorType::all();
     $doorDimensions = \App\Models\DoorDimension::all();
-    $doorAdditions = \App\Models\DoorAddition::all();
     $doorExtras = \App\Models\DoorExtra::all();
     $knobs=\App\Models\Knob::all();
+    $hasTopSections=\App\Models\HasTopSection::all();
     $doorFrames=DoorFrame::all();
     $action = route('ads.update', $ad->id); 
  
-    return view('ads.edit', compact('ad', 'colors', 'doorTypes', 'doorDimensions' , 'action' , 'doorAdditions' , 'doorExtras' , 'knobs' , 'doorFrames'));
+    return view('ads.edit', compact('ad', 'colors', 'doorTypes', 'doorDimensions' , 'action' , 'doorExtras' , 'knobs' , 'doorFrames', 'hasTopSections'));
 }
 
 
@@ -169,7 +169,6 @@ public function update(Request $request, Ad $ad)
         'door_types_id' => 'required|numeric',
         'door_dimensions_id' => 'required|numeric',
         'door_extras_id' => 'required|numeric',
-        'door_additions_id' => 'required|numeric',
         'knobs_id' => 'required|numeric',
     ], [
         
@@ -183,14 +182,14 @@ public function update(Request $request, Ad $ad)
         'customers_info' => $request->input('customers_info'),
         'width' => $request->input('width'),
         'height' => $request->input('height'),
-        'door_leaf' => $request->input('door_leaf'),
+        'discount' => $request->input('discount'),
         'colors_id' => $request->input('colors_id'),
         'door_types_id' => $request->input('door_types_id'),
         'door_dimensions_id' => $request->input('door_dimensions_id'),
         'door_extras_id' => $request->input('door_extras_id'),
-        'door_additions_id' => $request->input('door_additions_id'),
         'knobs_id' => $request->input('knobs_id'),
         'door_frames_id' => $request->input('door_frames_id'),
+        'has_top_sections_id' => $request->input('has_top_sections_id'),
     ]);
 
 

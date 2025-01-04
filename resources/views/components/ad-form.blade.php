@@ -48,7 +48,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-span-4">
+                        <div class="col-span-6">
                             <label for="width" class="font-medium">uzunligi eni sm:</label>
                             <div class="form-icon relative mt-2">
                                 <input name="width" id="width" type="number" class="form-input ps-11" placeholder="eni sm:" value="{{ $ad?->width }}">
@@ -56,20 +56,13 @@
                         </div>
 
                         <!-- Height Field -->
-                        <div class="col-span-4">
+                        <div class="col-span-6">
                             <label for="height" class="font-medium">uzunligi bo'yi sm:</label>
                             <div class="form-icon relative mt-2">
                                 <input name="height" id="height" type="number" class="form-input ps-11" placeholder="bo'yi sm:" value="{{ $ad?->height }}">
                             </div>
                         </div>
-                           <!-- Height Field -->
-                        <div class="col-span-4">
-                            <label for="door_leaf" class="font-medium">Eshik palasi:</label>
-                            <div class="form-icon relative mt-2">
-                                <input name="door_leaf" id="door_leaf" type="number" class="form-input ps-11" placeholder="eshik palasi:" value="{{ $ad?->door_leaf }}">
-                            </div>
-                        </div>
-                        
+    
                         <!-- Branch Field -->
                         <div class="col-span-6">
                             <label for="colors_id" class="font-medium">Ranglar:</label>
@@ -104,14 +97,14 @@
                     
                         <!-- Door Dimensions Field -->
                         <div class="col-span-6">
-                            <label for="door_dimensions_id" class="font-medium">yuqori qoshi:</label>
+                            <label for="has_top_sections_id" class="font-medium">yuqori qoshi:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="hasTopSections_id" name="has_top_sections_id">
                                     @if(!isset($ad))
-                                    <option value="0">Eshik materialini tanlang</option>
+                                    <option value="">eshikni qoshini tanlang</option>
                                     @endif
-                                    @foreach ($doorDimensions as $doorDimension)
-                                        <option value="{{$doorDimension->id}}" {{ isset($ad) && $doorDimension->id === $ad->door_dimensions_id ? 'selected' : '' }}>{{$doorDimension->has_top_section}}</option>
+                                    @foreach ($hasTopSections as $hasTopSection)
+                                        <option value="{{$hasTopSection->id}}" {{ isset($ad) && $hasTopSection->id === $ad->has_top_sections_id ? 'selected' : '' }}>{{$hasTopSection->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -166,11 +159,11 @@
                         </div>
                        
                         <div class="col-span-6">
-                            <label for="door_extras_id" class="font-medium">Eshik Qo'shimcha narsalri:</label>
+                            <label for="door_extras_id" class="font-medium">Kubik sapajok:</label>
                             <div class="form-icon relative mt-2">
                                 <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorExtras_id" name="door_extras_id">
                                     @if(!isset($ad))
-                                    <option value="0">Eshik qo'shimcha narsalarni </option>
+                                    <option value="0">Kubik sapajok </option>
                                     @endif
                                     @foreach ($doorExtras as $doorExtra)
                                         <option value="{{$doorExtra->id}}" {{ isset($ad) && $doorExtra->id === $door_extras_id ? 'selected' : '' }}>{{$doorExtra->name}}</option>
@@ -178,21 +171,6 @@
                                 </select>
                             </div>
                         </div>
-                        
-                        <div class="col-span-6">
-                            <label for="door_additions_id" class="font-medium">Eshik Fragalari:</label>
-                            <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorAdditions_id" name="door_additions_id">
-                                    @if(!isset($ad))
-                                    <option value="0">Eshik fragalarni </option>
-                                    @endif
-                                    @foreach ($doorAdditions as $doorAddition)
-                                        <option value="{{$doorAddition->id}}" {{ isset($ad) && $doorAddition->id === $door_additions_id ? 'selected' : '' }}>{{$doorAddition->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
                         <div class="col-span-6">
                             <label for="knobs_id" class="font-medium">Eshik zamoklari:</label>
                             <div class="form-icon relative mt-2">
@@ -216,15 +194,24 @@
                             <label for="phone_number" class="font-medium">Mijoz telefon raqami :</label>
                             <input name="phone_number" id="phone_number" type="number" class="form-input mt-2" placeholder="+998 77 777 77 77" value="{{ $ad?->phone_number}}">
                         </div>
-
                         <!-- Address Field -->
+
                         <div class="col-span-6">
                             <label for="customers_info" class="font-medium">Mijoz Ismi:</label>
                             <div class="form-icon relative mt-2">
                                 <input name="customers_info" id="customers_info" type="text" class="form-input ps-11" placeholder="mijoz ismi:" value="{{ $ad?->customers_info }}">
                             </div>
                         </div>
+
+                        <div class="col-span-6">
+                            <label for="discount" class="font-medium">Chegirma:</label>
+                            <div class="form-icon relative mt-2">
+                                <input name="discount" id="discount" type="number" class="form-input ps-11" placeholder="chegirma:" value="{{ $ad?->discount }}">
+                            </div>
+                        </div>
+                        
                     </div>
+                    
 
                     <!-- Submit Button -->
                     <button type="submit" id="submit" name="send" class="btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-5 ml-auto">

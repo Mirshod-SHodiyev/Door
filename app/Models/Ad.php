@@ -19,13 +19,13 @@ class Ad extends Model
         'extra_info',
         'width',
         'height',
-        'door_leaf',
+         'discount',
+        'has_top_sections_id',
         'customers_info',
         'user_id',
         'colors_id',
         'door_dimensions_id',
         'door_types_id',
-        'door_additions_id',
         'door_extras_id',
         'knobs_id',
         'door_frames_id',
@@ -73,12 +73,11 @@ class Ad extends Model
             return $this->belongsTo(Knob::class, 'knobs_id');
         }
         
-        public function doorAddition()
-        {
-            return $this->belongsTo(DoorAddition::class, 'door_additions_id');
-        }
         
-    
+    public function hasTopSection()
+    {
+        return $this->belongsTo(HasTopSection::class, 'has_top_sections_id');
+    }
 
     public function doorExtra()
     {

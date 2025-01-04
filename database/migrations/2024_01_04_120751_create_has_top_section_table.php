@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('door_additions', function (Blueprint $table) {
+        Schema::create('has_top_sections', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamps();
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('door_additions');
+        Schema::dropIfExists('has_top_sections');
     }
 };

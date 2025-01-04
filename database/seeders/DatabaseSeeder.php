@@ -19,9 +19,9 @@ class DatabaseSeeder extends Seeder
             DoorTypeSeeder::class,
             UserSeeder::class,
             DoorExtraSeeder::class,
-            DoorAdditionSeeder::class,
             KeySeeder::class,
             DoorFrameSeeder::class,
+            HasTopSectionSeeder::class,
 
 
             

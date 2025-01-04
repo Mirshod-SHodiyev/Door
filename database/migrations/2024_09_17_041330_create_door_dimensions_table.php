@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('door_dimensions', function (Blueprint $table) {
             $table->id();
             $table->string('service_free');
-            $table->string('has_top_section');
             $table->string('opening_side');
             $table->integer('thickness');
             $table->string('material');

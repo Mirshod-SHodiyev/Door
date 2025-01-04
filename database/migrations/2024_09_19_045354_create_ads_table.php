@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('phone_number', 20);
             $table->float('width'); 
             $table->float('height'); 
-            $table->float('door_leaf');
+            $table->float('discount')->default(0); 
+            $table->foreignId('has_top_sections_id')->constrained('has_top_sections');
             $table->foreignId('door_types_id')->constrained();
             $table->foreignId('door_dimensions_id')->constrained();
             $table->foreignId('colors_id')->constrained();
-            $table->foreignId('door_additions_id')->constrained();
             $table->foreignId('door_extras_id')->constrained();
             $table->foreignId('knobs_id')->constrained();
             $table->foreignId('door_frames_id')->constrained();

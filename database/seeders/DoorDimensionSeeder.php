@@ -13,17 +13,15 @@ class DoorDimensionSeeder extends Seeder
         DB::table('door_dimensions')->insert([
             [
                 'service_free' => 'ha',
-                'has_top_section' => 'ha',
                 'opening_side' => 'chap',
-                'thickness' => 3,
+                'thickness' => 8,
                 'material' => 'mdf',
         
             ],
             [
                 'service_free' => 'yo\'q',
-                'has_top_section' => 'yo\'q',
                 'opening_side' => 'o\'ng',
-                'thickness' => 5,
+                'thickness' => 12,
                 'material' => 'taxta',
                
             ],
