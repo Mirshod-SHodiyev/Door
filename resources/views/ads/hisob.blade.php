@@ -13,9 +13,9 @@
 
                     <div class="grid grid-cols-12 gap-5">
                         <div class="col-span-6">
-                            <label for="doortype" class="font-medium">Eshik turlari:</label>
+                            <label for="door_types_id" class="font-medium">Eshik turlari:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doortype" name="door_types_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorTypes_id" name="door_types_id">
                                     <option value="">Tanlang</option>
                                     @foreach ($doorTypes as $doorType)
                                         <option value="{{ $doorType->id }}" {{ old('door_types_id') == $doorType->id ? 'selected' : '' }}>
