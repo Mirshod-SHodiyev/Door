@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <!-- Width Field -->
-                        <div class="col-span-4">
+                        <div class="col-span-6">
                             <label for="width" class="font-medium">Uzunligi eni sm:</label>
                             <div class="form-icon relative mt-2">
                                 <input name="width" id="width" type="number" class="form-input ps-11" placeholder="Eni sm:" value="{{ $ad?->width }}">
@@ -48,16 +48,10 @@
                         </div>
 
                         <!-- Height Field -->
-                        <div class="col-span-4">
+                        <div class="col-span-6">
                             <label for="height" class="font-medium">Uzunligi bo'yi sm:</label>
                             <div class="form-icon relative mt-2">
                                 <input name="height" id="height" type="number" class="form-input ps-11" placeholder="Bo'yi sm:" value="{{ $ad?->height }}">
-                            </div>
-                        </div>
-                        <div class="col-span-4">
-                            <label for="door_leaf" class="font-medium">Eshik palasi:</label>
-                            <div class="form-icon relative mt-2">
-                                <input name="door_leaf" id="door_leaf" type="number" class="form-input ps-11" placeholder="Eshik palasi:" value="{{ $ad?->door_leaf }}">
                             </div>
                         </div>
 
@@ -89,20 +83,20 @@
                             </div>
                         </div>
 
-                        <!-- Top Section Field -->
                         <div class="col-span-6">
-                            <label for="door_dimensions_id" class="font-medium">Yuqori qoshi:</label>
+                            <label for="has_top_sections_id" class="font-medium">yuqori qoshi:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="hasTopSections_id" name="has_top_sections_id">
                                     @if(!isset($ad))
-                                        <option value="0">Eshik materialini tanlang</option>
+                                    <option value="">eshikni qoshini tanlang</option>
                                     @endif
-                                    @foreach ($doorDimensions as $doorDimension)
-                                        <option value="{{$doorDimension->id}}" {{ isset($ad) && $doorDimension->id === $ad->door_dimensions_id ? 'selected' : '' }}>{{$doorDimension->has_top_section}}</option>
+                                    @foreach ($hasTopSections as $hasTopSection)
+                                        <option value="{{$hasTopSection->id}}" {{ isset($ad) && $hasTopSection->id === $ad->has_top_sections_id ? 'selected' : '' }}>{{$hasTopSection->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
+
                           <!-- Top Section Field -->
                           <div class="col-span-6">
                             <label for="door_dimensions_id" class="font-medium">Eshik qalinligi:</label>
@@ -132,14 +126,14 @@
                         </div>
                          <!-- Top Section Field -->
                          <div class="col-span-6">
-                            <label for="door_additions_id" class="font-medium">Eshik Fragagasi:</label>
+                            <label for="frames_id" class="font-medium">Eshik Fragagasi:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorAdditions_id" name="door_additions_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="frames_id" name="frames_id">
                                     @if(!isset($ad))
                                         <option value="0">Eshik fragagasinini tanlang</option>
                                     @endif
-                                    @foreach ($doorAdditions as $doorAddition)
-                                        <option value="{{$doorAddition->id}}" {{ isset($ad) && $doorAddition->id === $ad->door_additions_id ? 'selected' : '' }}>{{$doorAddition->name}}</option>
+                                    @foreach ($frames as $frame)
+                                        <option value="{{$frame->id}}" {{ isset($ad) && $frame->id === $ad->frames_id ? 'selected' : '' }}>{{$frame->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -213,6 +207,12 @@
                         </div>
                     </div>
 
+                    <div class="col-span-12">
+                        <label for="discount" class="font-medium">Chegirma:</label>
+                        <div class="form-icon relative mt-2">
+                            <input name="discount" id="discount" type="number" class="form-input ps-11" placeholder="chegirma:" value="{{ $ad?->discount }}">
+                        </div>
+                    </div>
                     <!-- Submit Button -->
                     <button type="submit" id="submit" name="send" class="btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-5 ml-auto">
                         <i class="mdi mdi-content-save me-2"></i>Saqlash

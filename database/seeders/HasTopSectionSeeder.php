@@ -13,13 +13,15 @@ class HasTopSectionSeeder extends Seeder
      */
     public function run(): void
     {
+        // HasTopSection nomlari va narxlar
         $data = [
-            ['name' => 'Section 1'],
-            ['name' => 'Section 2'],
-            ['name' => 'Section 3'],
-            ['name' => 'Section 4'],
+            ['name' => 'Section 1', 'price' => 50000],
+            ['name' => 'Section 2', 'price' => 60000],
+            ['name' => 'Section 3', 'price' => 70000],
+            ['name' => 'Section 4', 'price' => 80000],
         ];
 
+        // HasTopSection modelini yaratish
         foreach ($data as $item) {
             HasTopSection::create($item);
         }

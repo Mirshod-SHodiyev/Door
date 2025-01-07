@@ -136,13 +136,13 @@
                        
                     </div>
                   
-                   @isset($price)
+                   @isset($totalPrice)
                 <div class="mt-6 bg-green-100 p-6 rounded-xl shadow-lg text-center">
                     <p class="text-2xl font-semibold text-green-700">
                         Hisoblangan narx:
                     </p>
                     <p class="text-3xl font-bold text-green-800 mt-2">
-                        {{ number_format($price) }} so'm
+                        {{ number_format($totalPrice) }} so'm
                     </p>
                 </div>
                 @endisset
