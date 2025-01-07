@@ -15,10 +15,17 @@ class HasTopSectionSeeder extends Seeder
     {
         // HasTopSection nomlari va narxlar
         $data = [
-            ['name' => 'Section 1', 'price' => 50000],
-            ['name' => 'Section 2', 'price' => 60000],
-            ['name' => 'Section 3', 'price' => 70000],
-            ['name' => 'Section 4', 'price' => 80000],
+            ['name' => '290', 'price' => 250000],
+            ['name' => '206 tilla', 'price' => 350000],
+            ['name' => '219', 'price' => 300000],
+            ['name' => '206', 'price' => 300000],
+            ['name' => '110', 'price' => 300000],
+            ['name' => '221', 'price' => 350000],
+            ['name' => '224', 'price' => 350000],
+            ['name' => '225', 'price' => 350000],
+            ['name' => '226', 'price' => 480000],
+            ['name' => '220', 'price' => 420000],
+            ['name' => '291', 'price' => 420000],
         ];
 
         // HasTopSection modelini yaratish

@@ -20,6 +20,9 @@
                                     @foreach ($doorTypes as $doorType)
                                         <option value="{{ $doorType->id }}" {{ old('door_types_id') == $doorType->id ? 'selected' : '' }}>
                                             {{ $doorType->name }}
+                                            @if(in_array($doorType->name, ['206', '202', '205', '207', '212', '289', '293', '296', '297', '298', '235']))
+                                            - 12 lik
+                                        @endif
                                         </option>
                                     @endforeach
                                 </select>
@@ -129,23 +132,41 @@
                    
                         <div class="col-span-6">
                             <label for="discount" class="font-medium">Chegirma:</label>
-                            <div class="form-icon relative mt-2">
-                                <input name="discount" id="discount" type="number" class="form-input ps-11" placeholder="chegirma:" value="{{ $ad?->discount }}">
+                            <div class="form-icon relative mt-2 flex items-center">
+                                <!-- Tugma -->
+                                <button 
+                                    id="toggle-input" 
+                                    type="button" 
+                                    class="btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md">
+                                    Chegirma qo'shish
+                                </button>
+                        
+                                <!-- Input -->
+                                <input 
+                                    id="discount-input" 
+                                    name="discount" 
+                                    type="number" 
+                                    class="form-input ps-11 ml-3 hidden" 
+                                    placeholder="chegirma:" 
+                                    value="0">
                             </div>
+                        </div>
+                        
                         </div>
                        
                     </div>
                   
-                   @isset($totalPrice)
-                <div class="mt-6 bg-green-100 p-6 rounded-xl shadow-lg text-center">
-                    <p class="text-2xl font-semibold text-green-700">
-                        Hisoblangan narx:
-                    </p>
-                    <p class="text-3xl font-bold text-green-800 mt-2">
-                        {{ number_format($totalPrice) }} so'm
-                    </p>
-                </div>
+                    @isset($totalPrice)
+                    <div class="mt-6 bg-green-100 p-6 rounded-xl shadow-lg text-center border border-green-700">
+                        <p class="text-2xl font-semibold text-green-700">
+                            Hisoblangan narx:
+                        </p>
+                        <p class="text-3xl font-bold text-green-800 mt-2">
+                            {{ number_format($totalPrice) }} so'm
+                        </p>
+                    </div>
                 @endisset
+                
 
                 
 
@@ -156,4 +177,23 @@
             </div>
         </div>
     </div>
+      
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const button = document.getElementById('toggle-input'); // Tugma elementi
+            const input = document.getElementById('discount-input'); // Input elementi
+    
+            // Tugma bosilganda inputni ko'rsatish yoki yashirish
+            button.addEventListener('click', function () {
+                if (input.classList.contains('hidden')) {
+                    input.classList.remove('hidden'); // Inputni ko'rsatish
+                    input.focus(); // Inputga fokus berish
+                    button.textContent = "Chegirma yashirish"; // Tugma matnini o'zgartirish
+                } else {
+                    input.classList.add('hidden'); // Inputni yashirish
+                    button.textContent = "Chegirma qo'shish"; // Tugma matnini qaytarish
+                }
+            });
+        });
+    </script>
 </x-layouts.main>

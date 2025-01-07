@@ -30,7 +30,11 @@
                                     <option value="0">Eshik turlarini tanlang</option>
                                     @endif
                                     @foreach ($doorTypes as $doorType)
-                                        <option value="{{$doorType->id}}" {{ isset($ad) && $doorType->id === $ad->door_types_id ? 'selected' : '' }}>{{$doorType->name}}</option>
+                                        <option value="{{$doorType->id}}" {{ isset($ad) && $doorType->id === $ad->door_types_id ? 'selected' : '' }}>{{$doorType->name}}
+                                            @if(in_array($doorType->name, ['206', '202', '205', '207', '212', '289', '293', '296', '297', '298', '235']))
+                                            - 12 lik
+                                        @endif
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>

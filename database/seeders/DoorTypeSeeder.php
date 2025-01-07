@@ -63,11 +63,17 @@ class DoorTypeSeeder extends Seeder
             'storage/door_images/bimetal_door_7.jpg',
         ];
 
+        $thicknessesWith12 = ['206', '202', '205', '207', '212', '289', '293', '296', '297', '298', '235'];
+
         foreach ($numbers as $number => $price) {
+          
+            $thickness = in_array($number, $thicknessesWith12) ? 8 : 12;
+    
             DoorType::create([
                 'name' => $number,
                 'price' => $price,
                 'image_url' => $images[array_rand($images)], 
+                'thickness' => $thickness,
             ]);
         }
     }
