@@ -14,43 +14,43 @@ class DoorTypeSeeder extends Seeder
     public function run()
     {
         $numbers = [
-            '210' => 2100000,
-            '211' => 2100000,
-            '204' => 2350000,
-            '201' => 1900000,
-            '206' => 2700000,
-            '209' => 1090000,
-            '202' => 2100000,
-            '205' => 2650000,
-            '207' => 2950000,
-            '226' => 5100000,
-            '220' => 4300000,
-            '232' => 2200000,
-            '203' => 2330000,
-            '230' => 1850000,
-            '231' => 1850000,
-            '218' => 2500000,
-            '219' => 2600000,
-            '221' => 2830000,
-            '113' => 2550000,
-            '212' => 3750000,
-            '110' => 2850000,
-            '225' => 2700000,
-            '208' => 2400000,
-            '224' => 2250000,
-            '235' => 2500000,
-            '289' => 3400000,
-            '298' => 2700000,
-            '291' => 3350000,
-            '293' => 2750000,
-            '295' => 2200000,
-            '297' => 4700000,
-            '296' => 2500000,
-            '255' => 3300000,
-            '290' => 6000000,
-            '292' => 4900000,
-            '294' => 3800000,
-            '299' => 4000000,
+            '210' => ['price' => 2100000, 'thickness' => 8],
+            '211' => ['price' => 2100000, 'thickness' => 8],
+            '204' => ['price' => 2350000, 'thickness' => 8],
+            '201' => ['price' => 1900000, 'thickness' => 8],
+            '206' => ['price' => 2700000, 'thickness' => 12], // 12 sm qalinlik
+            '209' => ['price' => 1090000, 'thickness' => 8],
+            '202' => ['price' => 2100000, 'thickness' => 12], // 12 sm qalinlik
+            '205' => ['price' => 2650000, 'thickness' => 12], // 12 sm qalinlik
+            '207' => ['price' => 2950000, 'thickness' => 12], // 12 sm qalinlik
+            '226' => ['price' => 5100000, 'thickness' => 8],
+            '220' => ['price' => 4300000, 'thickness' => 8],
+            '232' => ['price' => 2200000, 'thickness' => 8],
+            '203' => ['price' => 2330000, 'thickness' => 8],
+            '230' => ['price' => 1850000, 'thickness' => 8],
+            '231' => ['price' => 1850000, 'thickness' => 8],
+            '218' => ['price' => 2500000, 'thickness' => 8],
+            '219' => ['price' => 2600000, 'thickness' => 8],
+            '221' => ['price' => 2830000, 'thickness' => 8],
+            '113' => ['price' => 2550000, 'thickness' => 8],
+            '212' => ['price' => 3750000, 'thickness' => 12], // 12 sm qalinlik
+            '110' => ['price' => 2850000, 'thickness' => 8],
+            '225' => ['price' => 2700000, 'thickness' => 8],
+            '208' => ['price' => 2400000, 'thickness' => 8],
+            '224' => ['price' => 2250000, 'thickness' => 8],
+            '235' => ['price' => 2500000, 'thickness' => 12], // 12 sm qalinlik
+            '289' => ['price' => 3400000, 'thickness' => 12], // 12 sm qalinlik
+            '298' => ['price' => 2700000, 'thickness' => 12], // 12 sm qalinlik
+            '291' => ['price' => 3350000, 'thickness' => 8],
+            '293' => ['price' => 2750000, 'thickness' => 12], // 12 sm qalinlik
+            '295' => ['price' => 2200000, 'thickness' => 8],
+            '297' => ['price' => 4700000, 'thickness' => 12], // 12 sm qalinlik
+            '296' => ['price' => 2500000, 'thickness' => 12], // 12 sm qalinlik
+            '255' => ['price' => 3300000, 'thickness' => 8],
+            '290' => ['price' => 6000000, 'thickness' => 8],
+            '292' => ['price' => 4900000, 'thickness' => 8],
+            '294' => ['price' => 3800000, 'thickness' => 8],
+            '299' => ['price' => 4000000, 'thickness' => 8],
         ];
 
         $images = [
@@ -63,17 +63,15 @@ class DoorTypeSeeder extends Seeder
             'storage/door_images/bimetal_door_7.jpg',
         ];
 
-        $thicknessesWith12 = ['206', '202', '205', '207', '212', '289', '293', '296', '297', '298', '235'];
+      
 
-        foreach ($numbers as $number => $price) {
-          
-            $thickness = in_array($number, $thicknessesWith12) ? 8 : 12;
-    
+        foreach ($numbers as $number => $details) {
+            // Jadvalga yozish
             DoorType::create([
                 'name' => $number,
-                'price' => $price,
-                'image_url' => $images[array_rand($images)], 
-                'thickness' => $thickness,
+                'price' => $details['price'], // Narxni kiritish
+                'thickness' => $details['thickness'], // Qalinlikni kiritish
+                'image_url' => $images[array_rand($images)], // Tasodifiy rasm tanlash
             ]);
         }
     }

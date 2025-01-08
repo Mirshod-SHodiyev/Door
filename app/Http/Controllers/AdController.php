@@ -107,6 +107,7 @@ class AdController extends Controller
             'width' => $request->input('width'),
             'height' => $request->input('height'),
             'discount' => $request->input('discount', 0),
+            'thickness' => $request->input('thickness'),
             'user_id' => auth()->id(),
             'colors_id' => $request->input('colors_id'),
             'door_types_id' => $request->input('door_types_id'),
@@ -216,7 +217,7 @@ class AdController extends Controller
                 $knob = Knob::find($selectedKnob);
                 if ($knob) {
                     // Agar 'service_free' "ha" bo'lsa, 200,000 so'm qo'shish
-                    if ($knob->service_free === 'ha') {
+                    if ($knob->name === 'ha') {
                         $totalPrice += 250000;  // 200,000 so'm qo'shish
                     }
 
@@ -314,6 +315,7 @@ public function update(Request $request, Ad $ad)
         'width' => $request->input('width'),
         'height' => $request->input('height'),
         'discount' => $request->input('discount', 0),
+        'thickness' => $request->input('thickness'),
         'colors_id' => $request->input('colors_id'),
         'door_types_id' => $request->input('door_types_id'),
         'door_dimensions_id' => $request->input('door_dimensions_id'),
@@ -340,14 +342,20 @@ public function update(Request $request, Ad $ad)
  
       
          if ($doorType) {
-             // Agar doorType topilsa, asosiy narxni olish
-             $basePrice = $doorType->price;
-         } else {
-            
-             $basePrice = 0;  
-         }
+            // Agar doorType topilsa, asosiy narxni olish
+            $basePrice = $doorType->price;
+            $thickness = $doorType->thickness;  // Eshikning qalinligini olish
+        } else {
+            $basePrice = 0;
+            $thickness = 0;  // Agar eshik turi topilmasa, qalinlikni 0 qilib belgilash
+        }
  
         
+
+        if ($thickness == 8 && $request->input('new_thickness') == 12) {
+            $basePrice += 300000; 
+        }
+    
  
          // Eshik o'lchamlari bo'yicha narxni o'zgartirish 2
          if ($width >= 100 && $width <= 130 && $height >= 210 && $height <= 270) {
@@ -421,7 +429,7 @@ public function update(Request $request, Ad $ad)
                  $knob = Knob::find($selectedKnob);
                  if ($knob) {
                      // Agar 'service_free' "ha" bo'lsa, 200,000 so'm qo'shish
-                     if ($knob->service_free === 'ha') {
+                     if ($knob->name === 'ha') {
                          $totalPrice += 200000;  // 200,000 so'm qo'shish
                      }
  

@@ -30,11 +30,11 @@
                                     <option value="0">Eshik turlarini tanlang</option>
                                     @endif
                                     @foreach ($doorTypes as $doorType)
-                                        <option value="{{$doorType->id}}" {{ isset($ad) && $doorType->id === $ad->door_types_id ? 'selected' : '' }}>{{$doorType->name}}
-                                            @if(in_array($doorType->name, ['206', '202', '205', '207', '212', '289', '293', '296', '297', '298', '235']))
-                                            - 12 lik
-                                        @endif
-                                        </option>
+                                        <option value="{{$doorType->id}}" {{ isset($ad) && $doorType->id === $ad->door_types_id ? 'selected' : '' }}>
+                                            {{$doorType->name}} <span class="text-gray-500" style="margin-left: 3em;">→</span> 
+                                            {{$doorType->thickness}} lik <span class="text-gray-500" style="margin-left: 3em;">→</span> 
+                                            {{$doorType->price}} so'm
+                                                                </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -149,18 +149,17 @@
                             </div>
                         </div>
                         <div class="col-span-6">
-                            <label for="door_dimensions_id" class="font-medium">Eshik qalinligi:</label>
+                            <label for="thickness" class="font-medium">Eshik qalinligi:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id" required>
-                                    @if(!isset($ad))
-                                    <option value="0">Eshik qalinligini tanlang</option>
-                                    @endif
-                                    @foreach ($doorDimensions as $doorDimension)
-                                        <option value="{{$doorDimension->id}}" {{ isset($ad) && $doorDimension->id === $ad->door_dimensions_id ? 'selected' : '' }}>{{$doorDimension->thickness}}</option>
-                                    @endforeach
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" 
+                                        id="thickness" name="thickness" required>
+                                        <option value="8">8</option>
+                                        <option value="12">12</option>
                                 </select>
                             </div>
                         </div>
+                        
+                        
                         <div class="col-span-6">
                             <label for="frames_id" class="font-medium">Eshik framogasi:</label>
                             <div class="form-icon relative mt-2">

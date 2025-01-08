@@ -154,7 +154,7 @@
                                             <i class="uil uil-layer-group text-green-600 mr-2"></i>
                                             <strong>Eshik qalinligi:</strong>
                                         </div>
-                                        <strong>{{ $ad->doorDimension->thickness }}</strong>
+                                        <strong>{{ $ad->thickness }}</strong>
                                     </li>
                                    
                                     <li class="flex justify-between items-center">

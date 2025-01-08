@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('service_free');
             $table->string('opening_side');
-            $table->integer('thickness');
             $table->string('material');
     
     

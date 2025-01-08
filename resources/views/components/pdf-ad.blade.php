@@ -164,7 +164,7 @@
             <li><strong>Eshik ramkasi:</strong> {{ $ad->doorDimension->door_frame }}</li>
             <li><strong>Xizmat haqqi:</strong> {{ $ad->doorDimension->service_free }} </li>
             <li><strong>Eshik materiali:</strong> {{ $ad->doorDimension->material }} </li>
-            <li><strong>Eshik qalinligi:</strong> {{ $ad->doorDimension->thickness }} </li>
+            <li><strong>Eshik qalinligi:</strong> {{ $ad->thickness }} </li>
             <li><strong>Eshik framogasi:</strong> {{ $ad->frame->name }} </li>
             <li><strong>Chegirma:</strong> {{ $ad->discount}} </li>
             <li><strong>Yaratilgan vaqti:</strong> {{ $ad->created_at->format('Y-m-d H:i') }}</li>

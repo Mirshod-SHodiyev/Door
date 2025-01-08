@@ -31,6 +31,7 @@ class ColorController extends Controller
 
         // Parametrlarni olish
         $width = $request->input('width');   // Eshik eni
+
         $height = $request->input('height'); // Eshik bo'yi
         $discount = $request->input('discount'); // Chegirma
         $isDoorService = $request->input('door_dimensions_id'); // Eshik xizmati
@@ -39,7 +40,8 @@ class ColorController extends Controller
         $selectedKnob = $request->input('knobs_id'); // Tutqich
         $selectedFrame = $request->input('frames_id'); // Ramka identifikatori
         $selectedDoorType = $request->input('door_types_id');
-        $selectedDoorExtra = $request->input('door_extras_id');  
+        $selectedDoorExtra = $request->input('door_extras_id'); 
+        $thickness = $request->input('thickness');  
         //  Eshik turi bo'yicha narxni olish  1
         $doorType = DoorType::find($selectedDoorType);
 
@@ -47,9 +49,16 @@ class ColorController extends Controller
         if ($doorType) {
             // Agar doorType topilsa, asosiy narxni olish
             $basePrice = $doorType->price;
+            $thickness = $doorType->thickness;  // Eshikning qalinligini olish
         } else {
-           
-            $basePrice = 0;  
+            $basePrice = 0;
+            $thickness = 0;  // Agar eshik turi topilmasa, qalinlikni 0 qilib belgilash
+        }
+ 
+        
+
+        if ($thickness == 8 && $request->input('thickness') == 12) {
+            $basePrice += 300000; 
         }
 
        
@@ -126,7 +135,7 @@ class ColorController extends Controller
                 $knob = Knob::find($selectedKnob);
                 if ($knob) {
                     // Agar 'service_free' "ha" bo'lsa, 200,000 so'm qo'shish
-                    if ($knob->service_free === 'ha') {
+                    if ($knob->name === 'ha') {
                         $totalPrice += 200000;  // 200,000 so'm qo'shish
                     }
 

@@ -19,10 +19,9 @@
                                     <option value="">Tanlang</option>
                                     @foreach ($doorTypes as $doorType)
                                         <option value="{{ $doorType->id }}" {{ old('door_types_id') == $doorType->id ? 'selected' : '' }}>
-                                            {{ $doorType->name }}
-                                            @if(in_array($doorType->name, ['206', '202', '205', '207', '212', '289', '293', '296', '297', '298', '235']))
-                                            - 12 lik
-                                        @endif
+                                            {{$doorType->name}} <span class="text-gray-500" style="margin-left: 3em;">→</span> 
+                                            {{$doorType->thickness}} lik <span class="text-gray-500" style="margin-left: 3em;">→</span> 
+                                            {{$doorType->price}} so'm
                                         </option>
                                     @endforeach
                                 </select>
@@ -129,9 +128,19 @@
                                 </select>
                             </div>
                         </div>
-                   
+                        <div class="col-span-6">
+                            <label for="thickness" class="font-medium">Eshik qalinligi:</label>
+                            <div class="form-icon relative mt-2">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" 
+                                        id="thickness" name="thickness" required>
+                                    <option value="8" {{ old('thickness') == 8 ? 'selected' : '' }}>8 lik</option>
+                                    <option value="12" {{ old('thickness') == 12 ? 'selected' : '' }}>12 lik</option>
+                                </select>
+                            </div>
+                        </div>
                         
-                        <div class="col-span-3">
+                        
+                        <div class="col-span-6">
                             <label for="discountCheckbox" class="font-medium">chegirma qo'shish:</label>
                             <div class="form-icon relative mt-2 flex items-center">
                                 <input type="checkbox" id="discountCheckbox" name="discountCheckbox" class="mr-2" {{ $ad?->discount ? 'checked' : '' }}>
@@ -139,7 +148,7 @@
                             </div>
                         </div>
                         
-                        <div class="col-span-3" id="discountInputDiv" style="{{ $ad?->discount ? '' : 'visibility: hidden; height: 0;' }}">
+                        <div class="col-span-6" id="discountInputDiv" style="{{ $ad?->discount ? '' : 'visibility: hidden; height: 0;' }}">
                             <label for="discount" class="font-medium">Chegirma:</label>
                             <div class="form-icon relative mt-2">
                                 <input name="discount" id="discount" type="number" class="form-input ps-11" placeholder="Chegirma" value="{{ $ad?->discount }}">
