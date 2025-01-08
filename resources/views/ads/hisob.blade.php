@@ -15,7 +15,7 @@
                         <div class="col-span-6">
                             <label for="door_types_id" class="font-medium">Eshik turlari:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorTypes_id" name="door_types_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorTypes_id" name="door_types_id" required>
                                     <option value="">Tanlang</option>
                                     @foreach ($doorTypes as $doorType)
                                         <option value="{{ $doorType->id }}" {{ old('door_types_id') == $doorType->id ? 'selected' : '' }}>
@@ -32,7 +32,7 @@
                         <div class="col-span-6">
                             <label for="has_top_section" class="font-medium">Eshik qoshi:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="HasTopSections_id" name="has_top_sections_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="HasTopSections_id" name="has_top_sections_id" required>
                                     <option value="">Tanlang</option>
                                     @foreach ($hasTopSections as $hasTopSection)
                                         <option value="{{ $hasTopSection->id }}" {{ old('has_top_sections_id') == $hasTopSection->id ? 'selected' : '' }}>
@@ -46,14 +46,14 @@
                         <div class="col-span-6">
                             <label for="width" class="font-medium">Uzunligi eni sm:</label>
                             <div class="form-icon relative mt-2">
-                                <input name="width" id="width" type="number" class="form-input ps-11" placeholder="Eni sm:" value="{{ old('width') }}">
+                                <input name="width" id="width" type="number" class="form-input ps-11" placeholder="Eni sm:" value="{{ old('width') }}" required>
                             </div>
                         </div>
 
                         <div class="col-span-6">
                             <label for="height" class="font-medium">Uzunligi bo'yi sm:</label>
                             <div class="form-icon relative mt-2">
-                                <input name="height" id="height" type="number" class="form-input ps-11" placeholder="Bo'yi sm:" value="{{ old('height') }}">
+                                <input name="height" id="height" type="number" class="form-input ps-11" placeholder="Bo'yi sm:" value="{{ old('height') }}" required>
                             </div>
                         </div>
 
@@ -61,7 +61,7 @@
                         <div class="col-span-6">
                             <label for="frames_id" class="font-medium">Framoga:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="frames_id" name="frames_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="frames_id" name="frames_id" required>
                                     <option value="">Tanlang</option>
                                     @foreach ($frames as $frame)
                                         <option value="{{ $frame->id }}" {{ old('frames_id') == $frame->id ? 'selected' : '' }}>
@@ -75,7 +75,7 @@
                         <div class="col-span-6">
                             <label for="door_frames_id" class="font-medium">Atrafida ramka:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorFrames_id" name="door_frames_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorFrames_id" name="door_frames_id" required>
                                     <option value="">Tanlang</option>
                                     @foreach ($doorFrames as $doorFrame)
                                         <option value="{{ $doorFrame->id }}" {{ old('door_frames_id') == $doorFrame->id ? 'selected' : '' }}>
@@ -89,7 +89,7 @@
                         <div class="col-span-6">
                             <label for="door_extras_id" class="font-medium">Kubik sapajok:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorExtras_id" name="door_extras_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorExtras_id" name="door_extras_id" required>
                                     <option value="">Tanlang</option>
                                     @foreach ($doorExtras as $doorExtra)
                                         <option value="{{ $doorExtra->id }}" {{ old('door_extras_id') == $doorExtra->id ? 'selected' : '' }}>
@@ -104,7 +104,7 @@
                            <div class="col-span-6">
                             <label for="door_dimensions_id" class="font-medium">Eshik xizmati:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id" required>
                                     <option value="">Eshik xizmati tanlang</option>
                                     @foreach ($doorDimensions as $doorDimension)
                                         <option value="{{$doorDimension->id}}" 
@@ -119,7 +119,7 @@
                         <div class="col-span-6">
                             <label for="knobs_id" class="font-medium">Eshik zamoklari:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="knobs_id" name="knobs_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="knobs_id" name="knobs_id"required>
                                     <option value="">Tanlang</option>
                                     @foreach ($knobs as $knob)
                                         <option value="{{ $knob->id }}" {{ old('knobs_id') == $knob->id ? 'selected' : '' }}>
@@ -130,27 +130,24 @@
                             </div>
                         </div>
                    
-                        <div class="col-span-6">
-                            <label for="discount" class="font-medium">Chegirma:</label>
-                            <div class="form-icon relative mt-2 flex items-center">
-                                <!-- Tugma -->
-                                <button 
-                                    id="toggle-input" 
-                                    type="button" 
-                                    class="btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md">
-                                    Chegirma qo'shish
-                                </button>
                         
-                                <!-- Input -->
-                                <input 
-                                    id="discount-input" 
-                                    name="discount" 
-                                    type="number" 
-                                    class="form-input ps-11 ml-3 hidden" 
-                                    placeholder="chegirma:" 
-                                    value="0">
+                        <div class="col-span-3">
+                            <label for="discountCheckbox" class="font-medium">chegirma qo'shish:</label>
+                            <div class="form-icon relative mt-2 flex items-center">
+                                <input type="checkbox" id="discountCheckbox" name="discountCheckbox" class="mr-2" {{ $ad?->discount ? 'checked' : '' }}>
+                                <label for="discountCheckbox"></label>
                             </div>
                         </div>
+                        
+                        <div class="col-span-3" id="discountInputDiv" style="{{ $ad?->discount ? '' : 'visibility: hidden; height: 0;' }}">
+                            <label for="discount" class="font-medium">Chegirma:</label>
+                            <div class="form-icon relative mt-2">
+                                <input name="discount" id="discount" type="number" class="form-input ps-11" placeholder="Chegirma" value="{{ $ad?->discount }}">
+                            </div>
+                        </div>
+                        
+                        
+                        
                         
                         </div>
                        
@@ -177,23 +174,5 @@
             </div>
         </div>
     </div>
-      
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const button = document.getElementById('toggle-input'); // Tugma elementi
-            const input = document.getElementById('discount-input'); // Input elementi
-    
-            // Tugma bosilganda inputni ko'rsatish yoki yashirish
-            button.addEventListener('click', function () {
-                if (input.classList.contains('hidden')) {
-                    input.classList.remove('hidden'); // Inputni ko'rsatish
-                    input.focus(); // Inputga fokus berish
-                    button.textContent = "Chegirma yashirish"; // Tugma matnini o'zgartirish
-                } else {
-                    input.classList.add('hidden'); // Inputni yashirish
-                    button.textContent = "Chegirma qo'shish"; // Tugma matnini qaytarish
-                }
-            });
-        });
-    </script>
+
 </x-layouts.main>

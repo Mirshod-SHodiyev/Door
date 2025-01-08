@@ -25,7 +25,7 @@
                         <div class="col-span-6">
                             <label for="doortype" class="font-medium">Eshik turlari:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doortype" name="door_types_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doortype" name="door_types_id" required>
                                     @if(!isset($ad))
                                     <option value="0">Eshik turlarini tanlang</option>
                                     @endif
@@ -42,7 +42,7 @@
                         <div class="col-span-6">
                             <label for="door_dimensions_id" class="font-medium">Eshik materiali:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id" required>
                                     @if(!isset($ad))
                                     <option value="0">Eshik materialini tanlang</option>
                                     @endif
@@ -55,7 +55,7 @@
                         <div class="col-span-6">
                             <label for="width" class="font-medium">uzunligi eni sm:</label>
                             <div class="form-icon relative mt-2">
-                                <input name="width" id="width" type="number" class="form-input ps-11" placeholder="eni sm:" value="{{ $ad?->width }}">
+                                <input name="width" id="width" type="number" class="form-input ps-11" placeholder="eni sm:" value="{{ $ad?->width }}" required>
                             </div>
                         </div>
 
@@ -63,7 +63,7 @@
                         <div class="col-span-6">
                             <label for="height" class="font-medium">uzunligi bo'yi sm:</label>
                             <div class="form-icon relative mt-2">
-                                <input name="height" id="height" type="number" class="form-input ps-11" placeholder="bo'yi sm:" value="{{ $ad?->height }}">
+                                <input name="height" id="height" type="number" class="form-input ps-11" placeholder="bo'yi sm:" value="{{ $ad?->height }}" required>
                             </div>
                         </div>
     
@@ -71,7 +71,7 @@
                         <div class="col-span-6">
                             <label for="colors_id" class="font-medium">Ranglar:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="colors_id" name="colors_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="colors_id" name="colors_id" required>
                                     <option value="" disabled {{ !isset($ad) ? 'selected' : '' }}>Ranglarni tanlang</option>
                                     @foreach ($colors as $color)
                                         <option value="{{ $color->id }}" {{ isset($ad) && $color->id === $ad->colors_id ? 'selected' : '' }}>{{ $color->name }}</option>
@@ -85,7 +85,7 @@
                         <div class="col-span-6">
                             <label for="door_frames_id" class="font-medium">atrofida ramka:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorFrames_id" name="door_frames_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorFrames_id" name="door_frames_id" required>
                                     @if(!isset($ad))
                                     <option value="0">Eshik atofini tanglang</option>
                                     @endif
@@ -103,7 +103,7 @@
                         <div class="col-span-6">
                             <label for="has_top_sections_id" class="font-medium">yuqori qoshi:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="hasTopSections_id" name="has_top_sections_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="hasTopSections_id" name="has_top_sections_id" required>
                                     @if(!isset($ad))
                                     <option value="">eshikni qoshini tanlang</option>
                                     @endif
@@ -120,7 +120,7 @@
                         <div class="col-span-6">
                             <label for="door_dimensions_id" class="font-medium">Eshik xizmati:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id" required>
                                     @if(!isset($ad))
                                         <option value="0">Eshik xizmati tanlang</option>
                                     @endif
@@ -138,7 +138,7 @@
                         <div class="col-span-6">
                             <label for="door_dimensions_id" class="font-medium">Eshik qulayligi:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id" required>
                                     @if(!isset($ad))
                                     <option value="0">Eshik qulayligi:</option>
                                     @endif
@@ -151,7 +151,7 @@
                         <div class="col-span-6">
                             <label for="door_dimensions_id" class="font-medium">Eshik qalinligi:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorDimensions_id" name="door_dimensions_id" required>
                                     @if(!isset($ad))
                                     <option value="0">Eshik qalinligini tanlang</option>
                                     @endif
@@ -164,7 +164,7 @@
                         <div class="col-span-6">
                             <label for="frames_id" class="font-medium">Eshik framogasi:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="frames_id" name="frames_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="frames_id" name="frames_id" required>
                                     @if(!isset($ad))
                                     <option value="0">Eshik framogasini tanlang</option>
                                     @endif
@@ -177,7 +177,7 @@
                         <div class="col-span-6">
                             <label for="door_extras_id" class="font-medium">Kubik sapajok:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorExtras_id" name="door_extras_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorExtras_id" name="door_extras_id" required>
                                     @if(!isset($ad))
                                     <option value="0">Kubik sapajok </option>
                                     @endif
@@ -190,7 +190,7 @@
                         <div class="col-span-6">
                             <label for="knobs_id" class="font-medium">Eshik zamoklari:</label>
                             <div class="form-icon relative mt-2">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="knobs_id" name="knobs_id">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="knobs_id" name="knobs_id" required>
                                     @if(!isset($ad))
                                     <option value="0">Eshik zamoklarini  </option>
                                     @endif
@@ -203,28 +203,38 @@
                         
                         <div class="col-span-6">
                             <label for="extra_info" class="font-medium">Qo'shimcha malumot :</label>
-                            <input name="extra_info" id="extra_info" type="text" class="form-input mt-2" placeholder="qo'shimcha malumot" value="{{ $ad?->extra_info}}">
+                            <input name="extra_info" id="extra_info" type="text" class="form-input mt-2" placeholder="qo'shimcha malumot" value="{{ $ad?->extra_info}}" required>
                         </div>
                              
                         <div class="col-span-6">
                             <label for="phone_number" class="font-medium">Mijoz telefon raqami :</label>
-                            <input name="phone_number" id="phone_number" type="number" class="form-input mt-2" placeholder="+998 77 777 77 77" value="{{ $ad?->phone_number}}">
+                            <input name="phone_number" id="phone_number" type="number" class="form-input mt-2" placeholder="+998 77 777 77 77" value="{{ $ad?->phone_number}}" required>
                         </div>
                         <!-- Address Field -->
 
                         <div class="col-span-6">
                             <label for="customers_info" class="font-medium">Mijoz Ismi:</label>
                             <div class="form-icon relative mt-2">
-                                <input name="customers_info" id="customers_info" type="text" class="form-input ps-11" placeholder="mijoz ismi:" value="{{ $ad?->customers_info }}">
+                                <input name="customers_info" id="customers_info" type="text" class="form-input ps-11" placeholder="mijoz ismi:" value="{{ $ad?->customers_info }}" required>
                             </div>
                         </div>
 
-                        <div class="col-span-12">
-                            <label for="discount" class="font-medium">Chegirma:</label>
-                            <div class="form-icon relative mt-2">
-                                <input name="discount" id="discount" type="number" class="form-input ps-11" placeholder="chegirma:" value="{{ $ad?->discount }}">
+                        <div class="col-span-6">
+                            <label for="discountCheckbox" class="font-medium">chegirma qo'shish:</label>
+                            <div class="form-icon relative mt-2 flex items-center">
+                                <input type="checkbox" id="discountCheckbox" name="discountCheckbox" class="mr-2" {{ $ad?->discount ? 'checked' : '' }}>
+                                <label for="discountCheckbox"></label>
                             </div>
                         </div>
+                        
+                        <div class="col-span-6" id="discountInputDiv" style="{{ $ad?->discount ? '' : 'visibility: hidden; height: 0;' }}">
+                            <label for="discount" class="font-medium">Chegirma:</label>
+                            <div class="form-icon relative mt-2">
+                                <input name="discount" id="discount" type="number" class="form-input ps-11" placeholder="Chegirma" value="{{ $ad?->discount }}">
+                            </div>
+                        </div>
+                        
+                        
                         
                     </div>
                     

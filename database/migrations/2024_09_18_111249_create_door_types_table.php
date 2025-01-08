@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('image_url');
             $table->integer('price'); 
-            $table->integer('thickness')->default(8);
+            $table->integer('thickness');
             $table->timestamps();
         });
     }

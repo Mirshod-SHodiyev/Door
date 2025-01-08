@@ -47,13 +47,7 @@
                                         <strong>{{ $ad->doorType->name }}</strong>
                                     </li>
                 
-                                    <li class="flex justify-between items-center">
-                                        <div class="flex items-center">
-                                            <i class="uil uil-usd-circle text-green-600 mr-2"></i>
-                                            <strong>Narxi:</strong>
-                                        </div>
-                                        <strong >{{ $ad->price->price }}</strong>
-                                    </li>
+                                  
                                     <!-- Color -->
                                     <li class="flex justify-between items-center">
                                         <div class="flex items-center">
@@ -138,6 +132,14 @@
                                         </div>
                                         <strong>{{ $ad->doorFrame->name }}</strong>
                                     </li>
+                                        <!-- Door Frame -->
+                                        <li class="flex justify-between items-center">
+                                            <div class="flex items-center">
+                                                <i class="uil uil-layer-group text-green-600 mr-2"></i>
+                                                <strong>Eshik framogasi:</strong>
+                                            </div>
+                                            <strong>{{ $ad->frame->name }}</strong>
+                                        </li>
                                     <!-- Door Frame -->
                                     <li class="flex justify-between items-center">
                                         <div class="flex items-center">
@@ -170,6 +172,17 @@
                                         </div>
                                         <strong>{{ $ad->doorExtra->name }}</strong>
                                     </li>
+
+                                    <li class="flex justify-between items-center">
+                                        <div class="flex items-center">
+                                            <i class="uil uil-tag-alt text-green-600 mr-2"></i>
+
+
+
+                                            <strong>chegirma:</strong>
+                                        </div>
+                                        <strong>{{ $ad->discount}}</strong>
+                                    </li>
                                     <li class="flex justify-between items-center">
                                         <div class="flex items-center">
                                             <i class="uil uil-phone text-green-600 mr-2"></i>
@@ -184,7 +197,14 @@
                                         </div>
                                         <strong>{{ $ad->extra_info }}</strong>
                                     </li>
-                
+                                    <li class="flex justify-between items-center">
+                                        <div class="flex items-center">
+                                            <i class="uil uil-usd-circle text-green-600 mr-2"></i>
+                                            <strong>Narxi:</strong>
+                                        </div>
+                                        <strong>{{ number_format($ad->price->price, 0, ',', ' ') }} so'm</strong>
+                                    </li>
+                                    
                                     <!-- Date -->
                                     <li class="flex justify-between items-center">
                                         <div class="flex items-center">
@@ -193,11 +213,12 @@
                                         </div>
                                         <strong>{{ $ad->created_at }}</strong>
                                     </li>
+
                                 </ul>
                 
                                 <div class="flex justify-center items-center mt-6">
                                     <a href="{{ route('generate.pdf', ['id' => $ad->id]) }}" class="btn bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700">
-                                        PDF Yuklab olish
+                                        shartnomani olish 
                                     </a>
                                 </div>
                             </div>

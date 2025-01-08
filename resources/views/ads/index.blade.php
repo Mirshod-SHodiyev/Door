@@ -109,10 +109,10 @@
                                 <li>
                                     <span class="text-slate-400">
                                         <i class="uil uil-usd-circle icons text-green-600"></i> 
-                                       <span> {{ $ad->price->price }} </span>
+                                        <span>{{ number_format($ad->price->price, 0, ',', ' ') }} so'm</span>
                                     </span>
-                                    
                                 </li>
+                                
                             </ul>
                         </div>
                     </div>

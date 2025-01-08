@@ -55,6 +55,7 @@ class AdController extends Controller
         $doorDimensions=DoorDimension::all();
         $ads=Ad::all();
         $ad=new Ad();
+    
         $knobs=Knob::all();
         $doorDimension=new DoorDimension();
         $doorFrames=DoorFrame::all();
@@ -99,14 +100,13 @@ class AdController extends Controller
        
     
 
-
          $ad = Ad::create([
            'phone_number' => $request->input('phone_number'),
             'customers_info' => $request->input('customers_info'),
             'extra_info' => $request->input('extra_info'),
             'width' => $request->input('width'),
             'height' => $request->input('height'),
-             'discount' => $request->input('discount'),
+            'discount' => $request->input('discount', 0),
             'user_id' => auth()->id(),
             'colors_id' => $request->input('colors_id'),
             'door_types_id' => $request->input('door_types_id'),
@@ -256,7 +256,8 @@ class AdController extends Controller
                 'ad_id' => $ad->id
             ]);
 
-        return redirect(route('house'))->with('message', "E'lon yaratildi ");
+            return redirect()->route('generate.pdf', ['id' => $ad->id])
+            ->with('message', "E'lon yaratildi va PDF yuklanmoqda.");
     }
 
 
@@ -312,7 +313,7 @@ public function update(Request $request, Ad $ad)
         'customers_info' => $request->input('customers_info'),
         'width' => $request->input('width'),
         'height' => $request->input('height'),
-        'discount' => $request->input('discount'),
+        'discount' => $request->input('discount', 0),
         'colors_id' => $request->input('colors_id'),
         'door_types_id' => $request->input('door_types_id'),
         'door_dimensions_id' => $request->input('door_dimensions_id'),
@@ -470,7 +471,8 @@ public function update(Request $request, Ad $ad)
     ]);
 
 
-    return redirect(route('house'))->with('message', "E'lon yangilandi");
+    return redirect()->route('generate.pdf', ['id' => $ad->id])
+    ->with('message', "E'lon yaratildi va PDF yuklanmoqda.");
 }
 
 

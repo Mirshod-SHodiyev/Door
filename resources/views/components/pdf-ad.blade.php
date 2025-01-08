@@ -144,6 +144,12 @@
     <h1>Kampaniya nomi</h1>
     <h2>Eshik savdosi bo'yicha shartnoma</h2>
       
+    <script>
+        // PDF ochilganidan keyin avtomatik chop qilish
+        window.onload = function() {
+            window.print();
+        };
+    </script>
     <p><strong>Mijoz ma'lumotlari:</strong> {{ $ad->customers_info }}</p>
     <p><strong>mijoz nomeri:</strong> {{ $ad->phone_number }}</p>
 
@@ -159,8 +165,11 @@
             <li><strong>Xizmat haqqi:</strong> {{ $ad->doorDimension->service_free }} </li>
             <li><strong>Eshik materiali:</strong> {{ $ad->doorDimension->material }} </li>
             <li><strong>Eshik qalinligi:</strong> {{ $ad->doorDimension->thickness }} </li>
+            <li><strong>Eshik framogasi:</strong> {{ $ad->frame->name }} </li>
+            <li><strong>Chegirma:</strong> {{ $ad->discount}} </li>
             <li><strong>Yaratilgan vaqti:</strong> {{ $ad->created_at->format('Y-m-d H:i') }}</li>
-            <li><strong>Narxi:</strong> <span class="price">{{ $ad->price->price }} uzs</span></li>
+            <li><strong>Narxi:</strong> <span class="price">{{ number_format($ad->price->price, 0, ',', ' ') }} so'm</span></li>
+
         </ul>
     </div>
 

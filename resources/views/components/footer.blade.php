@@ -63,5 +63,33 @@
                 }
             );
         </script>
+<script>
+    // Discount checkbox uchun event listener
+    const discountCheckbox = document.getElementById('discountCheckbox');
+    const discountInputDiv = document.getElementById('discountInputDiv');
+    const discountInput = document.getElementById('discount'); // Discount input elementini olish
+
+    // Chekbox holatini tekshirish va inputni ko'rsatish yoki yashirish
+    discountCheckbox.addEventListener('change', function() {
+        if (discountCheckbox.checked) {
+            discountInputDiv.style.visibility = 'visible'; // Inputni ko'rsatish
+            discountInputDiv.style.height = 'auto'; // Input balandligini tiklash
+        } else {
+            discountInputDiv.style.visibility = 'hidden'; // Inputni yashirish
+            discountInputDiv.style.height = '0'; // Inputni balandligini 0 qilish
+            discountInput.value = 0; // Discount qiymatini 0 ga o'zgartirish
+        }
+    });
+
+    // Initial holatda, agar discount bor bo'lsa inputni ko'rsatish
+    if (discountCheckbox.checked) {
+        discountInputDiv.style.visibility = 'visible';
+        discountInputDiv.style.height = 'auto';
+    } else {
+        discountInput.value = 0; // Discount qiymatini 0 ga o'zgartirish
+    }
+</script>
+
+ 
     </body>
 </html>

@@ -60,12 +60,12 @@ class DoorTypeController extends Controller
 
     public function generatePDF(string $id)
     {
-        $ad = Ad::with(['color', 'doorDimension', 'doorType'])->find($id);
+        $ad = Ad::with(['color', 'doorDimension', 'doorType' , 'doorExtra', 'knob', 'doorFrame', 'hasTopSection', 'frame'])->find($id);
 
         $pdf = PDF::loadView('components.pdf-ad', ['ad' => $ad]);
 
        
-        return $pdf->download('ad-details.pdf');
+        return $pdf->stream('ad-details.pdf');
     }
 
 }
