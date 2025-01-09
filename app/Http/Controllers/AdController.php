@@ -80,6 +80,7 @@ class AdController extends Controller
             'door_dimensions_id' => 'required|numeric',
             'door_extras_id' => 'required|numeric',
             'knobs_id' => 'required|numeric',
+            'thickness' => 'required|numeric',
             
            
            
@@ -92,6 +93,8 @@ class AdController extends Controller
             'has_top_sections_id' => 'Eshik qoshini tanlash majburiy',
         ]);
      
+         
+
         $doorType = DoorType::find($request->door_types_id);
         if (!$doorType) {
             return redirect()->back()->with('error', 'Eshik turi topilmadi.');
@@ -121,6 +124,7 @@ class AdController extends Controller
             
         ]);
          
+        // Parametrlarni olish
         $width = $request->input('width');   // Eshik eni
         $height = $request->input('height'); // Eshik bo'yi
         $discount = $request->input('discount'); // Chegirma
@@ -130,7 +134,8 @@ class AdController extends Controller
         $selectedKnob = $request->input('knobs_id'); // Tutqich
         $selectedFrame = $request->input('frames_id'); // Ramka identifikatori
         $selectedDoorType = $request->input('door_types_id');
-        $selectedDoorExtra = $request->input('door_extras_id');  
+        $selectedDoorExtra = $request->input('door_extras_id'); 
+        $thickness = $request->input('thickness');  
         //  Eshik turi bo'yicha narxni olish  1
         $doorType = DoorType::find($selectedDoorType);
 
@@ -138,31 +143,37 @@ class AdController extends Controller
         if ($doorType) {
             // Agar doorType topilsa, asosiy narxni olish
             $basePrice = $doorType->price;
+            $thickness = $doorType->thickness;
+           // Eshikning qalinligini olish
         } else {
-           
-            $basePrice = 0;  
+            $basePrice = 0;
+            $thickness = 0;  // Agar eshik turi topilmasa, qalinlikni 0 qilib belgilash
         }
+ 
+        
 
+      
        
 
         // Eshik o'lchamlari bo'yicha narxni o'zgartirish 2
-        if ($width >= 100 && $width <= 130 && $height >= 210 && $height <= 270) {
+        if ($width >= 96 && $width <= 130 && $height >= 211 && $height <= 270) {
             $basePrice *= 1.5; // Narxni 50% oshirish
         } elseif ($width >= 131 && $width <= 180 && $height >= 210 && $height <= 310) {
             $basePrice *= 2; // Narxni 2 baravar oshirish
         }
 
-        if ($height > 220) {
-            $extraHeight = $height - 220; // 220 dan ortiq bo'lgan qismini olish
-            $extraFactor = ceil($extraHeight / 10) * 0.05; // Har 10 sm ga 5% qo'shish
-            $basePrice *= (1 + $extraFactor); // Narxni qo'shimcha foiz bilan oshirish
-        }
+       
 
         // Chegirma qo'llash 3
         
 
         // Qo'shimcha xizmatlar (yoki ramka, yuqori bo'lim, tutqich va h.k.) uchun narxlarni hisoblash 4
         $totalPrice = $basePrice;
+
+
+        if ($thickness == 8 && $request->input('thickness') == 12) {
+            $totalPrice += 300000; 
+        }
 
         if ($discount) {
             $totalPrice -= $discount; // Chegirma bo'yicha aniq miqdorni narxdan ayirish
@@ -173,7 +184,7 @@ class AdController extends Controller
             if ($doorDimension) {
                 // Agar 'service_free' "yo'q" bo'lsa, 300,000 so'm ayrish
                 if ($doorDimension->service_free === 'yo\'q') {
-                    $totalPrice -= 250000;  // 300,000 so'm qo'shish
+                    $totalPrice -= 300000;  // 300,000 so'm qo'shish
                 }
         
                 // Narxni qo'shish
@@ -205,52 +216,75 @@ class AdController extends Controller
 
 
         // Yuqori bo'lim narxini qo'shish 5
-        if ($selectedTopSection) {
-            $topSection = HasTopSection::find($selectedTopSection);
-            if ($topSection) {
-                $totalPrice += $topSection->price;
-            }
-        }
-
-        // Tutqich narxini qo'shish 6
-            if ($selectedKnob) {
-                $knob = Knob::find($selectedKnob);
-                if ($knob) {
-                    // Agar 'service_free' "ha" bo'lsa, 200,000 so'm qo'shish
-                    if ($knob->name === 'ha') {
-                        $totalPrice += 250000;  // 200,000 so'm qo'shish
-                    }
-
-             // Narxni qo'shish
-               $totalPrice += $knob->price;
-    }
-}
-
-
-      // Ramka identifikatori bo'yicha narxni qo'shish 7
-        if ($selectedFrame) {
-            $frame = Frame::find($selectedFrame);
-            if ($frame) {
-                // Agar 'service_free' "ha" bo'lsa va o'lchamlar mos kelsa
-                if ($frame->service_free === 'ha' && $width > 100 && $height > 210) {
-                    // Eshik turi narxiga 30% qo'shish
-                    $doorType = DoorType::find($selectedDoorType);  // Eshik turini olish
-                    if ($doorType) {
-                        $totalPrice += $doorType->price * 0.30;  // 30% qo'shish
+                if ($selectedTopSection) {
+                    $topSection = HasTopSection::find($selectedTopSection);
+                    if ($topSection) {
+                        $totalPrice += $topSection->price;
                     }
                 }
 
-                // Ramka narxini qo'shish
-                $totalPrice += $frame->price;
-            }
-}
+                // Tutqich narxini qo'shish 6
+                    if ($selectedKnob) {
+                        $knob = Knob::find($selectedKnob);
+                        if ($knob) {
+                            // Agar 'service_free' "ha" bo'lsa, 200,000 so'm qo'shish
+                            if ($knob->name === 'ha') {
+                                $totalPrice += 200000;  // 200,000 so'm qo'shish
+                            }
 
+                    // Narxni qo'shish
+                    $totalPrice += $knob->price;
+            }
+        }
+
+
+                                        // Ramka identifikatori bo'yicha narxni qo'shish 7
+                if ($selectedFrame) {
+                    $frame = Frame::find($selectedFrame);
+                    if ($frame) {
+                        // Agar 'service_free' "ha" bo'lsa va o'lchamlar mos kelsa
+                        if ($frame->name === 'ha' && $height > 210 && $height <= 260) {
+                            // Eshik turi narxiga 30% qo'shish
+                            $doorType = DoorType::find($selectedDoorType);  // Eshik turini olish
+                            if ($doorType) {
+                                $totalPrice += $doorType->price * 0.30;  // 30% qo'shish
+                            }
+                        } elseif ($frame->name === 'ha' && $height > 260) {
+                            // Agar bo'yi 260 sm dan ortiq bo'lsa, 50% qo'shish
+                            $doorType = DoorType::find($selectedDoorType);  // Eshik turini olish
+                            if ($doorType) {
+                                $totalPrice += $doorType->price * 0.50;  // 50% qo'shish
+                            }
+                        } else {
+                            // Agar 'service_free' "yo'q" bo'lsa va bo'yi 210 sm dan oshsa
+                            if ($height > 210) {
+                                // Har 10 sm uchun 5% qo'shish
+                                $extraHeight = $height - 210;  // Bo'yi 210 sm dan ortiqcha
+                                $extraPricePercentage = floor($extraHeight / 10) * 0.05;  // Har 10 sm uchun 5% qo'shish
+
+                                // Eshik turi narxiga qo'shish
+                                $doorType = DoorType::find($selectedDoorType);  // Eshik turini olish
+                                if ($doorType) {
+                                    $totalPrice += $doorType->price * $extraPricePercentage;  // 5% qo'shish
+                                }
+                            }
+                        }
+
+                        // Ramka narxini qo'shish
+                        $totalPrice += $frame->price;
+                    }
+                }
+
+                          
+
+                    
                 if ($selectedDoorExtra) {    
                     $doorExtra = DoorExtra::find($selectedDoorExtra);
                     if ($doorExtra) {
                         $totalPrice += $doorExtra->price;  // Tanlangan DoorExtra narxini qo'shish 8
                     }
                 }
+
         
             Price::create([
                 'price' => $totalPrice,
@@ -336,45 +370,46 @@ public function update(Request $request, Ad $ad)
          $selectedKnob = $request->input('knobs_id'); // Tutqich
          $selectedFrame = $request->input('frames_id'); // Ramka identifikatori
          $selectedDoorType = $request->input('door_types_id');
-         $selectedDoorExtra = $request->input('door_extras_id');  
+         $selectedDoorExtra = $request->input('door_extras_id'); 
+         $thickness = $request->input('thickness');  
          //  Eshik turi bo'yicha narxni olish  1
          $doorType = DoorType::find($selectedDoorType);
  
       
          if ($doorType) {
-            // Agar doorType topilsa, asosiy narxni olish
-            $basePrice = $doorType->price;
-            $thickness = $doorType->thickness;  // Eshikning qalinligini olish
-        } else {
-            $basePrice = 0;
-            $thickness = 0;  // Agar eshik turi topilmasa, qalinlikni 0 qilib belgilash
-        }
+             // Agar doorType topilsa, asosiy narxni olish
+             $basePrice = $doorType->price;
+             $thickness = $doorType->thickness;
+            // Eshikning qalinligini olish
+         } else {
+             $basePrice = 0;
+             $thickness = 0;  // Agar eshik turi topilmasa, qalinlikni 0 qilib belgilash
+         }
+  
+         
  
         
-
-        if ($thickness == 8 && $request->input('new_thickness') == 12) {
-            $basePrice += 300000; 
-        }
-    
  
          // Eshik o'lchamlari bo'yicha narxni o'zgartirish 2
-         if ($width >= 100 && $width <= 130 && $height >= 210 && $height <= 270) {
+         if ($width >= 96 && $width <= 130 && $height >= 211 && $height <= 270) {
              $basePrice *= 1.5; // Narxni 50% oshirish
          } elseif ($width >= 131 && $width <= 180 && $height >= 210 && $height <= 310) {
              $basePrice *= 2; // Narxni 2 baravar oshirish
          }
  
-         if ($height > 220) {
-             $extraHeight = $height - 220; // 220 dan ortiq bo'lgan qismini olish
-             $extraFactor = ceil($extraHeight / 10) * 0.05; // Har 10 sm ga 5% qo'shish
-             $basePrice *= (1 + $extraFactor); // Narxni qo'shimcha foiz bilan oshirish
-         }
+        
  
          // Chegirma qo'llash 3
          
  
          // Qo'shimcha xizmatlar (yoki ramka, yuqori bo'lim, tutqich va h.k.) uchun narxlarni hisoblash 4
          $totalPrice = $basePrice;
+
+
+         if ($thickness == 8 && $request->input('thickness') == 12) {
+            $totalPrice += 300000; 
+        }
+
  
          if ($discount) {
              $totalPrice -= $discount; // Chegirma bo'yicha aniq miqdorni narxdan ayirish
@@ -438,32 +473,45 @@ public function update(Request $request, Ad $ad)
      }
  }
  
- 
-                        // Ramka identifikatori bo'yicha narxni qo'shish
-                    if ($selectedFrame) {
-                        $frame = Frame::find($selectedFrame);
-                        if ($frame) {
-                            // Agar 'service_free' "ha" bo'lsa va o'lchamlar mos kelsa
-                            if ($frame->service_free === 'ha' && $height > 210) {
-                                // Eshik turi narxiga 30% qo'shish
-                                $doorType = DoorType::find($selectedDoorType);  // Eshik turini olish
-                                if ($doorType) {
-                                    $totalPrice += $doorType->price * 0.30;  // 30% qo'shish
-                                }
-                            } elseif ($frame->service_free === 'yo\'q') {
-                                // Agar 'service_free' "yo'q" bo'lsa va balandlik 220 dan oshsa
-                                if ($height > 220) {
-                                    $extraHeight = $height - 220; // 220 dan ortiq bo'lgan qismini olish
-                                    $extraFactor = ceil($extraHeight / 10) * 0.05; // Har 10 sm ga 5% qo'shish
-                                    $totalPrice *= (1 + $extraFactor); // Narxni qo'shimcha foiz bilan oshirish
-                                }
-                            }
+ // Ramka identifikatori bo'yicha narxni qo'shish 7
+            if ($selectedFrame) {
+                $frame = Frame::find($selectedFrame);
+                if ($frame) {
+                    // Agar 'service_free' "ha" bo'lsa va o'lchamlar mos kelsa
+                    if ($frame->name === 'ha' && $height > 210 && $height <= 260) {
+                        // Eshik turi narxiga 30% qo'shish
+                        $doorType = DoorType::find($selectedDoorType);  // Eshik turini olish
+                        if ($doorType) {
+                            $totalPrice += $doorType->price * 0.30;  // 30% qo'shish
+                        }
+                    } elseif ($frame->name === 'ha' && $height > 260) {
+                        // Agar bo'yi 260 sm dan ortiq bo'lsa, 50% qo'shish
+                        $doorType = DoorType::find($selectedDoorType);  // Eshik turini olish
+                        if ($doorType) {
+                            $totalPrice += $doorType->price * 0.50;  // 50% qo'shish
+                        }
+                    } else {
+                        // Agar 'service_free' "yo'q" bo'lsa va bo'yi 210 sm dan oshsa
+                        if ($height > 210) {
+                            // Har 10 sm uchun 5% qo'shish
+                            $extraHeight = $height - 210;  // Bo'yi 210 sm dan ortiqcha
+                            $extraPricePercentage = floor($extraHeight / 10) * 0.05;  // Har 10 sm uchun 5% qo'shish
 
-                            // Ramka narxini qo'shish
-                            $totalPrice += $frame->price;
+                            // Eshik turi narxiga qo'shish
+                            $doorType = DoorType::find($selectedDoorType);  // Eshik turini olish
+                            if ($doorType) {
+                                $totalPrice += $doorType->price * $extraPricePercentage;  // 5% qo'shish
+                            }
                         }
                     }
 
+                    // Ramka narxini qo'shish
+                    $totalPrice += $frame->price;
+                }
+            }
+
+                                
+ 
                  if ($selectedDoorExtra) {    
                      $doorExtra = DoorExtra::find($selectedDoorExtra);
                      if ($doorExtra) {
@@ -471,7 +519,6 @@ public function update(Request $request, Ad $ad)
                      }
                  }
  
-   
 
     $priceRecord = Price::where('ad_id', $ad->id)->first();
     $priceRecord->update([

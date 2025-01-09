@@ -165,7 +165,7 @@
                             <div class="form-icon relative mt-2">
                                 <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="frames_id" name="frames_id" required>
                                     @if(!isset($ad))
-                                    <option value="0">Eshik framogasini tanlang</option>
+                                 
                                     @endif
                                     @foreach ($frames as $frame)
                                         <option value="{{$frame->id}}" {{ isset($ad) && $frame->id === $ad->frames_id ? 'selected' : '' }}>{{$frame->name}}</option>
@@ -178,7 +178,7 @@
                             <div class="form-icon relative mt-2">
                                 <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="doorExtras_id" name="door_extras_id" required>
                                     @if(!isset($ad))
-                                    <option value="0">Kubik sapajok </option>
+                                    <option value="0">Kubik sapajokni tanlang </option>
                                     @endif
                                     @foreach ($doorExtras as $doorExtra)
                                         <option value="{{$doorExtra->id}}" {{ isset($ad) && $doorExtra->id === $door_extras_id ? 'selected' : '' }}>{{$doorExtra->name}}</option>
@@ -202,7 +202,7 @@
                         
                         <div class="col-span-6">
                             <label for="extra_info" class="font-medium">Qo'shimcha malumot :</label>
-                            <input name="extra_info" id="extra_info" type="text" class="form-input mt-2" placeholder="qo'shimcha malumot" value="{{ $ad?->extra_info}}" required>
+                            <input name="extra_info" id="extra_info" type="text" class="form-input mt-2" placeholder="qo'shimcha malumot" value="{{ $ad?->extra_info}}" >
                         </div>
                              
                         <div class="col-span-6">

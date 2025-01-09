@@ -12,25 +12,27 @@ class Ad extends Model
     use HasFactory;
 
   
-    protected $with = [ 'color', 'user',  'doorDimension', 'doorType'];
+    protected $with = [ 'color', 'user',  'doorDimension', 'doorType', 'price' , 'knob' , 'hasTopSection' , 'doorExtra' , 'doorFrame' , 'frame' ];
 
     protected $fillable = [
         'phone_number',
+        'customers_info',
         'extra_info',
         'width',
         'height',
-         'discount',
-        'has_top_sections_id',
-        'customers_info',
+        'discount',
+        'thickness',
         'user_id',
         'colors_id',
-        'door_dimensions_id',
         'door_types_id',
+        'door_dimensions_id',
         'door_extras_id',
         'knobs_id',
         'door_frames_id',
-        'frames_id'
+        'has_top_sections_id',
+        'frames_id',
     ];
+    
 
   
     public function color()

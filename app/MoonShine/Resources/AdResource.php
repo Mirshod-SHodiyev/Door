@@ -15,6 +15,7 @@ use MoonShine\Fields\Text;
 
 
 
+
 /**
  * @extends ModelResource<Ad>
  */
@@ -35,11 +36,18 @@ class AdResource extends ModelResource
                 Text::make('Mijoz Ismi', 'customers_info')->sortable(),
                 Text::make("width")->hideOnIndex(),
                 Text::make("height")->hideOnIndex(),
+                Text::make("discount")->hideOnIndex(),
+                Text::make("thickness")->hideOnIndex(),
+                Text::make("phone_number")->hideOnIndex(),
                 BelongsTo::make(label: 'Ranglar',  relationName: 'Color', resource: new ColorResource()), 
                 BelongsTo::make( label: ' Narxlari', relationName: 'Price', resource: new PriceResource()),
                 BelongsTo::make( label: 'Eshik Malumotlari', relationName: 'DoorDimension', resource: new DoorDimensionResource()), 
                 BelongsTo::make( label: 'Eshik Turlari', relationName: 'DoorType', resource: new DoorTypeResource()),
                 BelongsTo::make(label:  'Sotuvchilar', relationName: 'user', resource: new UserResource()),
+                BelongsTo::make( label: 'Zamoklar', relationName: 'Knob', resource: new KnobResource()),
+                BelongsTo::make( label: 'Eshik Qo\'shimchalar', relationName: 'DoorExtra', resource: new DoorExtraResource()),
+                BelongsTo::make( label: 'Eshiklar', relationName: 'Frame', resource: new FrameResource()),
+                
                
 
 

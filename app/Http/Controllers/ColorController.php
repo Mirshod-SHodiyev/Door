@@ -31,7 +31,6 @@ class ColorController extends Controller
 
         // Parametrlarni olish
         $width = $request->input('width');   // Eshik eni
-
         $height = $request->input('height'); // Eshik bo'yi
         $discount = $request->input('discount'); // Chegirma
         $isDoorService = $request->input('door_dimensions_id'); // Eshik xizmati
@@ -49,7 +48,8 @@ class ColorController extends Controller
         if ($doorType) {
             // Agar doorType topilsa, asosiy narxni olish
             $basePrice = $doorType->price;
-            $thickness = $doorType->thickness;  // Eshikning qalinligini olish
+            $thickness = $doorType->thickness;
+           // Eshikning qalinligini olish
         } else {
             $basePrice = 0;
             $thickness = 0;  // Agar eshik turi topilmasa, qalinlikni 0 qilib belgilash
@@ -57,30 +57,30 @@ class ColorController extends Controller
  
         
 
-        if ($thickness == 8 && $request->input('thickness') == 12) {
-            $basePrice += 300000; 
-        }
+        
 
        
 
         // Eshik o'lchamlari bo'yicha narxni o'zgartirish 2
-        if ($width >= 100 && $width <= 130 && $height >= 210 && $height <= 270) {
+        if ($width >= 96 && $width <= 130 && $height >= 211 && $height <= 270) {
             $basePrice *= 1.5; // Narxni 50% oshirish
         } elseif ($width >= 131 && $width <= 180 && $height >= 210 && $height <= 310) {
             $basePrice *= 2; // Narxni 2 baravar oshirish
         }
 
-        if ($height > 220) {
-            $extraHeight = $height - 220; // 220 dan ortiq bo'lgan qismini olish
-            $extraFactor = ceil($extraHeight / 10) * 0.05; // Har 10 sm ga 5% qo'shish
-            $basePrice *= (1 + $extraFactor); // Narxni qo'shimcha foiz bilan oshirish
-        }
+       
 
         // Chegirma qo'llash 3
         
 
         // Qo'shimcha xizmatlar (yoki ramka, yuqori bo'lim, tutqich va h.k.) uchun narxlarni hisoblash 4
         $totalPrice = $basePrice;
+
+        
+
+        if ($thickness == 8 && $request->input('thickness') == 12) {
+            $totalPrice += 300000; 
+        }
 
         if ($discount) {
             $totalPrice -= $discount; // Chegirma bo'yicha aniq miqdorni narxdan ayirish
@@ -145,23 +145,42 @@ class ColorController extends Controller
 }
 
 
-      // Ramka identifikatori bo'yicha narxni qo'shish 7
-        if ($selectedFrame) {
-            $frame = Frame::find($selectedFrame);
-            if ($frame) {
-                // Agar 'service_free' "ha" bo'lsa va o'lchamlar mos kelsa
-                if ($frame->service_free === 'ha' && $width > 100 && $height > 210) {
-                    // Eshik turi narxiga 30% qo'shish
-                    $doorType = DoorType::find($selectedDoorType);  // Eshik turini olish
-                    if ($doorType) {
-                        $totalPrice += $doorType->price * 0.30;  // 30% qo'shish
-                    }
-                }
+                            // Ramka identifikatori bo'yicha narxni qo'shish 7
+            if ($selectedFrame) {
+                $frame = Frame::find($selectedFrame);
+                if ($frame) {
+                    // Agar 'service_free' "ha" bo'lsa va o'lchamlar mos kelsa
+                    if ($frame->name === 'ha' && $height > 210 && $height <= 260) {
+                        // Eshik turi narxiga 30% qo'shish
+                        $doorType = DoorType::find($selectedDoorType);  // Eshik turini olish
+                        if ($doorType) {
+                            $totalPrice += $doorType->price * 0.30;  // 30% qo'shish
+                        }
+                    } elseif ($frame->name === 'ha' && $height > 260) {
+                        // Agar bo'yi 260 sm dan ortiq bo'lsa, 50% qo'shish
+                        $doorType = DoorType::find($selectedDoorType);  // Eshik turini olish
+                        if ($doorType) {
+                            $totalPrice += $doorType->price * 0.50;  // 50% qo'shish
+                        }
+                    } else {
+                        // Agar 'service_free' "yo'q" bo'lsa va bo'yi 210 sm dan oshsa
+                        if ($height >= 210) {
+                            // Har 10 sm uchun 5% qo'shish
+                            $extraHeight = $height - 210;  // Bo'yi 210 sm dan ortiqcha
+                            $extraPricePercentage = floor($extraHeight / 10) * 0.05;  // Har 10 sm uchun 5% qo'shish
 
-                // Ramka narxini qo'shish
-                $totalPrice += $frame->price;
+                            // Eshik turi narxiga qo'shish
+                            $doorType = DoorType::find($selectedDoorType);  // Eshik turini olish
+                            if ($doorType) {
+                                $totalPrice += $doorType->price * $extraPricePercentage;  // 5% qo'shish
+                            }
+                        }
+                    }
+
+                    // Ramka narxini qo'shish
+                    $totalPrice += $frame->price;
+                }
             }
-}
 
                 if ($selectedDoorExtra) {    
                     $doorExtra = DoorExtra::find($selectedDoorExtra);

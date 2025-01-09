@@ -2,41 +2,42 @@
 
 namespace App\MoonShine\Resources;
 
-use App\Models\DoorAddition;
+use App\Models\HasTopSection;
 use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
 
-class DoorAdditionResource extends ModelResource
+class HasTopSectionResourse extends ModelResource
 {
-    protected string $model = DoorAddition::class;
-    protected string $title = 'Door Addition';
+    protected string $model = HasTopSection::class;
+    protected string $title = 'HasTopSection';
     public string $column ="name";
-
+ 
 
     /**
-     * Define the fields for the resource
+     * Define the fields for the resource.
      *
      * @return array
      */
     public function fields(): array
     {
         return [
-            Text::make('name')->sortable(),
-          
+            Text::make('HasTopSection', 'name')->sortable(),
+            Text::make('Narx' , 'price')->sortable()
+            
         ];
     }
 
     /**
      * Define validation rules for the resource.
      *
-     * @param Color $item
+     * @param DoorType $item
      * @return array
      */
     public function rules($item): array
     {
         return [
-            'name' => 'required|string|max:255',  
-           
+            'name' => 'required|string|max:255',
+            
         ];
     }
 }

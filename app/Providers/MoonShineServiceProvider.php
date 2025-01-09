@@ -4,14 +4,18 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Models\HasTopSection;
 use App\Models\Knob;
 use App\MoonShine\Resources\AdResource;
 use App\MoonShine\Resources\ColorResource;
 use App\MoonShine\Resources\DoorDimensionResource;
 use App\MoonShine\Resources\DoorTypeResource;
 use App\MoonShine\Resources\DoorExtraResource;
-use App\MoonShine\Resources\DoorAdditionResource;
 use App\MoonShine\Resources\KnobResource;
+use App\MoonShine\Resources\FrameResource;
+use App\MoonShine\Resources\HasTopSectionResourse;
+use App\MoonShine\Resources\DoorFrameRecourse;
+
 
 use App\MoonShine\Resources\UserResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
@@ -22,8 +26,11 @@ use MoonShine\Resources\MoonShineUserRoleResource;
 use MoonShine\Contracts\Resources\ResourceContract;
 use MoonShine\Menu\MenuElement;
 use MoonShine\Pages\Page;
+
 use Closure;
 use App\MoonShine\Resources\BookmarkResource;
+use App\MoonShine\Resources\DoorFrameResourse;
+
 class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
 {
     /**
@@ -66,7 +73,11 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
             MenuItem::make("Eshik Turlari", new DoorTypeResource())->icon("heroicons.ellipsis-vertical"),
             MenuItem::make("Zamoklar", new KnobResource())->icon("heroicons.ellipsis-vertical"),
             MenuItem::make("Eshik Qo'shimchalar", new DoorExtraResource())->icon("heroicons.ellipsis-vertical"),
-            MenuItem::make("Eshik Fragalri", new DoorAdditionResource())->icon("heroicons.ellipsis-vertical"),
+            MenuItem::make("Qoshi", new HasTopSectionResourse())->icon("heroicons.ellipsis-vertical"),
+            MenuItem::make("Nalichka", new DoorFrameRecourse())->icon("heroicons.ellipsis-vertical"),
+
+            
+          
 
            
 

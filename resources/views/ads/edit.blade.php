@@ -103,8 +103,8 @@
                             <div class="form-icon relative mt-2">
                                 <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" 
                                         id="thickness" name="thickness" required>
-                                    <option value="8" {{ old('thickness') == 8 ? 'selected' : '' }}>8 lik</option>
-                                    <option value="12" {{ old('thickness') == 12 ? 'selected' : '' }}>12 lik</option>
+                                        <option value="8">8</option>
+                                        <option value="12">12</option>
                                 </select>
                             </div>
                         </div>

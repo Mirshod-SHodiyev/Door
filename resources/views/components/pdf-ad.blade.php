@@ -160,13 +160,13 @@
             <li><strong>Kengligi:</strong> {{ $ad->width }} sm</li>
             <li><strong>Bo'yi:</strong> {{ $ad->height }} sm</li>
             <li><strong>Ochilish tomoni:</strong> {{ $ad->doorDimension->opening_side }}</li>
-            <li><strong>Eshik yuqori qismi:</strong> {{ $ad->doorDimension->has_top_section }}</li>
-            <li><strong>Eshik ramkasi:</strong> {{ $ad->doorDimension->door_frame }}</li>
+            <li><strong>Eshik yuqori qismi:</strong> {{ $ad->hasTopSection->name }}</li>
+            <li><strong>Eshik ramkasi:</strong> {{ $ad->doorFrame->name }}</li>
             <li><strong>Xizmat haqqi:</strong> {{ $ad->doorDimension->service_free }} </li>
             <li><strong>Eshik materiali:</strong> {{ $ad->doorDimension->material }} </li>
             <li><strong>Eshik qalinligi:</strong> {{ $ad->thickness }} </li>
             <li><strong>Eshik framogasi:</strong> {{ $ad->frame->name }} </li>
-            <li><strong>Chegirma:</strong> {{ $ad->discount}} </li>
+            <li><strong>Chegirma:</strong> {{ $ad->discount}} so'm </li>
             <li><strong>Yaratilgan vaqti:</strong> {{ $ad->created_at->format('Y-m-d H:i') }}</li>
             <li><strong>Narxi:</strong> <span class="price">{{ number_format($ad->price->price, 0, ',', ' ') }} so'm</span></li>
 

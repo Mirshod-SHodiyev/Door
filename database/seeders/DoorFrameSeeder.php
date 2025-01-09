@@ -23,6 +23,8 @@ class DoorFrameSeeder extends Seeder
             ['name' => 'gulli nalichka'],
             ['name' => 'lagmoncha nalichka'],
             ['name' => 'toshkent fason nalichka'],
+            ['name' => '290 fason nalichka'],
+
         ];
 
         // DoorFrame nomlari va ularning narxlari
@@ -37,6 +39,7 @@ class DoorFrameSeeder extends Seeder
             'gulli nalichka' => 55000,
             'lagmoncha nalichka' => 100000,
             'toshkent fason nalichka' => 60000,
+            '290 fason nalichka' => 70000,
         ];
 
         // DoorFrame modelini yaratish

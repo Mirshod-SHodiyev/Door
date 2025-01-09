@@ -2,14 +2,14 @@
 
 namespace App\MoonShine\Resources;
 
-use App\Models\DoorType;
+use App\Models\Frame;
 use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
 
-class DoorTypeResource extends ModelResource
+class FrameResource extends ModelResource
 {
-    protected string $model = DoorType::class;
-    protected string $title = 'Door Types';
+    protected string $model = Frame::class;
+    protected string $title = 'Frame';
     public string $column ="name";
  
 
@@ -21,9 +21,7 @@ class DoorTypeResource extends ModelResource
     public function fields(): array
     {
         return [
-            Text::make('Ranglar', 'name')->sortable(),
-            Text::make('Rasm', 'image_url')->hideOnIndex(),
-            Text::make('narxlar', 'price')->sortable(),
+            Text::make('Framoga', 'name')->sortable(),
             
         ];
     }
@@ -38,8 +36,7 @@ class DoorTypeResource extends ModelResource
     {
         return [
             'name' => 'required|string|max:255',
-            'image_url' => 'required|string|max:255',
-            'price'=>'required|number'
+            
         ];
     }
 }
