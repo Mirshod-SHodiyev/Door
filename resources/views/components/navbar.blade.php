@@ -29,10 +29,10 @@
         <!-- Logo -->
         <a class="logo" href="index.html">
             <span class="inline-block dark:hidden">
-                 <img src="assets/images/logo-dark.png" class="l-dark" height="24" alt=""> 
-                 <img src="assets/images/logo-light.png" class="l-light" height="24" alt="">
+                 <img src="assets/images/logo-dark.png" class="l-dark" width="36px" height="36px" alt=""> 
+                 <img src="assets/images/logo-light.png" class="l-light" width="36px"  height="36px" alt="">
             </span>
-            <img src="assets/images/logo-light.png" height="24" class="hidden dark:inline-block" alt="">
+            <img src="assets/images/logo-light.png" width="36px" height="36px" class="hidden dark:inline-block" alt="">
         </a>
 
         <!-- Menu Extras -->

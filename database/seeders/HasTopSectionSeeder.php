@@ -15,6 +15,7 @@ class HasTopSectionSeeder extends Seeder
     {
         // HasTopSection nomlari va narxlar
         $data = [
+            ['name'=> "yo'/q", 'price' =>0],
             ['name' => '206', 'price' => 250000],
             ['name' => '206 tilla', 'price' => 350000],
             ['name' => '219', 'price' => 300000],
