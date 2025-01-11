@@ -25,9 +25,8 @@ class DoorDimensionResource extends ModelResource
         return [
           
             Text::make('Eshik Qulayligi', 'opening_side')->sortable(),
-            Text::make('Yuqori Qoshi', 'has_top_section')->sortable(),
             Text::make('Servis xizmati', 'service_free')->sortable(),
-            Text::make('Eshik Ramkasi', 'door_frame')->sortable(),
+        
             
         ];
     }
