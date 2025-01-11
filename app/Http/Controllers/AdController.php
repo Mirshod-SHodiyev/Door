@@ -325,7 +325,7 @@ class AdController extends Controller
     $hasTopSections=\App\Models\HasTopSection::all();
     $frames=\App\Models\Frame::all();
     $doorFrames=DoorFrame::all();
-
+    $materials=Material::all();
     
     $action = route('ads.update', $ad->id); 
  
