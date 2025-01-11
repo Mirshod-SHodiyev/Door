@@ -2,10 +2,7 @@
         <!-- Start Footer -->
         <footer class="relative bg-slate-900 dark:bg-slate-800 mt-24">
             <div class="container relative">
-
-
             </div><!--end container-->
-
         </footer>
         <!-- End Footer -->
         <!-- Switcher -->
@@ -20,10 +17,6 @@
             </span>
         </div>
         <!-- Switcher -->
-
-
-
-
             <!-- Footer Start -->
             <footer class="shadow dark:shadow-gray-700 bg-white dark:bg-slate-900 px-6 py-4">
                 <div class="container-fluid">
@@ -31,7 +24,7 @@
                         <div class="sm:text-start text-center mx-md-2">
                             <p class="mb-0 text-slate-400">©
                                 <script>document.write(new Date().getFullYear())</script>
-                                Doors <i class="mdi mdi-heart text-red-600"></i> by CodingTech.
+                                Doors  by CodingTech.
                             </p>
                         </div><!--end col-->
                     </div><!--end grid-->
@@ -41,9 +34,6 @@
         </main>
         <!--End page-content" -->
     </div>
-
-        <!-- LTR & RTL Mode Code -->
-
         <!-- Back to top -->
         <a href="#" onclick="topFunction()" id="back-to-top" class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 end-5 size-9 text-center bg-green-600 text-white justify-center items-center"><i class="uil uil-arrow-up"></i></a>
         <!-- Back to top -->
