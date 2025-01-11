@@ -10,6 +10,7 @@ use App\Models\DoorExtra;
 use App\Models\Knob;
 use App\Models\DoorFrame;
 use App\Models\Frame;
+use App\Models\Material;
 
 class ColorController extends Controller
 {
@@ -28,7 +29,7 @@ class ColorController extends Controller
         $knobs = Knob::all();
         $hasTopSections = HasTopSection::all();
         $doorFrames = DoorFrame::all();
-
+        $materials=Material::all();
         // Parametrlarni olish
         $width = $request->input('width');   // Eshik eni
         $height = $request->input('height'); // Eshik bo'yi
@@ -41,6 +42,7 @@ class ColorController extends Controller
         $selectedDoorType = $request->input('door_types_id');
         $selectedDoorExtra = $request->input('door_extras_id'); 
         $thickness = $request->input('thickness');  
+        $selectedMaterial=$request->input('materials_id');
         //  Eshik turi bo'yicha narxni olish  1
         $doorType = DoorType::find($selectedDoorType);
 
@@ -189,11 +191,17 @@ class ColorController extends Controller
                     }
                 }
 
+                $material=Material::find($selectedMaterial);
+                if ($material) {
+                    $totalPrice += $material->price; 
+                }
+                  
+
         // Hisoblangan jami narxni view ga uzatish
         return view('ads.hisob', compact(
             'doorTypes', 'ads', 'ad', 'action', 'doorDimensions', 
             'doorExtras', 'knobs', 'doorFrames', 'width', 'height', 
-            'hasTopSections', 'frames', 'totalPrice'
+            'hasTopSections', 'frames',  'materials', 'totalPrice'
         ));
     }
 }

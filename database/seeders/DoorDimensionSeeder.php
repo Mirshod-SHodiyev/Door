@@ -14,23 +14,22 @@ class DoorDimensionSeeder extends Seeder
             [
                 'service_free' => 'ha',
                 'opening_side' => 'chap ichkarida',
-                'material' => 'mdf',
+               
             ],
             [
-                'service_free' => 'yo\'q',
-                'opening_side' => 'o\'ng tashqariga',
-              
-                'material' => 'taxta',
+                 'service_free' => 'yo\'q',
+                 'opening_side' => 'o\'ng tashqariga',
+               
             ],
             [
                 'service_free' => '',
                 'opening_side' => 'chap tashqarida',
-                'material' => '',  // Bo'sh satr (empty string)
+                
             ],
             [
                 'service_free' => '',
                 'opening_side' => 'o\'ng ichkarida',
-                'material' => '',  // Bo'sh satr (empty string)
+               
             ],
         ]);
     }

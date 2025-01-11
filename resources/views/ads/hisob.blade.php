@@ -139,23 +139,35 @@
                             </div>
                         </div>
                         
-                        
-                        <div class="col-span-6">
+                             
+                        <div class="col-span-3">
                             <label for="discountCheckbox" class="font-medium">chegirma qo'shish:</label>
                             <div class="form-icon relative mt-2 flex items-center">
                                 <input type="checkbox" id="discountCheckbox" name="discountCheckbox" class="mr-2" {{ $ad?->discount ? 'checked' : '' }}>
                                 <label for="discountCheckbox"></label>
                             </div>
                         </div>
-                        
-                        <div class="col-span-6" id="discountInputDiv" style="{{ $ad?->discount ? '' : 'visibility: hidden; height: 0;' }}">
+                                 
+                        <div class="col-span-3" id="discountInputDiv" style="{{ $ad?->discount ? '' : 'visibility: hidden; height: 0;' }}">
                             <label for="discount" class="font-medium">Chegirma:</label>
                             <div class="form-icon relative mt-2">
                                 <input name="discount" id="discount" type="number" class="form-input ps-11" placeholder="Chegirma" value="{{ $ad?->discount }}">
                             </div>
                         </div>
                         
-                        
+                        <div class="col-span-6">
+                            <label for="materials_id" class="font-medium">Eshik materiali:</label>
+                            <div class="form-icon relative mt-2">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="materials_id" name="materials_id" required>
+                                    @if(!isset($ad))
+                                    <option value="0">Eshik materialini tanlang</option>
+                                    @endif
+                                    @foreach ($materials as $material)
+                                        <option value="{{$material->id}}" {{ isset($ad) && $material->id === $ad->materials_id ? 'selected' : '' }}>{{$material->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         
                         
                         </div>

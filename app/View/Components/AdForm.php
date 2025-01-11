@@ -23,6 +23,7 @@ class AdForm extends Component
     public $hasTopSection;
     public $frames=[];
     public $frame;
+    public $materials=[];
     
   
 
@@ -38,6 +39,7 @@ class AdForm extends Component
         $this->doorFrames = \App\Models\DoorFrame::all();
         $this->hasTopSections = \App\Models\HasTopSection::all();
         $this->frames = \App\Models\Frame::all();
+        $this->materials = \App\Models\Material::all();
      
         
     }

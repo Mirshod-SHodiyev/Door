@@ -12,6 +12,7 @@ use App\Models\Knob;
 use App\Models\DoorFrame;
 use App\Models\HasTopSection;
 use App\Models\Frame;
+use App\Models\Material;
 
 
 
@@ -55,12 +56,12 @@ class AdController extends Controller
         $doorDimensions=DoorDimension::all();
         $ads=Ad::all();
         $ad=new Ad();
-    
+         $materials=Material::all();
         $knobs=Knob::all();
         $doorDimension=new DoorDimension();
         $doorFrames=DoorFrame::all();
        
-        return view('ads.create', compact('doorTypes','ads','colors','ad','action','doorDimensions' ,'doorExtras'  ,'knobs' ,'doorFrames', 'hasTopSections'));
+        return view('ads.create', compact('doorTypes','ads','colors','ad','action','doorDimensions' ,'doorExtras'  ,'knobs' ,'doorFrames', 'hasTopSections' ,'frames','materials'));
 
     }
 
@@ -91,6 +92,7 @@ class AdController extends Controller
             'door_extras_id' => 'Eshik xususiyatlari tanlash majburiy',
             'knobs_id' => 'Eshik kovalari tanlash majburiy',
             'has_top_sections_id' => 'Eshik qoshini tanlash majburiy',
+
         ]);
      
          
@@ -120,6 +122,7 @@ class AdController extends Controller
             'door_frames_id' => $request->input('door_frames_id'),
             'has_top_sections_id' => $request->input('has_top_sections_id'),
             'frames_id' => $request->input('frames_id'),
+            'materials_id' => $request->input('materials_id'),
           
             
         ]);
@@ -136,6 +139,7 @@ class AdController extends Controller
         $selectedDoorType = $request->input('door_types_id');
         $selectedDoorExtra = $request->input('door_extras_id'); 
         $thickness = $request->input('thickness');  
+        $selectedMaterial = $request->input('materials_id');
         //  Eshik turi bo'yicha narxni olish  1
         $doorType = DoorType::find($selectedDoorType);
 
@@ -285,6 +289,10 @@ class AdController extends Controller
                     }
                 }
 
+                $material=Material::find($selectedMaterial);
+                if ($material) {
+                    $totalPrice += $material->price; 
+                }
         
             Price::create([
                 'price' => $totalPrice,
@@ -298,7 +306,7 @@ class AdController extends Controller
 
     public function show(string $id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory
     {
-        $ad = Ad::with(['color','doorDimension' , 'doorType',  'doorExtra', 'knob', 'doorFrame' , 'hasTopSection' , 'frame' ])->find($id);
+        $ad = Ad::with(['color','doorDimension' , 'doorType',  'doorExtra', 'knob', 'doorFrame' , 'hasTopSection' , 'frame' , 'material'])->find($id);
         return view('components.single-ad', ['ad'=>$ad]);
     }
       
@@ -321,7 +329,7 @@ class AdController extends Controller
     
     $action = route('ads.update', $ad->id); 
  
-    return view('ads.edit', compact('ad', 'colors', 'doorTypes', 'doorDimensions' , 'action' , 'doorExtras' , 'knobs' , 'doorFrames', 'hasTopSections', 'frames'));
+    return view('ads.edit', compact('ad', 'colors', 'doorTypes', 'doorDimensions' , 'action' , 'doorExtras' , 'knobs' , 'doorFrames', 'hasTopSections', 'frames' ,'doorFrames' ,'materials'));
 }
 
 
@@ -358,6 +366,7 @@ public function update(Request $request, Ad $ad)
         'door_frames_id' => $request->input('door_frames_id'),
         'has_top_sections_id' => $request->input('has_top_sections_id'),
         'frames_id' => $request->input('frames_id'),
+        'materials_id' => $request->input('materials_id'),
     ]);
 
          // Parametrlarni olish
@@ -372,6 +381,7 @@ public function update(Request $request, Ad $ad)
          $selectedDoorType = $request->input('door_types_id');
          $selectedDoorExtra = $request->input('door_extras_id'); 
          $thickness = $request->input('thickness');  
+         $selectedMaterial = $request->input('materials_id'); // Material identifikatori
          //  Eshik turi bo'yicha narxni olish  1
          $doorType = DoorType::find($selectedDoorType);
  
@@ -517,6 +527,11 @@ public function update(Request $request, Ad $ad)
                      if ($doorExtra) {
                          $totalPrice += $doorExtra->price;  // Tanlangan DoorExtra narxini qo'shish 8
                      }
+                 }
+
+                 $material=Material::find($selectedMaterial);
+                 if ($material) {
+                     $totalPrice += $material->price; 
                  }
  
 

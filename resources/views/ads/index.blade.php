@@ -1,4 +1,6 @@
 <x-layouts.main>
+
+    <!-- Hero Start -->
     <section class="relative mt-20">
         <div class="container-fluid md:mx-4 mx-2">
             <div class="relative pt-40 pb-52 table w-full rounded-2xl shadow-md overflow-hidden" id="home">

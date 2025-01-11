@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignId('frames_id')->constrained();
             $table->foreignId('door_types_id')->constrained();
             $table->foreignId('door_dimensions_id')->constrained();
+            $table->foreignId('materials_id')->constrained();
             $table->foreignId('colors_id')->constrained();
             $table->foreignId('door_extras_id')->constrained();
             $table->foreignId('knobs_id')->constrained();

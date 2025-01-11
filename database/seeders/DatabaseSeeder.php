@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             DoorFrameSeeder::class,
             HasTopSectionSeeder::class,
             FrameSeeder::class,
+            MaterialSeeder::class,
 
 
             

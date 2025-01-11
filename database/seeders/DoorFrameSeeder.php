@@ -13,6 +13,7 @@ class DoorFrameSeeder extends Seeder
     {
         // DoorFrame nomlari
         $doorFrames = [
+            ['name' => 'yo\'q'],
             ['name' => '10 lik tekis nalichka'],
             ['name' => '2 ta tirnoqcha nalichka'],
             ['name' => '3 ta tirnoqcha nalichka'],
@@ -29,6 +30,7 @@ class DoorFrameSeeder extends Seeder
 
         // DoorFrame nomlari va ularning narxlari
         $doorFramePriceMapping = [
+            'yo\'q' => 0,
             '10 lik tekis nalichka' => 30000,
             '2 ta tirnoqcha nalichka' => 35000,
             '3 ta tirnoqcha nalichka' => 40000,

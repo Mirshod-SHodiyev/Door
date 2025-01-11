@@ -146,7 +146,7 @@
                                             <i class="uil uil-layer-group text-green-600 mr-2"></i>
                                             <strong>Eshik materiali:</strong>
                                         </div>
-                                        <strong>{{ $ad->doorDimension->material }}</strong>
+                                        <strong>{{ $ad->material->name }}</strong>
                                     </li>
                                     <!-- Door Frame -->
                                     <li class="flex justify-between items-center">
