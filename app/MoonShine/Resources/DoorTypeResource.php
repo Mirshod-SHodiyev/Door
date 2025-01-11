@@ -9,7 +9,7 @@ use MoonShine\Resources\ModelResource;
 class DoorTypeResource extends ModelResource
 {
     protected string $model = DoorType::class;
-    protected string $title = 'Door Types';
+    protected string $title = 'Eshik Turi';
     public string $column ="name";
  
 

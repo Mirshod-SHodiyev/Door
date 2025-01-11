@@ -9,7 +9,7 @@ use MoonShine\Resources\ModelResource;
 class ColorResource extends ModelResource
 {
     protected string $model = Color::class;
-    protected string $title = 'Colors';
+    protected string $title = 'Ranglar';
     public string $column ="name";
 
 

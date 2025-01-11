@@ -12,7 +12,7 @@
         {{ $slot ?? '' }}
 
         <div class="text-center text-2xs text-slate-500 md:text-left">
-            {!! $copyright !!}
+           
         </div>
 
         @if(!empty($menu))

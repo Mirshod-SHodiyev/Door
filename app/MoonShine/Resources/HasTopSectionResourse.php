@@ -9,7 +9,7 @@ use MoonShine\Resources\ModelResource;
 class HasTopSectionResourse extends ModelResource
 {
     protected string $model = HasTopSection::class;
-    protected string $title = 'HasTopSection';
+    protected string $title = 'Yuqori Qismi';
     public string $column ="name";
  
 

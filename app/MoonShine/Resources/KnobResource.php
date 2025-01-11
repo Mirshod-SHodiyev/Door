@@ -9,7 +9,7 @@ use MoonShine\Resources\ModelResource;
 class KnobResource extends ModelResource
 {
     protected string $model = Knob::class;
-    protected string $title = 'knob';
+    protected string $title = 'Zamoki';
     public string $column ="name";
 
 

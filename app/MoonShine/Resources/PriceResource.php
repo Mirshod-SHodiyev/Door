@@ -18,7 +18,7 @@ class PriceResource extends ModelResource
 {
     protected string $model = Price::class;
 
-    protected string $title = 'Prices';
+    protected string $title = 'Narx';
     public string $column ="price";
     
 

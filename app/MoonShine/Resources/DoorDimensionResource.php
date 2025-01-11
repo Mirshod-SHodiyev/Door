@@ -10,7 +10,7 @@ use MoonShine\Resources\ModelResource;
 class DoorDimensionResource extends ModelResource
 {
     protected string $model = DoorDimension::class;
-    protected string $title = 'Door Dimensions';
+    protected string $title = 'Eshik Qulayligi';
     public string $column ="opening_side";
 
    

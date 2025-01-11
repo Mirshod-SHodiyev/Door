@@ -9,7 +9,7 @@ use MoonShine\Resources\ModelResource;
 class FrameResource extends ModelResource
 {
     protected string $model = Frame::class;
-    protected string $title = 'Frame';
+    protected string $title = 'Frammoga';
     public string $column ="name";
  
 
