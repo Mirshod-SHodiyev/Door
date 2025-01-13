@@ -22,6 +22,7 @@ class DoorExtraResource extends ModelResource
     {
         return [
             Text::make('name')->sortable(),
+            Text::make('narxlar', 'price')->sortable(),
           
         ];
     }
@@ -35,7 +36,8 @@ class DoorExtraResource extends ModelResource
     public function rules($item): array
     {
         return [
-            'name' => 'required|string|max:255',  
+            'name' => 'required|string|max:255', 
+            'price' => 'required|string|max:255',
            
         ];
     }

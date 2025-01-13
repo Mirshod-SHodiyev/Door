@@ -138,17 +138,36 @@
             margin-top: 20px;
             color: #2c3e50;
         }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .logo-container svg {
+            height: 60px;
+        }
     </style>
 </head>
 <body>
-    <h1>Kampaniya nomi</h1>
+    <div class="logo-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 200" width="100" height="200">
+            <!-- Eshikning asosiy tanasi -->
+            <rect x="10" y="10" width="80" height="180" fill="gold" stroke="black" stroke-width="2" rx="5" ry="5"/>
+            
+            <!-- Eshikning ichki panellari -->
+            <rect x="20" y="20" width="60" height="50" fill="none" stroke="black" stroke-width="1"/>
+            <rect x="20" y="80" width="60" height="50" fill="none" stroke="black" stroke-width="1"/>
+            <rect x="20" y="140" width="60" height="40" fill="none" stroke="black" stroke-width="1"/>
+            
+            <!-- Eshikning tutqichi -->
+            <circle cx="75" cy="160" r="3" fill="black"/>
+        </svg>
+        
+    </div>
+    <h1>GOLD DOORS</h1>
     <h2>Eshik savdosi bo'yicha shartnoma</h2>
-      
-    <script>
-        // PDF ochilganidan keyin avtomatik chop qilish
-        window.onload = function() {
-            window.print();
-        };
+
     </script>
     <p><strong>Mijoz ma'lumotlari:</strong> {{ $ad->customers_info }}</p>
     <p><strong>mijoz nomeri:</strong> {{ $ad->phone_number }}</p>

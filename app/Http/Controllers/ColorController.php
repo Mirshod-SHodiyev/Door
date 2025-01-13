@@ -92,8 +92,8 @@ class ColorController extends Controller
             $doorDimension = DoorDimension::find($isDoorService);
             if ($doorDimension) {
                 // Agar 'service_free' "yo'q" bo'lsa, 300,000 so'm ayrish
-                if ($doorDimension->service_free === 'yo\'q') {
-                    $totalPrice -= 300000;  // 300,000 so'm qo'shish
+                if ($doorDimension->service_free === 'ha') {
+                    $totalPrice += 300000;  // 300,000 so'm qo'shish
                 }
         
                 // Narxni qo'shish
