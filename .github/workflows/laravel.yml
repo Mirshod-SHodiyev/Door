@@ -38,7 +38,6 @@ jobs:
         touch database/database.sqlite
 
     - name: Run Tests
-    
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
@@ -53,7 +52,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Display Secrets (for debugging purposes, remove in production!)
-      run: echo "Host: ${{ secrets.HOST }}, Username: ${{ secrets.USERNAME }}"
+      run: echo ${{ secrets.HOST }} ${{ secrets.USERNAME }}
 
     - name: Execute Remote Deployment
       uses: appleboy/ssh-action@v1.1.0
@@ -63,7 +62,7 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
-          cd Doors
+          cd door_app
           git pull
           docker-compose -f docker-compose.yml up -d --build
           docker exec door_app php artisan optimize
