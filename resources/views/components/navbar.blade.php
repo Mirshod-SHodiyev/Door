@@ -27,7 +27,9 @@
 <nav id="topnav" class="defaultscroll is-sticky">
     <div class="container relative">
         <!-- Logo -->
+        <br>
         <a class="logo" href="index.html">
+            
             <span class="inline-block dark:hidden">
                  <img src="assets/images/logo-dark.png" class="l-dark" height="40px" width="40px"  alt=""> 
                  <img src="assets/images/logo-light.png" class="l-light" height="40px" width="40px"  alt="">
@@ -47,36 +49,24 @@
                 </a>
             </div>
         </div>
-
-        <!-- Buy Button -->
-        <ul class="buy-button list-none mb-0">
-            {{-- <li class="inline mb-0">
-                <a href="{{ auth()->check() ? (auth()->user()->is_admin ? '/adminpanel' : '/profile') : '/login' }}" 
-                   class="btn btn-icon bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
-                    <i data-feather="user" class="size-4 stroke-[3]"></i>
-                </a>
-            </li> --}}
-            <li class="sm:inline ps-1 mb-0 hidden">
+          
+          
+        <ul class="buy-button list-none mb-0 flex flex-wrap space-x-4 justify-center">
+            <li class="sm:block ps-1 mb-4 w-auto"> <!-- margin-bottom qo'shildi -->
                 <a href="/" 
-                   class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
+                   class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full px-6 py-3">
                     Sotuv bo'limi
                 </a>
             </li>
-
-            <li class="sm:inline ps-1 mb-0 hidden">
+        
+            <li class="sm:block ps-1 mb-4 w-auto"> <!-- margin-bottom qo'shildi -->
                 <a href="/home" 
-                   class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
+                   class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full px-6 py-3">
                     Bosh sahifa
                 </a>
             </li>
-            {{-- <form method="POST" action="{{ route('logout') }}" style="display: inline-block;">
-                @csrf
-                <button type="submit" class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
-                    Logout
-                </button>
-            </form> --}}
         </ul>
-
+        
         
      
         <div id="navigation">
